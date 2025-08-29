@@ -17,3 +17,8 @@ venv*/
 # agent hub artifacts & streamlit
 agent_hub_ci_bundle/artifacts/
 .streamlit/
+# secrets
+.env
+.env.*
+config/*config.yaml
+echo_engine/config/*config.yaml
