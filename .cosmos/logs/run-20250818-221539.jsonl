@@ -1,0 +1,5 @@
+{"event": "run_start", "run_id": "run-20250818-221539", "pipeline": "test_new_adapters", "started_at": 1755522939.0265024, "total_steps": 5}
+{"event": "step_start", "id": "test_git_adapter", "uses": "git.run", "attempt": 1}
+{"event": "step_end", "id": "test_git_adapter", "ok": true}
+{"event": "step_start", "id": "test_docker_adapter", "uses": "docker.run", "attempt": 1}
+{"event": "step_error", "id": "test_docker_adapter", "error": "unknown error"}

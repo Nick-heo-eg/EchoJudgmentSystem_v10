@@ -1,3 +1,4 @@
+SHELL := /usr/bin/bash
 # Echo Judgment System v10 - Makefile
 # Common commands for development and CI
 

@@ -1,0 +1,11 @@
+{"event": "run_start", "run_id": "run-20250818-192451", "pipeline": "simple_test", "started_at": 1755512691.5732317, "total_steps": 5}
+{"event": "step_start", "id": "environment_check", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "environment_check", "ok": true}
+{"event": "step_start", "id": "echo_message", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "echo_message", "ok": true}
+{"event": "step_start", "id": "list_files", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "list_files", "ok": true}
+{"event": "step_start", "id": "test_python_function", "uses": "python.fn", "attempt": 1}
+{"event": "step_end", "id": "test_python_function", "ok": true}
+{"event": "step_error", "id": "create_test_artifact", "error": "Invalid control character at: line 1 column 196 (char 195)"}
+{"event": "run_complete", "ended_at": 1755512692.851587, "success_count": 4, "total_steps": 5, "total_time": 1.278353214263916}

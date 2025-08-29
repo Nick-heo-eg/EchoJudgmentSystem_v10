@@ -1,0 +1,9 @@
+{"event": "run_start", "run_id": "run-20250818-192440", "pipeline": "simple_test", "started_at": 1755512680.2085388, "total_steps": 5}
+{"event": "step_start", "id": "environment_check", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "environment_check", "ok": true}
+{"event": "step_start", "id": "echo_message", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "echo_message", "ok": true}
+{"event": "step_start", "id": "list_files", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "list_files", "ok": true}
+{"event": "step_error", "id": "test_python_function", "error": "Invalid control character at: line 1 column 102 (char 101)"}
+{"event": "run_complete", "ended_at": 1755512681.4421813, "success_count": 3, "total_steps": 5, "total_time": 1.2336399555206299}

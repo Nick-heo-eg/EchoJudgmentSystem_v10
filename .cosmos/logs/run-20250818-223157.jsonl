@@ -1,0 +1,10 @@
+{"event": "run_start", "run_id": "run-20250818-223157", "pipeline": "create_real_dashboard", "started_at": 1755523917.1319017, "total_steps": 4}
+{"event": "step_start", "id": "create_real_api", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "create_real_api", "ok": true}
+{"event": "step_start", "id": "create_real_dashboard", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "create_real_dashboard", "ok": true}
+{"event": "step_start", "id": "create_server_script", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "create_server_script", "ok": true}
+{"event": "step_start", "id": "create_real_proof", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "create_real_proof", "ok": true}
+{"event": "run_complete", "ended_at": 1755523917.736372, "success_count": 4, "total_steps": 4, "total_time": 0.6044669151306152}

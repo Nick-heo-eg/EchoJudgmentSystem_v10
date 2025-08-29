@@ -1,0 +1,11 @@
+{"event": "run_start", "run_id": "run-20250818-221623", "pipeline": "working_proof", "started_at": 1755522983.6889055, "total_steps": 5}
+{"event": "step_start", "id": "git_status", "uses": "git.run", "attempt": 1}
+{"event": "step_end", "id": "git_status", "ok": true}
+{"event": "step_start", "id": "git_commits", "uses": "git.run", "attempt": 1}
+{"event": "step_end", "id": "git_commits", "ok": true}
+{"event": "step_start", "id": "http_test", "uses": "http.request", "attempt": 1}
+{"event": "step_end", "id": "http_test", "ok": true}
+{"event": "step_start", "id": "python_json_test", "uses": "python.fn", "attempt": 1}
+{"event": "step_end", "id": "python_json_test", "ok": true}
+{"event": "step_error", "id": "final_evidence", "error": "Invalid control character at: line 1 column 667 (char 666)"}
+{"event": "run_complete", "ended_at": 1755522987.8927681, "success_count": 4, "total_steps": 5, "total_time": 4.203859090805054}

@@ -1,0 +1,9 @@
+{"event": "run_start", "run_id": "run-20250818-221600", "pipeline": "adapters_proof", "started_at": 1755522960.9249222, "total_steps": 6}
+{"event": "step_start", "id": "git_status_check", "uses": "git.run", "attempt": 1}
+{"event": "step_end", "id": "git_status_check", "ok": true}
+{"event": "step_start", "id": "git_log_check", "uses": "git.run", "attempt": 1}
+{"event": "step_end", "id": "git_log_check", "ok": true}
+{"event": "step_start", "id": "http_api_test", "uses": "http.request", "attempt": 1}
+{"event": "step_end", "id": "http_api_test", "ok": true}
+{"event": "step_start", "id": "python_datetime_test", "uses": "python.fn", "attempt": 1}
+{"event": "step_error", "id": "python_datetime_test", "error": "Function 'now' not found in module 'datetime': module 'datetime' has no attribute 'now'"}

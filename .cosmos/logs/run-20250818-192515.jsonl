@@ -1,0 +1,12 @@
+{"event": "run_start", "run_id": "run-20250818-192515", "pipeline": "simple_test", "started_at": 1755512715.2394836, "total_steps": 5}
+{"event": "step_start", "id": "environment_check", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "environment_check", "ok": true}
+{"event": "step_start", "id": "echo_message", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "echo_message", "ok": true}
+{"event": "step_start", "id": "list_files", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "list_files", "ok": true}
+{"event": "step_start", "id": "test_python_function", "uses": "python.fn", "attempt": 1}
+{"event": "step_end", "id": "test_python_function", "ok": true}
+{"event": "step_start", "id": "create_test_artifact", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "create_test_artifact", "ok": true}
+{"event": "run_complete", "ended_at": 1755512716.9844944, "success_count": 5, "total_steps": 5, "total_time": 1.7450082302093506}

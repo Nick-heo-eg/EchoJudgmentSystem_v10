@@ -1,0 +1,7 @@
+{"event": "run_start", "run_id": "run-20250818-192422", "pipeline": "echo_smoketest", "started_at": 1755512662.840194, "total_steps": 3}
+{"event": "step_start", "id": "system_info", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "system_info", "ok": true}
+{"event": "step_start", "id": "echo_health", "uses": "http.request", "attempt": 1}
+{"event": "step_start", "id": "echo_health", "uses": "http.request", "attempt": 2}
+{"event": "step_start", "id": "echo_health", "uses": "http.request", "attempt": 3}
+{"event": "step_error", "id": "echo_health", "error": "HTTP 404"}

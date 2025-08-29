@@ -1,0 +1,12 @@
+{"event": "run_start", "run_id": "run-20250818-221649", "pipeline": "simple_proof", "started_at": 1755523009.2131884, "total_steps": 5}
+{"event": "step_start", "id": "git_works", "uses": "git.run", "attempt": 1}
+{"event": "step_end", "id": "git_works", "ok": true}
+{"event": "step_start", "id": "http_works", "uses": "http.request", "attempt": 1}
+{"event": "step_end", "id": "http_works", "ok": true}
+{"event": "step_start", "id": "python_works", "uses": "python.fn", "attempt": 1}
+{"event": "step_end", "id": "python_works", "ok": true}
+{"event": "step_start", "id": "shell_works", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "shell_works", "ok": true}
+{"event": "step_start", "id": "create_proof_file", "uses": "shell.run", "attempt": 1}
+{"event": "step_end", "id": "create_proof_file", "ok": true}
+{"event": "run_complete", "ended_at": 1755523010.8995533, "success_count": 5, "total_steps": 5, "total_time": 1.68636155128479}
