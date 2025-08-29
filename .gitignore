@@ -1,0 +1,53 @@
+# Virtual environments
+venv*/
+env/
+ENV/
+
+# Python
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+logs/
+temp/
+
+# Agent Hub artifacts (dynamic benchmark results)
+agent_hub_ci_bundle/artifacts/
+!agent_hub_ci_bundle/artifacts/.gitkeep
+
+# Streamlit
+.streamlit/
+
+# Environment variables
+.env
+.env.local
+
+# Claude Code specifics
+cosmos/
+*.pkl
+data/logs.jsonl
+meta_logs/traces/
