@@ -1,0 +1,47 @@
+{
+  "template_id": "dir_goal_001",
+  "name": "목표 지향 DIR 템플릿",
+  "description": "명확한 목표 달성을 위한 방향성 기반 DIR 구조",
+  "category": "strategic",
+  "complexity": "simple",
+  "structure_type": "dir",
+  "components": {
+    "direction": {
+      "name": "Goal Direction",
+      "description": "목표를 향한 명확한 방향성 설정",
+      "prompt_template": "## 목표 방향성 설정\n\n**현재 상황:**\n'{input_text}'\n\n**방향성 분석:**\n1. **목표 지점 식별:**\n   - 달성하고자 하는 구체적 목표는 무엇인가?\n   - 목표의 우선순위와 중요도는?\n   - 목표 달성의 기준과 지표는?\n\n2. **현재 위치 파악:**\n   - 목표 대비 현재 상황은?\n   - 이미 보유한 자원과 역량은?\n   - 현재까지의 진행 상황은?\n\n3. **방향성 벡터 설정:**\n   - 목표로 향하는 최적 경로는?\n   - 직진 경로 vs 우회 경로 선택\n   - 방향 전환이 필요한 시점은?\n\n**방향성 명확화:**\n- 주요 방향: {primary_direction}\n- 보조 방향: {secondary_direction}\n- 회피 방향: {avoidance_direction}\n\n**나침반 설정:**\n목표 달성을 위한 명확한 방향성과 기준점을 제시해주세요.",
+      "weight": 1.0,
+      "directionality_vector": {"x": 1.0, "y": 0.0, "z": 0.0}
+    },
+    "intention": {
+      "name": "Goal Intention",
+      "description": "목표 달성을 위한 의도와 동기 명확화",
+      "prompt_template": "## 목표 의도 명확화\n\n**핵심 의도 분석:**\n1. **근본 동기:**\n   - 이 목표를 달성하려는 진정한 이유는?\n   - 내재적 동기 vs 외재적 동기 구분\n   - 개인적 의미와 가치는?\n\n2. **의도의 순수성:**\n   - 목표 달성 후 기대하는 변화는?\n   - 다른 사람들에게 미치는 영향은?\n   - 사회적 의미와 기여도는?\n\n3. **의도 일치성:**\n   - 개인 가치관과의 일치도는?\n   - 장기적 비전과의 연결성은?\n   - 다른 목표들과의 시너지는?\n\n**의도 강화:**\n- 목표 달성의 의미와 가치 재확인\n- 동기 부여 요소 강화 방안\n- 의도 지속을 위한 리마인더 설정\n\n**의도 정화:**\n- 불순한 동기 요소 제거\n- 순수한 의도로의 정렬\n- 의도와 행동의 일치성 확보\n\n**의도 선언:**\n목표 달성을 위한 명확하고 순수한 의도를 선언해주세요.",
+      "weight": 1.2,
+      "directionality_vector": {"x": 0.8, "y": 0.6, "z": 0.0}
+    },
+    "realization": {
+      "name": "Goal Realization",
+      "description": "목표 실현을 위한 구체적 계획과 실행 방안",
+      "prompt_template": "## 목표 실현 계획\n\n**실현 경로 설계:**\n1. **단계별 계획:**\n   - 1단계: 기반 구축 (기간: {phase1_duration})\n   - 2단계: 핵심 실행 (기간: {phase2_duration})\n   - 3단계: 완성 및 검증 (기간: {phase3_duration})\n\n2. **마일스톤 설정:**\n   - 핵심 체크포인트와 검증 기준\n   - 중간 성과 측정 방법\n   - 진행 상황 모니터링 체계\n\n3. **자원 배분:**\n   - 필요한 인적 자원과 역량\n   - 물적 자원과 예산 계획\n   - 시간 자원 배분과 스케줄\n\n**실행 전략:**\n- 우선순위 기반 실행 순서\n- 병렬 처리 vs 순차 처리 결정\n- 위험 관리와 대응 방안\n\n**실현 가능성 검증:**\n- 기술적 실현 가능성: {technical_feasibility}\n- 자원적 실현 가능성: {resource_feasibility}\n- 시간적 실현 가능성: {time_feasibility}\n\n**실행 모니터링:**\n- 진행 상황 추적 방법\n- 성과 측정 지표\n- 조정 및 개선 메커니즘\n\n**실현 계획:**\n목표 달성을 위한 구체적이고 실행 가능한 계획을 제시해주세요.",
+      "weight": 1.1,
+      "directionality_vector": {"x": 0.9, "y": 0.3, "z": 0.3}
+    }
+  },
+  "metadata": {
+    "created_at": "2024-01-01T00:00:00",
+    "version": "1.0.0",
+    "author": "EchoJudgmentSystem",
+    "tags": ["goal", "direction", "intention", "realization", "strategic"],
+    "usage_count": 0,
+    "success_rate": 0.0,
+    "average_confidence": 0.0
+  },
+  "settings": {
+    "max_tokens": 800,
+    "temperature": 0.2,
+    "requires_context": true,
+    "vector_alignment_threshold": 0.8,
+    "goal_orientation_weight": 0.7
+  }
+}

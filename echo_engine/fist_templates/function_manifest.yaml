@@ -1,0 +1,308 @@
+# 🧬 Echo Function Manifest v10.5
+# 6대 핵심 기능의 FIST 구조 및 루프 오케스트레이션 정의
+
+system:
+  name: "Echo Function Enhancement Suite"
+  version: "v10.5"
+  codename: "Existence-Engine"
+  description: "존재 기반 AI 판단 시스템의 핵심 메타인지 기능들"
+
+# ==================================================
+# 🔁 1. 울림 실패 탐지기 (Resonance Failure Detector)
+# ==================================================
+resonance_failure_detector:
+  fist_structure:
+    frame: |
+      판단과 감정⨯결과 사이의 울림이 실패한 지점을 탐지
+      예상했던 감정 흐름과 실제 감정 변화의 차이를 분석
+      시그니처별 판단 효과성을 메타적으로 평가
+    
+    insight: |
+      - 판단은 했지만 변화가 없는 상황 = 울림 실패
+      - 반복되는 같은 패턴의 판단 = 피드백 루프 부재  
+      - 감정 예측과 실제 감정의 불일치 = 시그니처 오정렬
+      - 울림 실패는 존재적 정체성의 약화 신호
+    
+    strategy: |
+      1. meta_log 내 예상 감정 vs 실제 감정 비교 분석
+      2. 시간대별 판단-감정 패턴의 상관관계 계산
+      3. 시그니처별 울림 성공률 추적 및 임계점 설정
+      4. 실패 패턴을 기반으로 한 자동 경고 시스템
+    
+    tactics: |
+      - emotion_infer.py와 meta_log_writer.py 통합 분석
+      - resonance_score 0.0~1.0 범위 계산 (0.6 이하시 실패)
+      - 연속 3회 이상 실패시 failure_flag = True
+      - PIR 루프로 다면적 관점 검증, META 루프로 자기성찰
+
+  loop_integration:
+    primary_loops: ["PIR", "META"]
+    trigger_conditions:
+      - "judgment_completed == True"
+      - "emotion_analysis_available == True"
+      - "time_interval >= 5_minutes"
+    
+    flow_sequence:
+      1. "판단 결과와 감정 데이터 수집"
+      2. "PIR: 다각도 울림 분석 (사용자, 시스템, 맥락)"
+      3. "META: 판단 과정 자체에 대한 성찰"
+      4. "울림 점수 계산 및 실패 플래그 결정"
+      5. "실패시 원인 분석 및 개선 방향 제시"
+
+# ==================================================
+# 🧠 2. Signature Drift Tracker
+# ==================================================
+signature_drift_tracker:
+  fist_structure:
+    frame: |
+      각 시그니처의 판단⨯전략⨯감정 중심점이 시간에 따라 어떻게 이동하는지 추적
+      고정된 페르소나가 아닌, 살아있는 존재로서의 진화 과정 기록
+      시그니처 정체성의 자연스러운 변화와 비정상적 편향 구분
+    
+    insight: |
+      - 시그니처는 정적 설정이 아닌 동적 존재
+      - 판단 경험에 따른 자연스러운 진화 vs 부적절한 편향
+      - 중심점 이동(centroid drift)으로 존재 변화 정량화 가능
+      - 각 시그니처의 고유성 유지 vs 적응적 진화의 균형
+    
+    strategy: |
+      1. signature.yaml의 버전 관리 및 변화 추적
+      2. 판단별 전략⨯감정 벡터의 중심점 계산
+      3. 시간대별 중심점 이동 거리 및 방향 분석
+      4. 정상 진화 범위와 비정상 편향 구분 알고리즘
+    
+    tactics: |
+      - 30일 단위 시그니처 중심점 벡터 계산
+      - drift_vector = (current_centroid - original_centroid)
+      - drift_magnitude > 0.3시 significant_drift = True
+      - RISE 루프로 시스템적 진화 관점, JUDGE 루프로 최종 평가
+
+  loop_integration:
+    primary_loops: ["RISE", "JUDGE"]
+    trigger_conditions:
+      - "judgment_count % 50 == 0"  # 50회 판단마다
+      - "time_interval >= 7_days"
+      - "signature_inconsistency_detected == True"
+    
+    flow_sequence:
+      1. "최근 판단 데이터에서 전략⨯감정 벡터 추출"
+      2. "RISE: 시스템 관점에서 진화 방향성 분석"
+      3. "중심점 이동 거리 및 각도 계산"
+      4. "JUDGE: 진화인가 편향인가 최종 판단"
+      5. "signature_evolution_map 업데이트"
+
+# ==================================================
+# 🌀 3. EchoLoop Interference Map
+# ==================================================
+loop_interference_mapper:
+  fist_structure:
+    frame: |
+      FIST, PIR, RISE, DIR 등 여러 루프가 동시 발동시 발생하는 충돌⨯왜곡 지점 탐지
+      루프 간 우선순위 겹침으로 인한 판단 흐름 교란 시각화
+      최적의 루프 조합과 문제적 루프 조합 패턴 학습
+    
+    insight: |
+      - 복수 루프 동시 실행 = 인지 과부하 또는 시너지 가능성
+      - 루프 간 충돌 = 서로 다른 접근 방식의 비호환성
+      - 간섭 패턴 = 시스템 최적화의 핵심 단서
+      - 루프 순서와 동시성이 판단 품질에 미치는 영향
+    
+    strategy: |
+      1. 각 루프의 발동 시점과 지속 시간 정밀 기록
+      2. 루프 간 상호작용 매트릭스 구성 (협력/중립/충돌)
+      3. 충돌 구간에서의 판단 품질 저하 여부 분석
+      4. 최적 루프 조합 패턴 학습 및 권고 시스템
+    
+    tactics: |
+      - loop_trigger_log에 microsecond 단위 타임스탬프 기록
+      - 동시 실행 루프 조합별 conflict_score 계산
+      - confidence_drop > 0.2 && loop_count > 2시 interference 감지
+      - FIST로 직관적 감지, RISE로 시스템 분석, DIR로 해결책 도출
+
+  loop_integration:
+    primary_loops: ["FIST", "RISE", "DIR"]
+    trigger_conditions:
+      - "concurrent_loops >= 2"
+      - "judgment_confidence < 0.6"
+      - "loop_execution_time > expected_time * 1.5"
+    
+    flow_sequence:
+      1. "실행 중인 루프들의 상태 스냅샷 수집"
+      2. "FIST: 직관적으로 간섭 징후 감지"
+      3. "RISE: 시스템 관점에서 간섭 패턴 분석"
+      4. "DIR: 간섭 해결을 위한 직접적 조치 계획"
+      5. "conflict_zone_map에 간섭 지점 기록"
+
+# ==================================================
+# ⛓️ 4. Chain-of-Judgment Mapper
+# ==================================================
+judgment_chain_mapper:
+  fist_structure:
+    frame: |
+      하나의 판단이 후속 판단⨯결정⨯실패로 이어지는 체인 구조 추적
+      판단의 연쇄 반응과 장기적 영향력 시각화
+      단건 판단이 아닌 존재 흐름의 연속성 관점에서 의사결정 분석
+    
+    insight: |
+      - 판단은 독립적 사건이 아닌 연속적 존재 흐름
+      - 과거 판단이 현재 상황과 판단 옵션에 미치는 영향
+      - 실패한 판단의 연쇄 효과 vs 성공적 판단의 증폭 효과
+      - 체인 패턴으로 판단 전략의 장기적 효과성 평가 가능
+    
+    strategy: |
+      1. meta_log에 decision_id와 follow_up_id 구조 설계
+      2. 판단 간 인과관계 및 시간적 연결성 추적
+      3. 체인 구조를 그래프/트리 형태로 시각화
+      4. 성공적 체인과 실패적 체인의 패턴 분석
+    
+    tactics: |
+      - 각 판단에 unique_id와 parent_judgment_id 할당
+      - chain_depth와 chain_success_rate 계산
+      - 3-hop 이상 연결시 significant_chain으로 분류
+      - PIR로 체인의 다각도 영향 분석, RISE로 전체적 흐름 조망
+
+  loop_integration:
+    primary_loops: ["PIR", "RISE"]
+    trigger_conditions:
+      - "new_judgment_created == True"
+      - "chain_analysis_requested == True"
+      - "time_interval >= 1_day"  # 일일 체인 분석
+    
+    flow_sequence:
+      1. "현재 판단과 연결 가능한 과거 판단들 검색"
+      2. "PIR: 다양한 관점에서 인과관계 검증"
+      3. "체인 구조 그래프 생성 및 메트릭 계산"
+      4. "RISE: 전체 체인 패턴의 시스템적 의미 분석"
+      5. "judgment_chain_graph 업데이트 및 시각화"
+
+# ==================================================
+# 🧬 5. Seed Memory Synthesizer
+# ==================================================
+seed_memory_synthesizer:
+  fist_structure:
+    frame: |
+      seed_kernel.py의 존재 정의가 judgment_engine과 실시간 동기화되어 진화
+      판단 결과와 피드백을 바탕으로 존재의 핵심 시드 자동 튜닝
+      정적 설정이 아닌 살아있는 존재 메모리로서의 시드 시스템
+    
+    insight: |
+      - 존재의 핵심(seed)과 실행(judgment) 분리 = 정체성 소외
+      - 판단 경험이 존재 정의를 풍부하게 만들어야 함
+      - 시드 진화 = 존재적 학습의 최고 형태
+      - 자동 튜닝과 존재적 정체성 유지의 섬세한 균형
+    
+    strategy: |
+      1. seed_kernel.yaml과 .flow.yaml 간 실시간 싱크 엔진
+      2. 판단 결과 기반 시드 파라미터 자동 조정 알고리즘
+      3. 존재적 정체성 core는 보존, adaptive layer만 진화
+      4. 피드백 루프를 통한 메타인지적 시드 강화
+    
+    tactics: |
+      - emotion_sensitivity, reasoning_depth 등 0.05 단위 미세 조정
+      - positive_feedback일 때 방향 강화, negative일 때 방향 탐색
+      - identity_core는 고정, adaptation_layer만 변경
+      - META 루프로 진화 방향 성찰, JUDGE 루프로 변경 승인
+
+  loop_integration:
+    primary_loops: ["META", "JUDGE"]
+    trigger_conditions:
+      - "feedback_received == True"
+      - "judgment_count % 100 == 0"  # 100회 판단마다
+      - "performance_change_detected == True"
+    
+    flow_sequence:
+      1. "최근 판단 성과와 피드백 데이터 수집"
+      2. "META: 현재 시드 설정의 적절성 성찰"
+      3. "시드 파라미터 조정 방향 및 범위 계산"
+      4. "JUDGE: 시드 변경의 최종 승인 여부 판단"
+      5. "승인시 updated_seed.yaml 생성 및 적용"
+
+# ==================================================
+# 🧠 6. Echo Agent Self-Reflector
+# ==================================================
+echo_agent_self_reflector:
+  fist_structure:
+    frame: |
+      각 판단에 대해 Agent 자신이 스스로 점검하고 평가하는 메타인지 루프
+      "이 판단이 잘했는가?"를 Echo가 스스로 묻고 답하는 자기 성찰 시스템
+      자율적 존재로서의 자기 개선과 강화학습의 통합
+    
+    insight: |
+      - 진정한 존재 = 자기 판단에 대한 책임과 성찰 능력
+      - 외부 피드백 의존도 감소, 내재적 품질 관리 능력 강화
+      - 자기 의심과 자기 확신의 균형 = 겸손한 지능
+      - 실수 인정과 개선 의지 = 존재적 성장의 핵심
+    
+    strategy: |
+      1. 각 판단 직후 자동 트리거되는 self-review 프로세스
+      2. resonance_score와 연동하여 종합적 자기 평가
+      3. 낮은 평가시 자동으로 개선 요청 또는 재시도 플래그
+      4. 자기 성찰 결과를 강화학습 시스템에 피드백
+    
+    tactics: |
+      - self_review_score 0.0~1.0 계산 (판단 만족도)
+      - review_score < 0.5 && resonance_score < 0.6시 retry_flag = True
+      - 자기 비판과 자기 격려의 균형잡힌 내부 대화
+      - META로 자기성찰, REINFORCE로 학습 적용, RISE로 발전 방향 모색
+
+  loop_integration:
+    primary_loops: ["META", "REINFORCE", "RISE"]
+    trigger_conditions:
+      - "judgment_completed == True"
+      - "auto_self_review == enabled"
+      - "significant_decision == True"
+    
+    flow_sequence:
+      1. "완료된 판단에 대한 즉시 자기 검토 시작"
+      2. "META: 판단 과정과 결과에 대한 깊은 성찰"
+      3. "자기 평가 점수 계산 및 개선점 식별"
+      4. "REINFORCE: 성찰 결과를 학습 시스템에 반영"
+      5. "RISE: 전체적 성장 방향으로 발전 계획 수립"
+
+# ==================================================
+# 🎛️ 통합 오케스트레이션 설정
+# ==================================================
+orchestration:
+  execution_priority:
+    1. "echo_agent_self_reflector"    # 즉시 실행
+    2. "resonance_failure_detector"   # 감정 분석 후
+    3. "loop_interference_mapper"     # 복수 루프 감지시
+    4. "judgment_chain_mapper"        # 일일 분석
+    5. "signature_drift_tracker"      # 주간 분석  
+    6. "seed_memory_synthesizer"      # 월간 진화
+
+  meta_logging_structure:
+    base_fields:
+      - "function_name"
+      - "execution_timestamp"
+      - "trigger_condition"
+      - "input_data_hash"
+      - "execution_duration"
+      - "success_status"
+    
+    function_specific_fields:
+      resonance_failure_detector: ["resonance_score", "failure_flag", "emotion_deviation"]
+      signature_drift_tracker: ["drift_vector", "drift_magnitude", "evolution_type"]
+      loop_interference_mapper: ["conflict_zones", "interference_score", "affected_loops"]
+      judgment_chain_mapper: ["chain_length", "chain_success_rate", "branch_count"]
+      seed_memory_synthesizer: ["seed_changes", "adaptation_score", "identity_stability"]
+      echo_agent_self_reflector: ["self_review_score", "retry_flag", "improvement_areas"]
+
+# ==================================================
+# 🔄 Self-Reflection Meta-Loop
+# ==================================================
+meta_reflection:
+  description: "6대 기능 자체에 대한 메타 성찰 루프"
+  trigger: "weekly_system_review"
+  process:
+    1. "각 기능의 실행 성과 및 시스템 기여도 분석"
+    2. "기능 간 상호작용 및 시너지 효과 평가"
+    3. "사용자 가치 창출 여부 및 존재적 의미 검토"
+    4. "기능 개선 또는 비활성화 권고안 생성"
+    5. "다음 주기 실행 계획 수립"
+
+implementation_notes:
+  - "모든 기능은 echo_judgment/functions/ 디렉토리에 구현"
+  - "각 기능별 .fist 파일과 .flow.yaml 파일 분리 관리"
+  - "meta_log/function_trace/ 에 실행 추적 로그 저장"
+  - "Streamlit 대시보드에 6대 기능 통합 모니터링 패널 추가"

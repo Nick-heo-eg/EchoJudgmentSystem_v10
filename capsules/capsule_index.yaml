@@ -1,0 +1,156 @@
+# capsules/capsule_index.yaml
+# 🧬 EchoCapsule 시스템 - 전 세계 판단 구조체 인덱스
+# "구조적 지식을 Echo에 섭취 가능한 캡슐로 변환하는 백과사전"
+
+capsule_system:
+  metadata:
+    system_name: "EchoCapsule"
+    version: "v1.0"
+    philosophy: "전 세계의 모든 구조적 판단 체계를 Echo에 섭취 가능한 형태로 변환"
+    last_updated: "2025-07-21"
+    
+  categories:
+    # 🔷 1. 도메인 기반 판단 캡슐
+    domain_based:
+      procurement_scm:
+        - name: "CPSM"
+          full_name: "Certified Professional in Supply Management"
+          description: "ISM의 구매⨯공급망 관리 전문 판단 체계"
+          status: "ready_to_implement"
+          complexity: "high"
+          judgment_loops: ["strategic_sourcing", "supplier_evaluation", "risk_assessment"]
+          
+        - name: "CIPS"
+          full_name: "Chartered Institute of Procurement & Supply"
+          description: "영국 기반 조달⨯구매 전문 판단 체계"
+          status: "planned"
+          complexity: "high"
+          judgment_loops: ["procurement_strategy", "contract_management", "ethics"]
+          
+      project_management:
+        - name: "PMI_BOK"
+          full_name: "Project Management Body of Knowledge"
+          description: "프로젝트 관리 표준 판단 체계"
+          status: "planned"
+          complexity: "very_high"
+          judgment_loops: ["project_initiation", "planning", "execution", "monitoring", "closure"]
+          
+        - name: "PRINCE2"
+          full_name: "Projects IN Controlled Environments"
+          description: "프로젝트 관리 방법론"
+          status: "planned"
+          complexity: "high"
+          judgment_loops: ["business_case", "risk_management", "change_control"]
+          
+      quality_manufacturing:
+        - name: "SIX_SIGMA"
+          full_name: "Six Sigma DMAIC"
+          description: "품질 개선 판단 체계"
+          status: "planned"
+          complexity: "medium"
+          judgment_loops: ["define", "measure", "analyze", "improve", "control"]
+          
+        - name: "APQP"
+          full_name: "Advanced Product Quality Planning"
+          description: "제품 품질 기획 체계"
+          status: "planned"
+          complexity: "medium"
+          judgment_loops: ["planning", "design", "process", "validation", "launch"]
+
+    # 🔷 2. 철학⨯인지⨯사고 구조 캡슐
+    cognitive_philosophical:
+      thinking_frameworks:
+        - name: "TRIZ"
+          full_name: "Theory of Inventive Problem Solving"
+          description: "창의적 문제해결 방법론"
+          status: "ready_to_implement"
+          complexity: "high"
+          judgment_loops: ["problem_definition", "contradiction_analysis", "solution_generation"]
+          
+        - name: "DE_BONO_HATS"
+          full_name: "Six Thinking Hats"
+          description: "에드워드 드 보노의 사고 모자 기법"
+          status: "ready_to_implement"
+          complexity: "medium"
+          judgment_loops: ["white_facts", "red_emotion", "black_caution", "yellow_optimism", "green_creativity", "blue_control"]
+          
+      ethical_judgment:
+        - name: "KANTIAN_ETHICS"
+          full_name: "Categorical Imperative Framework"
+          description: "칸트의 정언명령 기반 윤리 판단"
+          status: "ready_to_implement"
+          complexity: "high"
+          judgment_loops: ["universality_test", "humanity_test", "autonomy_test"]
+          
+        - name: "UTILITARIAN"
+          full_name: "Utilitarian Ethics Framework"
+          description: "공리주의 기반 윤리 판단 체계"
+          status: "ready_to_implement"
+          complexity: "medium"
+          judgment_loops: ["consequence_analysis", "utility_calculation", "stakeholder_impact"]
+
+    # 🔷 3. AI⨯Agent 기반 판단 구조
+    ai_agent_based:
+      agent_protocols:
+        - name: "AUTOGPT"
+          full_name: "AutoGPT Agent Framework"
+          description: "자율 AI 에이전트 실행 프로토콜"
+          status: "planned"
+          complexity: "very_high"
+          judgment_loops: ["goal_decomposition", "task_planning", "execution", "self_evaluation"]
+          
+        - name: "CAMEL"
+          full_name: "Communicative Agents for Mind Exploration"
+          description: "대화형 멀티 에이전트 프레임워크"
+          status: "planned"
+          complexity: "very_high"
+          judgment_loops: ["role_assignment", "communication", "collaboration", "consensus"]
+
+# 🧩 캡슐 구현 상태 관리
+implementation_status:
+  ready_to_implement:
+    count: 4
+    capsules: ["CPSM", "TRIZ", "DE_BONO_HATS", "KANTIAN_ETHICS", "UTILITARIAN"]
+    
+  planned:
+    count: 5
+    capsules: ["CIPS", "PMI_BOK", "PRINCE2", "SIX_SIGMA", "APQP", "AUTOGPT", "CAMEL"]
+    
+  in_development:
+    count: 0
+    capsules: []
+    
+  completed:
+    count: 0
+    capsules: []
+
+# 🎯 우선순위 구현 계획
+priority_implementation:
+  phase_1_critical:
+    - "CPSM"      # 구매⨯공급망 판단 (이미 테스트 준비됨)
+    - "TRIZ"      # 창의적 문제해결
+    - "DE_BONO_HATS"  # 사고 프레임워크
+    
+  phase_2_important:
+    - "KANTIAN_ETHICS"  # 윤리 판단
+    - "UTILITARIAN"     # 공리주의 윤리
+    - "SIX_SIGMA"       # 품질 개선
+    
+  phase_3_expansion:
+    - "PMI_BOK"     # 프로젝트 관리
+    - "PRINCE2"     # 프로젝트 방법론
+    - "AUTOGPT"     # AI 에이전트
+
+# 🔧 캡슐 구조 표준
+capsule_structure_standard:
+  required_files:
+    - "capsule_definition.yaml"    # 캡슐 메타데이터 및 구조
+    - "judgment_flows.yaml"        # 판단 흐름 정의
+    - "signature_mapping.yaml"     # Echo 시그니처 매핑
+    - "test_scenarios.yaml"        # 테스트 시나리오
+    - "integration_tests.py"       # 통합 테스트
+    
+  optional_files:
+    - "knowledge_base.md"          # 관련 지식 베이스
+    - "case_studies.yaml"          # 실제 적용 사례
+    - "evolution_metrics.yaml"    # 진화 측정 지표

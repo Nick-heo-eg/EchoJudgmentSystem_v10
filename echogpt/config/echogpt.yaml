@@ -1,0 +1,33 @@
+name: EchoGPT
+mode: cloud_mimic        # cloud_mimic | local_first
+latency_guard:
+  intent_timeout_s: 3.5
+  tool_timeout_ms: 2500
+
+teacher:
+  provider: openai
+  model: gpt-4o-mini
+  temperature: 0.0
+  max_tokens: 300
+
+distill:
+  enabled: true
+  agree_min_conf: 0.75
+  teacher_high_conf: 0.80
+  student_low_conf: 0.50
+  train_every_n_events: 200
+  batch_size: 128
+  hot_swap_min_f1: 0.85         # 이 값 이상이면 모델 교체
+  max_days: 30                  # 최근 N일 이벤트만 사용
+
+privacy:
+  redact_rules: ["phone","email","address"]
+
+storage:
+  events_dir: meta_logs/traces
+  model_dir: models/intent_student
+
+tools:
+  web_search: { enabled: true }
+  calc:       { enabled: true }
+  file_reader:{ enabled: true }

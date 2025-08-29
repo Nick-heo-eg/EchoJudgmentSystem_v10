@@ -1,0 +1,62 @@
+
+name: Agent Hub Alerts & Regression Guard
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 16 * * *"  # 01:00 KST
+
+jobs:
+  bench-and-guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install aiohttp requests pyyaml uvicorn fastapi matplotlib
+
+      - name: Launch Agent Hub
+        run: |
+          nohup bash -lc "uvicorn agent_hub.app:app --port 8014 --host 0.0.0.0" > server.log 2>&1 &
+          sleep 5
+          curl -fsS http://127.0.0.1:8014/health
+
+      - name: Heavy bench
+        run: |
+          python tests/agent_hub/bench_curve.py --steps 20x200,50x1000,100x2000 --tag guard
+
+      - name: Pick latest run
+        id: pick
+        run: echo "LATEST=$(ls -td artifacts/bench/* | head -1)" >> $GITHUB_OUTPUT
+
+      - name: Check regression vs baseline
+        id: guard
+        run: |
+          python tests/agent_hub/check_regression.py "$LATEST/results.json" \
+            --baseline tests/agent_hub/bench_baseline.yaml \
+            --out "$LATEST/summary.json" \
+            --fail-on-violation
+        env:
+          LATEST: ${{ steps.pick.outputs.LATEST }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: bench-guard-artifacts
+          path: artifacts/bench/**
+
+      - name: Slack notify
+        if: always()
+        run: |
+          python alerts/slack_notify.py "$LATEST/summary.json" "Agent Hub Bench Guard"
+        env:
+          LATEST: ${{ steps.pick.outputs.LATEST }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

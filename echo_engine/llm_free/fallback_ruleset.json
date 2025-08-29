@@ -1,0 +1,170 @@
+{
+  "metadata": {
+    "name": "EchoJudgmentSystem Fallback Ruleset",
+    "version": "1.0.0",
+    "description": "LLM-Free 판단을 위한 규칙 기반 패턴 세트",
+    "created": "2024-01-01",
+    "language": "ko"
+  },
+  "emotion_patterns": {
+    "joy": {
+      "keywords": ["기쁘", "행복", "좋", "최고", "성공", "축하", "만족", "즐거", "신나", "환상적", "완벽", "대단", "훌륭", "멋지", "사랑", "감사"],
+      "weight": 1.0,
+      "confidence_boost": 0.1
+    },
+    "sadness": {
+      "keywords": ["슬프", "우울", "힘들", "속상", "실망", "포기", "아쉽", "안타깝", "절망", "좌절", "눈물", "비참", "암울", "절절", "가슴", "마음"],
+      "weight": 1.0,
+      "confidence_boost": 0.1
+    },
+    "anger": {
+      "keywords": ["화", "짜증", "분노", "열받", "억울", "불만", "빡치", "미치", "싫", "짜증나", "불쾌", "격분", "분통", "원망", "혐오", "증오"],
+      "weight": 1.0,
+      "confidence_boost": 0.1
+    },
+    "fear": {
+      "keywords": ["무서", "걱정", "불안", "두려", "긴장", "스트레스", "공포", "겁", "염려", "근심", "초조", "조바심", "압박", "부담", "위험", "위기"],
+      "weight": 1.0,
+      "confidence_boost": 0.1
+    },
+    "surprise": {
+      "keywords": ["놀라", "와우", "헐", "대박", "깜짝", "어머", "세상", "진짜", "정말", "어떻게", "믿을수없", "신기", "놀랍", "경이", "기적", "예상치못한"],
+      "weight": 1.0,
+      "confidence_boost": 0.1
+    },
+    "neutral": {
+      "keywords": ["그냥", "보통", "평상시", "일반적", "그런대로", "무난", "평범", "그저", "괜찮", "평균", "일상", "그럭저럭", "적당", "보편적"],
+      "weight": 0.5,
+      "confidence_boost": 0.0
+    }
+  },
+  "strategy_patterns": {
+    "logical": {
+      "keywords": ["분석", "논리", "이성", "합리", "데이터", "객관적", "과학적", "체계적", "논증", "증거", "근거", "사실", "통계", "수치", "계산", "검증"],
+      "weight": 1.0,
+      "confidence_boost": 0.1
+    },
+    "empathetic": {
+      "keywords": ["감정", "공감", "이해", "마음", "느낌", "따뜻", "위로", "격려", "지지", "배려", "친근", "친절", "소통", "경청", "사랑", "정"],
+      "weight": 1.0,
+      "confidence_boost": 0.1
+    },
+    "creative": {
+      "keywords": ["창의", "새로운", "혁신", "아이디어", "독창적", "참신", "발상", "상상", "영감", "기발", "독특", "원창", "실험", "도전", "변화", "개선"],
+      "weight": 1.0,
+      "confidence_boost": 0.1
+    },
+    "cautious": {
+      "keywords": ["신중", "조심", "안전", "확실", "검토", "보수적", "안정", "차근차근", "단계적", "점진적", "세심", "꼼꼼", "주의깊", "신경", "살펴", "고려"],
+      "weight": 1.0,
+      "confidence_boost": 0.1
+    },
+    "balanced": {
+      "keywords": ["균형", "조화", "중간", "적절", "적당", "조화", "종합", "통합", "절충", "균형있게", "전체적", "포괄적", "다각도", "다면적"],
+      "weight": 0.8,
+      "confidence_boost": 0.0
+    }
+  },
+  "context_patterns": {
+    "work": {
+      "keywords": ["회의", "업무", "직장", "동료", "상사", "프로젝트", "회사", "사무실", "업무", "출근", "퇴근", "미팅", "보고", "성과", "목표", "계획"],
+      "weight": 1.0,
+      "confidence_boost": 0.1
+    },
+    "personal": {
+      "keywords": ["친구", "가족", "연인", "개인", "취미", "여행", "휴식", "여가", "놀이", "데이트", "만남", "사적", "개인적", "혼자", "자유", "편안"],
+      "weight": 1.0,
+      "confidence_boost": 0.1
+    },
+    "academic": {
+      "keywords": ["공부", "학교", "시험", "과제", "교수", "학습", "교육", "강의", "수업", "연구", "논문", "학점", "성적", "졸업", "입학", "시험"],
+      "weight": 1.0,
+      "confidence_boost": 0.1
+    },
+    "social": {
+      "keywords": ["모임", "파티", "사람들", "관계", "소통", "네트워킹", "사교", "인맥", "친목", "단체", "그룹", "커뮤니티", "행사", "축제", "모임"],
+      "weight": 1.0,
+      "confidence_boost": 0.1
+    },
+    "health": {
+      "keywords": ["건강", "운동", "병원", "의사", "치료", "약", "몸", "아픔", "피로", "컨디션", "체력", "다이어트", "식단", "수면", "휴식"],
+      "weight": 1.0,
+      "confidence_boost": 0.1
+    },
+    "financial": {
+      "keywords": ["돈", "경제", "투자", "저축", "소비", "구매", "비용", "가격", "수입", "지출", "예산", "경제적", "금전", "재정", "자산"],
+      "weight": 1.0,
+      "confidence_boost": 0.1
+    }
+  },
+  "intensity_modifiers": {
+    "high": {
+      "keywords": ["너무", "정말", "아주", "엄청", "완전", "진짜", "최고", "극", "최대", "최소", "절대", "무조건", "반드시", "꼭"],
+      "multiplier": 1.5
+    },
+    "medium": {
+      "keywords": ["조금", "좀", "약간", "그냥", "살짝", "다소", "어느정도", "그럭저럭", "어떻게", "어쩐지"],
+      "multiplier": 1.0
+    },
+    "low": {
+      "keywords": ["별로", "그다지", "크게", "많이", "특별히", "딱히", "굳이", "일부러"],
+      "multiplier": 0.8
+    }
+  },
+  "negation_patterns": {
+    "keywords": ["안", "못", "아니", "없", "말고", "빼고", "제외", "반대", "거부", "부정", "거절", "싫어", "싫", "아냐", "노"],
+    "effect": "invert_emotion"
+  },
+  "question_patterns": {
+    "keywords": ["어떻게", "왜", "무엇", "언제", "어디서", "누가", "뭐", "얼마", "몇", "어느", "어떤", "어디", "?"],
+    "context_boost": 0.2
+  },
+  "request_patterns": {
+    "keywords": ["도와주", "부탁", "조언", "추천", "제안", "알려주", "가르쳐주", "설명해주", "해주세요", "주세요", "부탁드려요", "도움"],
+    "strategy_preference": "empathetic"
+  },
+  "judgment_templates": {
+    "high_confidence": {
+      "threshold": 0.8,
+      "templates": [
+        "{emotion} 감정이 강하게 감지됩니다. {strategy} 접근을 권장합니다.",
+        "현재 상황에서 {strategy} 전략이 가장 적절할 것 같습니다.",
+        "{context} 맥락에서 {emotion} 감정은 자연스러운 반응입니다."
+      ]
+    },
+    "medium_confidence": {
+      "threshold": 0.5,
+      "templates": [
+        "{emotion} 감정이 어느 정도 감지되며, {strategy} 접근을 고려해보세요.",
+        "상황을 고려할 때 {strategy} 전략이 도움이 될 수 있습니다.",
+        "{context} 상황에서 신중한 접근이 필요합니다."
+      ]
+    },
+    "low_confidence": {
+      "threshold": 0.0,
+      "templates": [
+        "상황 파악이 어렵지만, 균형잡힌 접근을 권장합니다.",
+        "더 많은 정보가 필요하지만, 신중하게 접근하시는 것이 좋겠습니다.",
+        "현재 상황을 차근차근 분석해보시기 바랍니다."
+      ]
+    }
+  },
+  "fallback_responses": {
+    "default": "상황을 종합적으로 고려하여 적절한 접근을 권장합니다.",
+    "error": "입력 분석 중 문제가 발생했습니다. 다시 시도해주세요.",
+    "insufficient_data": "더 구체적인 정보가 있으면 더 정확한 판단을 제공할 수 있습니다.",
+    "ambiguous": "상황이 다소 모호하므로, 여러 관점에서 접근해보시기 바랍니다."
+  },
+  "confidence_thresholds": {
+    "emotion_threshold": 0.6,
+    "strategy_threshold": 0.5,
+    "context_threshold": 0.4,
+    "overall_threshold": 0.5
+  },
+  "learning_weights": {
+    "pattern_match": 0.4,
+    "keyword_density": 0.3,
+    "context_relevance": 0.2,
+    "intensity_factor": 0.1
+  }
+}

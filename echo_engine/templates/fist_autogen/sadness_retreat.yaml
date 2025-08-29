@@ -1,0 +1,14 @@
+category: fist
+description: 우울하고 침울한 감정 상태 + 일시적으로 물러나서 재정비하는 전략
+emotion: sadness
+emotion_korean: 슬픔
+frame: 슬픔을 받아들이며 잠시 마음을 쉬어가세요.
+insight: 슬픔을 느끼는 지금, 잠시 후퇴하며 재정비하는 것이 현명합니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:40.904219'
+  generated_by: FIST Template Generator v1.0.0
+strategy: retreat
+strategy_korean: 후퇴
+tactics: 슬픔을 인정하며 잠시 거리를 두고 상황을 재평가해보세요.
+template_name: sadness_retreat

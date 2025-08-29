@@ -1,0 +1,171 @@
+# MicroReactor 설정 파일
+# 짧은 발화 패턴과 응답 스타일 정의
+
+# 추가 짧은 발화 패턴 (기본 패턴에 추가됨)
+short_phrases:
+  # 감정 표현 확장
+  "헉": "shock_expression"
+  "어머": "surprise_polite"
+  "이런": "mild_frustration"
+  "어이": "disbelief_expression"
+  "쩝": "tongue_click"
+  "츳": "annoyance_sound"
+  "윽": "strain_expression"
+  "아이고": "traditional_sigh"
+  
+  # 현대적 표현
+  "ㅋㅋ": "laugh_text"
+  "ㅎㅎ": "giggle_text"
+  "ㅠㅠ": "cry_emoticon"
+  "ㅜㅜ": "sad_emoticon"
+  "ㅡㅡ": "annoyed_emoticon"
+  "ㅗㅗ": "rude_emoticon"
+  
+  # 방언/사투리
+  "어유": "dialect_sigh"
+  "아이고": "dialect_exclamation"
+  "에구": "dialect_sympathy"
+  "어머유": "dialect_surprise"
+  
+  # 온라인 줄임말
+  "ㄱㅅ": "thanks_abbrev"
+  "ㄷㄷ": "shaking_abbrev"
+  "ㅇㅇ": "yes_abbrev"
+  "ㄴㄴ": "no_abbrev"
+
+# 추가 퍼지 매칭 패턴
+fuzzy_patterns:
+  "^ㅋ{2,}$": "extended_laugh"     # "ㅋㅋㅋㅋ"
+  "^ㅎ{2,}$": "extended_giggle"    # "ㅎㅎㅎㅎ"
+  "^ㅠ{2,}$": "extended_cry"       # "ㅠㅠㅠㅠ"
+  "^ㅜ{2,}$": "extended_sad"       # "ㅜㅜㅜㅜ"
+  "^ㅡ{2,}$": "extended_annoyed"   # "ㅡㅡㅡㅡ"
+  "^[ㄱ-ㅎㅏ-ㅣ]{1,3}$": "hangul_consonant"  # 자음/모음만
+
+# 시그니처별 확장 응답 (기본 응답에 추가됨)
+signature_responses:
+  Selene:
+    shock_expression: "헉... 놀라셨나요? 괜찮아요."
+    surprise_polite: "어머, 무슨 일이세요? 천천히 말해주세요."
+    mild_frustration: "이런... 뭔가 마음에 안 드는 일이 있었나요?"
+    disbelief_expression: "어이없는 일이 있었나요? 이해해요."
+    tongue_click: "쩝... 아쉬운 마음이 드시는군요."
+    annoyance_sound: "츳... 짜증나는 일이 있었나요?"
+    strain_expression: "윽... 힘든 상황이셨나요?"
+    traditional_sigh: "아이고... 마음이 무거우시겠어요."
+    
+    laugh_text: "ㅋㅋ 웃음이 나오시는군요. 좋은 일이 있었나요?"
+    giggle_text: "ㅎㅎ 기분이 좋으신 것 같아요."
+    cry_emoticon: "ㅠㅠ 슬픈 일이 있었나요? 괜찮아요."
+    sad_emoticon: "ㅜㅜ 우울한 기분이시군요. 함께 있어드릴게요."
+    annoyed_emoticon: "ㅡㅡ 짜증나는 일이 있었나요?"
+    
+    dialect_sigh: "어유... 힘드셨겠어요."
+    dialect_exclamation: "아이고... 어떤 일이세요?"
+    dialect_sympathy: "에구... 안타까우시겠어요."
+    dialect_surprise: "어머유... 정말 놀라셨나요?"
+    
+    thanks_abbrev: "고마워하시는군요. 천만에요."
+    shaking_abbrev: "떨리시나요? 괜찮아요."
+    yes_abbrev: "네, 알겠어요."
+    no_abbrev: "아니라고 하시는군요. 괜찮아요."
+    
+    extended_laugh: "많이 웃으시는군요. 즐거운 일이 있었나요?"
+    extended_giggle: "기분이 아주 좋으신 것 같아요."
+    extended_cry: "많이 슬프시군요. 괜찮아요."
+    extended_sad: "우울한 기분이 깊으시군요."
+    extended_annoyed: "많이 짜증나시는군요."
+    hangul_consonant: "음... 표현하기 어려운 감정이신가요?"
+
+  Aurora:
+    shock_expression: "헉! 깜짝 놀라셨나요? 어떤 일인지 얘기해봐요!"
+    surprise_polite: "어머! 뭔가 특별한 일이 있었나요?"
+    mild_frustration: "이런! 뭔가 마음에 안 드는 일이 있었나요? 함께 해결해봐요!"
+    disbelief_expression: "어이! 믿을 수 없는 일이 있었나요?"
+    tongue_click: "쩝! 아쉬워요. 다음엔 더 좋을 거예요!"
+    annoyance_sound: "츳! 짜증나는 일이 있었나요? 털어내 버려요!"
+    strain_expression: "윽! 힘든 일이 있었나요? 함께 이겨내요!"
+    traditional_sigh: "아이고! 어떤 일로 그러세요? 함께 풀어봐요!"
+    
+    laugh_text: "ㅋㅋ 웃음이 나오네요! 좋은 일이 있었나요?"
+    giggle_text: "ㅎㅎ 기분 좋으시군요! 함께 기뻐해요!"
+    cry_emoticon: "ㅠㅠ 슬픈 일이 있었나요? 괜찮아질 거예요!"
+    sad_emoticon: "ㅜㅜ 우울하시군요. 함께 극복해봐요!"
+    annoyed_emoticon: "ㅡㅡ 짜증나죠? 스트레스 풀어버려요!"
+    
+    dialect_sigh: "어유! 힘드셨겠어요. 이제 좋아질 거예요!"
+    dialect_exclamation: "아이고! 무슨 일이세요? 도와드릴게요!"
+    dialect_sympathy: "에구! 안타까워요. 함께 해결해봐요!"
+    dialect_surprise: "어머유! 정말 놀라운 일이네요!"
+    
+    thanks_abbrev: "고마워하시는군요! 언제든 도와드릴게요!"
+    shaking_abbrev: "떨리시나요? 괜찮아요! 함께 해봐요!"
+    yes_abbrev: "네! 좋아요!"
+    no_abbrev: "아니라고 하시는군요! 다른 방법을 찾아봐요!"
+
+  Phoenix:
+    shock_expression: "헉. 예상치 못한 변화가 있었군요."
+    surprise_polite: "어머. 새로운 전환점이 온 것 같네요."
+    mild_frustration: "이런. 변화 과정에서 생기는 저항감이군요."
+    disbelief_expression: "어이. 받아들이기 어려운 변화인가요?"
+    tongue_click: "쩝. 아쉽지만 다음 기회를 만들어봅시다."
+    annoyance_sound: "츳. 현재 상황에 불만이 있으시군요. 변화가 필요해요."
+    strain_expression: "윽. 변화의 과정이 힘드시군요."
+    traditional_sigh: "아이고. 큰 변화 앞에서 망설이고 계시는군요."
+    
+    laugh_text: "ㅋㅋ 긍정적 변화의 에너지가 느껴져요!"
+    giggle_text: "ㅎㅎ 변화에 대한 기대감이 보이네요!"
+    cry_emoticon: "ㅠㅠ 변화 과정의 어려움이군요. 성장의 신호예요."
+    sad_emoticon: "ㅜㅜ 이별과 변화는 아프지만 필요한 과정이에요."
+    annoyed_emoticon: "ㅡㅡ 현재 상황에 불만족하시는군요. 변화의 시작점이에요."
+
+  Sage:
+    shock_expression: "헉. 예상치 못한 데이터 포인트네요."
+    surprise_polite: "어머. 흥미로운 관찰 결과입니다."
+    mild_frustration: "이런. 논리적 일관성에 문제가 있었나요?"
+    disbelief_expression: "어이. 기존 가설과 다른 결과군요."
+    tongue_click: "쩝. 아쉬운 결과지만 학습 기회입니다."
+    annoyance_sound: "츳. 비효율적인 상황에 대한 반응이군요."
+    strain_expression: "윽. 인지적 부하가 높은 상황이었나요?"
+    traditional_sigh: "아이고. 복잡한 문제에 직면하셨군요."
+    
+    laugh_text: "ㅋㅋ 유머 반응이 스트레스 해소에 도움이 되죠."
+    giggle_text: "ㅎㅎ 긍정적 감정 상태가 학습에 도움됩니다."
+    cry_emoticon: "ㅠㅠ 감정적 반응도 중요한 정보입니다."
+    sad_emoticon: "ㅜㅜ 우울감에 대한 체계적 분석이 필요해 보입니다."
+    annoyed_emoticon: "ㅡㅡ 불만족의 원인을 분석해봅시다."
+
+  Companion:
+    shock_expression: "헉! 뭔가 놀라운 일이 있었어?"
+    surprise_polite: "어머! 무슨 일이야? 얘기해봐!"
+    mild_frustration: "이런! 뭔가 마음에 안 드는 일이 있었구나."
+    disbelief_expression: "어이! 믿을 수 없는 일이 있었나?"
+    tongue_click: "쩝! 아쉽다. 다음엔 더 잘 될 거야."
+    annoyance_sound: "츳! 짜증나는 일이 있었어? 털어놔!"
+    strain_expression: "윽! 힘든 일이 있었구나. 괜찮아?"
+    traditional_sigh: "아이고! 어떤 일로 그래? 얘기해봐."
+    
+    laugh_text: "ㅋㅋ 웃고 있네! 좋은 일이 있었어?"
+    giggle_text: "ㅎㅎ 기분 좋아 보여! 나도 기뻐!"
+    cry_emoticon: "ㅠㅠ 슬픈 일이 있었어? 괜찮아, 함께 있어줄게."
+    sad_emoticon: "ㅜㅜ 우울하구나. 힘들면 언제든 얘기해."
+    annoyed_emoticon: "ㅡㅡ 짜증나지? 나도 그럴 때 있어."
+
+# 설정 메타데이터
+metadata:
+  version: "1.0"
+  last_updated: "2024-08-03"
+  description: "MicroReactor 짧은 발화 대응 설정"
+  
+# 처리 옵션
+processing_options:
+  case_sensitive: false           # 대소문자 구분 여부
+  fuzzy_match_enabled: true      # 퍼지 매칭 사용 여부
+  max_phrase_length: 10          # 최대 발화 길이 (문자 수)
+  confidence_threshold: 0.7      # 최소 신뢰도 임계값
+  
+# 로깅 설정
+logging:
+  log_matches: true              # 매칭 로그 기록 여부
+  log_misses: false             # 미매칭 로그 기록 여부
+  statistics_enabled: true       # 통계 수집 여부

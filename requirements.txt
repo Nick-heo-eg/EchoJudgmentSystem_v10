@@ -1,0 +1,37 @@
+# Core dependencies (requires Python 3.11+)
+pydantic>=2.0
+pyyaml>=6.0
+
+# Web framework & API
+streamlit>=1.40
+fastapi>=0.100
+uvicorn[standard]>=0.25
+python-multipart
+
+# Data processing & visualization
+pandas>=2.0
+numpy>=1.24
+matplotlib>=3.7
+seaborn>=0.11
+plotly>=5.0
+
+# AI/ML integrations
+openai>=1.0
+python-dotenv
+
+# Utilities
+requests>=2.28
+
+# Development & testing  
+pytest>=8.0
+pytest-timeout>=2.3.1
+jsonschema>=4.22.0
+black
+mypy
+ruff
+
+# GPT5 Intelligence Upgrade modules use only Python stdlib:
+# - echo_engine.plan.goal_planner_v2 (json, logging, pathlib, dataclasses, typing)
+# - echo_engine.verify.* (json, logging, typing)  
+# - echo_engine.reflect.* (json, time, pathlib, dataclasses, typing)
+# - echo_engine.utils.* (time, dataclasses, typing)

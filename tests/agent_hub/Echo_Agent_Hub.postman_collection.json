@@ -1,0 +1,73 @@
+{
+  "info": {
+    "name": "Echo Agent Hub",
+    "_postman_id": "3d3d2b08-4ef7-4de1-9f5b-echohub",
+    "description": "Quick tests for Echo Agent Hub (localhost:8014).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    { 
+      "name": "Root", 
+      "request": { 
+        "method": "GET", 
+        "url": "http://localhost:8014/" 
+      } 
+    },
+    { 
+      "name": "Health", 
+      "request": { 
+        "method": "GET", 
+        "url": "http://localhost:8014/health" 
+      } 
+    },
+    {
+      "name": "Echo",
+      "request": {
+        "method": "POST",
+        "header": [ 
+          { "key": "Content-Type", "value": "application/json" } 
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"에코야, 문장 요약해줘\",\n  \"context\": {\"tasks\": [\"summarize\", \"keywords\"], \"lang\": \"ko\"}\n}"
+        },
+        "url": "http://localhost:8014/echo"
+      }
+    },
+    {
+      "name": "Echo File",
+      "request": {
+        "method": "POST",
+        "header": [ 
+          { "key": "Content-Type", "value": "application/json" } 
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"file_chunks\": [\"샘플 파일 내용입니다.\", \"두 번째 청크입니다.\"],\n  \"context\": {\"trace_id\": \"postman-file-001\"}\n}"
+        },
+        "url": "http://localhost:8014/echo/file"
+      }
+    },
+    {
+      "name": "Invoke Echo",
+      "request": {
+        "method": "POST",
+        "header": [ 
+          { "key": "Content-Type", "value": "application/json" } 
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"agent\": \"gpt\",\n  \"prompt\": \"간단 테스트 시나리오 생성\",\n  \"context\": {\"trace_id\": \"postman-001\"}\n}"
+        },
+        "url": "http://localhost:8014/invoke/echo"
+      }
+    },
+    { 
+      "name": "Stats", 
+      "request": { 
+        "method": "GET", 
+        "url": "http://localhost:8014/echo/stats" 
+      } 
+    }
+  ]
+}

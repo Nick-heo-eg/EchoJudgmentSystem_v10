@@ -1,0 +1,38 @@
+{
+  "folders": [
+    {
+      "path": "/home/nick-heo123/EchoJudgmentSystem_v10"
+    }
+  ],
+  "settings": {
+    // Python 가상환경
+    "python.defaultInterpreterPath": "/home/nick-heo123/EchoJudgmentSystem_v10/.venv/bin/python",
+
+    // 불필요한 캐시 감추기
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/.pytest_cache": true,
+      "**/.mypy_cache": true,
+      "**/.venv": true
+    },
+
+    // 편집기 기본
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.rulers": [100],
+
+    // 터미널 프로필
+    "terminal.integrated.defaultProfile.linux": "bash",
+
+    // Git
+    "git.enableSmartCommit": true,
+    "git.autofetch": true
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-python.python",
+      "ms-toolsai.jupyter",
+      "ms-vscode-remote.remote-wsl"
+    ]
+  }
+}

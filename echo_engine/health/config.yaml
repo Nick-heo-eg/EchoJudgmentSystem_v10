@@ -1,0 +1,57 @@
+# 점수 배점: 기본(50) + 고급(20) + 아키텍처(30) = 100
+weights:
+  # Phase 1 (기존 5개)
+  size: 10
+  import: 10
+  complexity: 10
+  debt: 10
+  style: 10
+
+  # Phase 2
+  coverage: 8
+  docs: 7
+  security: 9
+  performance: 6
+  dependency: 7
+
+  # Phase 3
+  cohesion: 10
+  coupling: 10
+  api_consistency: 10
+
+thresholds:
+  target_basic: 50
+  target_advanced: 70
+  target_architecture: 80
+
+options:
+  repo_root: "."
+  test_command: "pytest --maxfail=1 -q"
+  coverage_command: "pytest --cov=."
+  
+  # Size 분석 세부 설정
+  size:
+    large_threshold_kb: 200
+    whitelist_dirs: ["data/public", "assets/samples"]     # 대형 허용 디렉토리
+    blacklist_dirs: ["checkpoints", "models", "vendor"]   # 대형 강한 감점
+    binary_globs: ["**/*.bin", "**/*.pt", "**/*.onnx", "**/*.ckpt", "**/*.zip", "**/*.tar", "**/*.gz"]
+    model_globs: ["models/**", "checkpoints/**", "**/*.pt", "**/*.onnx", "**/*.ckpt"]
+    sample_globs: ["assets/samples/**", "data/samples/**", "**/sample_*", "**/*_sample.*"]
+  
+  # Import 분석 세부 설정
+  import:
+    internal_prefixes: ["echo_engine", "echo", "app", "src"]  # 내부 모듈 접두사 확장
+  
+  # Failure Focus 설정
+  failure_focus:
+    junit_glob: "health_reports/junit*.xml"   # xdist/멀티샤드 병합 파싱
+    editor_priority: ["cursor", "code", "pycharm"]
+  
+  style:
+    black_args: "."
+    isort_args: "."
+    flake8_args: "."
+    mypy_args: "."
+  security:
+    bandit_args: "-q -r ."
+    safety_args: ""  # uses `safety check` if available

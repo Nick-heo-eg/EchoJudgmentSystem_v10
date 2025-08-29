@@ -1,0 +1,14 @@
+category: fist
+description: 우울하고 침울한 감정 상태 + 문제에 직면하여 해결하는 전략
+emotion: sadness
+emotion_korean: 슬픔
+frame: 이 슬픔을 정면으로 마주하며 극복해나가겠습니다.
+insight: 슬픔 상태에서 직면 전략이 가장 효과적일 것 같습니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:40.892084'
+  generated_by: FIST Template Generator v1.0.0
+strategy: confront
+strategy_korean: 대응
+tactics: 슬픔의 힘으로 문제에 정면으로 맞서보겠습니다.
+template_name: sadness_confront

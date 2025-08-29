@@ -1,0 +1,49 @@
+### Echo Agent Hub – Quick REST Tests (use VS Code REST Client)
+
+@base = http://localhost:8014
+
+### 1) Root service info
+GET {{base}}/
+
+### 2) Health
+GET {{base}}/health
+
+### 3) Echo: direct text processing
+POST {{base}}/echo
+Content-Type: application/json
+
+{
+  "text": "에코야, 이 문장을 요약하고 키워드를 뽑아줘.",
+  "context": {
+    "tasks": ["summarize", "keywords"],
+    "lang": "ko"
+  }
+}
+
+### 4) Echo: file processing
+POST {{base}}/echo/file
+Content-Type: application/json
+
+{
+  "file_chunks": [
+    "첫 번째 문서 청크입니다. 중요한 정보가 포함되어 있습니다.",
+    "두 번째 문서 청크입니다. 추가 분석이 필요합니다."
+  ],
+  "context": {
+    "analysis_type": "sentiment",
+    "trace_id": "http-test-001"
+  }
+}
+
+### 5) Invoke: AI Agent + Echo combined
+POST {{base}}/invoke/echo
+Content-Type: application/json
+
+{
+  "agent": "gpt",
+  "prompt": "최근 변경된 엔드포인트 요약과 간단 테스트 시나리오를 만들어줘",
+  "context": {"trace_id": "dev-test-001"}
+}
+
+### 6) Stats
+GET {{base}}/echo/stats

@@ -1,0 +1,14 @@
+category: fist
+description: 예상치 못한 상황에 대한 감정 상태 + 적극적으로 변화를 이끄는 전략
+emotion: surprise
+emotion_korean: 놀라움
+frame: 놀라운 기회를 새로운 시작점으로 만들어보세요.
+insight: 놀라움의 에너지로 주도적 전략을 펼칠 수 있습니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:41.231434'
+  generated_by: FIST Template Generator v1.0.0
+strategy: initiate
+strategy_korean: 주도
+tactics: 놀라움을 동력 삼아 적극적으로 변화를 만들어보세요.
+template_name: surprise_initiate

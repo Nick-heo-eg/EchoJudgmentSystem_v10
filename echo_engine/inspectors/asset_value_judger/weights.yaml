@@ -1,0 +1,128 @@
+# Asset Value Judger - 가중치 설정
+# ====================================
+
+# 총점 계산 가중치 (T/S/P)
+total_weights:
+  T: 0.4    # Technical Value
+  S: 0.4    # Strategic Value  
+  P: 0.2    # Potential Value
+
+# 분류 임계값
+thresholds:
+  dormant: 80   # 80점 이상 -> 높은 가치 자산
+  pending: 50   # 50-79점 -> 검토 필요
+  # < 50점 -> junk 후보
+
+# Technical Value (기술적 가치) 세부 가중치
+T:
+  uniqueness: 0.3     # 고유성 (다른 코드와 중복되지 않음)
+  rebuild_cost: 0.3   # 재현 난이도 (다시 만들기 어려운 정도)
+  complexity: 0.2     # 복잡도 가치 (의미 있는 복잡한 구현)
+  dependency: 0.2     # 의존성 영향도 (다른 모듈들이 의존)
+
+# Strategic Value (전략적 가치) 세부 가중치  
+S:
+  philosophy: 0.4     # Echo 철학 적합성
+  roadmap: 0.4        # 로드맵 매칭도
+  edge: 0.2           # 경쟁력 차별점
+
+# Potential Value (활용 잠재력) 세부 가중치
+P:
+  bridge: 0.4         # 브릿지 연결 가능성
+  reuse: 0.3          # 도메인 재사용성
+  activation: 0.3     # 활성화 용이성
+
+# 환경별 프로필 (선택적 오버라이드)
+profiles:
+  
+  # 개발 환경: 기술적 가치 중시
+  development:
+    total_weights:
+      T: 0.5
+      S: 0.3
+      P: 0.2
+    thresholds:
+      dormant: 75
+      pending: 45
+  
+  # 운영 환경: 전략적 가치 중시
+  production:
+    total_weights:
+      T: 0.3
+      S: 0.5
+      P: 0.2
+    thresholds:
+      dormant: 85
+      pending: 55
+  
+  # 정리 모드: 잠재력 중시 (재활용 관점)
+  cleanup:
+    total_weights:
+      T: 0.3
+      S: 0.3
+      P: 0.4
+    thresholds:
+      dormant: 70
+      pending: 40
+
+# 특수 가중치 조정
+adjustments:
+  
+  # 파일 타입별 가중치 조정
+  file_type_multipliers:
+    core: 1.2           # 핵심 파일들 가중치 증가
+    test: 0.8           # 테스트 파일들 가중치 감소
+    utility: 0.9        # 유틸리티 파일들 가중치 약간 감소
+    config: 1.1         # 설정 파일들 가중치 약간 증가
+    interface: 1.0      # UI/API 파일들 기본 가중치
+  
+  # Echo 구조별 가중치 보너스
+  echo_structure_bonus:
+    seed_kernel: 15     # 시드 커널 구조 보너스
+    judgment_engine: 12 # 판단 엔진 구조 보너스
+    signature_mapper: 10 # 시그니처 매퍼 구조 보너스
+    meta_loop: 8        # 메타 루프 구조 보너스
+    bridge_system: 8    # 브릿지 시스템 구조 보너스
+    
+  # 최근 활동 가중치 (일 기준)
+  recency_weights:
+    0-30: 1.1           # 최근 30일 내 수정 시 가중치 증가
+    31-90: 1.0          # 최근 3개월 내 수정 시 기본 가중치
+    91-180: 0.9         # 최근 6개월 내 수정 시 가중치 약간 감소
+    181-365: 0.8        # 최근 1년 내 수정 시 가중치 감소
+    365+: 0.6           # 1년 이상 미수정 시 가중치 크게 감소
+
+# 점수 정규화 설정
+normalization:
+  
+  # LOC 기반 정규화
+  loc_ranges:
+    small: [1, 50]      # 작은 파일
+    medium: [51, 200]   # 중간 파일
+    large: [201, 500]   # 큰 파일
+    huge: [501, 9999]   # 매우 큰 파일
+  
+  loc_multipliers:
+    small: 0.8          # 작은 파일은 가중치 감소
+    medium: 1.0         # 중간 파일은 기본 가중치
+    large: 1.1          # 큰 파일은 가중치 약간 증가
+    huge: 0.9           # 너무 큰 파일은 가중치 감소
+  
+  # 복잡도 기반 정규화
+  complexity_ranges:
+    simple: [1, 5]      # 단순한 코드
+    moderate: [6, 15]   # 적당한 복잡도
+    complex: [16, 30]   # 복잡한 코드
+    very_complex: [31, 100] # 매우 복잡한 코드
+  
+  complexity_multipliers:
+    simple: 0.9         # 너무 단순하면 가중치 감소
+    moderate: 1.1       # 적당한 복잡도는 가중치 증가
+    complex: 1.0        # 복잡한 코드는 기본 가중치
+    very_complex: 0.8   # 너무 복잡하면 유지보수성 때문에 가중치 감소
+
+# 디버깅 및 조정을 위한 상세 로깅
+logging:
+  show_score_breakdown: true    # 점수 세부 계산 과정 표시
+  show_weight_application: true # 가중치 적용 과정 표시
+  show_normalization: true      # 정규화 과정 표시

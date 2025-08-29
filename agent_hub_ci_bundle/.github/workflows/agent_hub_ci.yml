@@ -1,0 +1,92 @@
+
+name: Agent Hub CI
+
+on:
+  pull_request:
+    paths:
+      - "agent_hub/**"
+      - "tests/agent_hub/**"
+      - ".github/workflows/agent_hub_ci.yml"
+      - "Makefile*"
+  schedule:
+    - cron: "0 15 * * *"  # daily ~00:00 KST
+  workflow_dispatch:
+
+jobs:
+  smoke-and-light-bench:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SERVER_CMD: uvicorn agent_hub.app:app --port 8014 --host 0.0.0.0
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps (minimal)
+        run: |
+          python -m pip install --upgrade pip
+          pip install aiohttp requests pyyaml uvicorn fastapi
+      
+      - name: Start Agent Hub (background)
+        run: |
+          nohup bash -lc "$SERVER_CMD" > server.log 2>&1 &
+          sleep 5
+          curl -fsS http://127.0.0.1:8014/health || (echo "Server not healthy"; tail -50 server.log; exit 1)
+
+      - name: Smoke tests
+        run: bash tests/agent_hub/smoke_tests.sh
+
+      - name: Light bench (20x200)
+        run: |
+          python tests/agent_hub/bench_curve.py --steps 20x200 --tag CI-PR
+          echo "Artifacts:" && ls -R artifacts/bench || true
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: bench-artifacts
+          path: artifacts/bench/**
+
+  nightly-heavy-bench:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      SERVER_CMD: uvicorn agent_hub.app:app --port 8014 --host 0.0.0.0
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps (minimal)
+        run: |
+          python -m pip install --upgrade pip
+          pip install aiohttp requests pyyaml uvicorn fastapi matplotlib streamlit
+
+      - name: Start Agent Hub (background)
+        run: |
+          nohup bash -lc "$SERVER_CMD" > server.log 2>&1 &
+          sleep 5
+          curl -fsS http://127.0.0.1:8014/health || (echo "Server not healthy"; tail -50 server.log; exit 1)
+
+      - name: Heavy bench (20x200,50x1000,100x2000)
+        run: |
+          python tests/agent_hub/bench_curve.py --steps 20x200,50x1000,100x2000 --tag nightly --profile
+
+      - name: Generate plots
+        run: |
+          LATEST=$(ls -td artifacts/bench/* | head -1)
+          python tests/agent_hub/visualize_results.py "$LATEST/results.json"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-bench-artifacts
+          path: artifacts/bench/**

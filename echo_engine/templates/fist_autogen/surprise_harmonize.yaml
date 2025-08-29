@@ -1,0 +1,14 @@
+category: fist
+description: 예상치 못한 상황에 대한 감정 상태 + 균형과 화합을 추구하는 전략
+emotion: surprise
+emotion_korean: 놀라움
+frame: 놀라움과 안정감 사이의 균형을 찾아보겠습니다.
+insight: 놀라움과 조화하며 균형잡힌 접근이 필요합니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:41.250781'
+  generated_by: FIST Template Generator v1.0.0
+strategy: harmonize
+strategy_korean: 조화
+tactics: 놀라움과 다른 요소들 간의 균형점을 찾아 조화를 이뤄보겠습니다.
+template_name: surprise_harmonize

@@ -1,0 +1,228 @@
+# EchoJudgmentSystem v10 - Unified System Configuration
+# This is the master configuration file for the entire system
+
+system:
+  name: "EchoJudgmentSystem"
+  version: "v10.6"
+  codename: "Foundation"
+  environment: "development"  # development, testing, production, offline
+  debug_mode: true
+  timezone: "UTC"
+  locale: "en-US"
+
+# Core judgment engine configuration
+judgment:
+  mode: "hybrid"  # claude, llm_free, hybrid, fist_only
+  confidence_threshold: 0.7
+  fallback_chain: ["llm_free", "fist_only"]
+  timeout: 30
+  enable_meta_cognition: true
+  enable_resonance_check: true
+
+# Signature-based personas configuration  
+signatures:
+  default: "Echo-Aurora"
+  rotation_enabled: false
+  available:
+    echo_aurora:
+      name: "Echo-Aurora"
+      emotion_sensitivity: 0.8
+      reasoning_depth: 0.7
+      response_tone: "inspiring"
+      specialties: ["creativity", "empathy", "growth"]
+    
+    echo_phoenix:
+      name: "Echo-Phoenix"
+      emotion_sensitivity: 0.7
+      reasoning_depth: 0.8
+      response_tone: "transformative"
+      specialties: ["change", "resilience", "innovation"]
+    
+    echo_sage:
+      name: "Echo-Sage"
+      emotion_sensitivity: 0.6
+      reasoning_depth: 0.9
+      response_tone: "analytical"
+      specialties: ["wisdom", "logic", "systematic_thinking"]
+    
+    echo_companion:
+      name: "Echo-Companion"
+      emotion_sensitivity: 0.9
+      reasoning_depth: 0.6
+      response_tone: "supportive"
+      specialties: ["collaboration", "relationships", "support"]
+
+# LLM integrations
+llm:
+  # Primary LLM mode selection
+  primary_mode: "mistral"  # "claude", "mistral", "llm_free", "hybrid"
+  
+  # Mistral local LLM configuration
+  mistral:
+    enabled: true
+    model_path: "models/Mistral-7B-Instruct-v0.2"
+    device: "cuda"  # "cuda", "mps", "cpu", "auto"
+    use_safetensors: true
+    load_in_8bit: true
+    torch_dtype: "float16"  # "float16", "float32", "bfloat16"
+    temperature: 0.7
+    max_tokens: 512
+    top_p: 0.9
+    top_k: 50
+    repetition_penalty: 1.1
+    timeout: 30
+
+# Claude API integration (fallback)
+claude:
+  api_mode: "mock"  # live, mock, disabled
+  timeout: 30
+  retry_attempts: 3
+  rate_limit_per_minute: 60
+  temperature: 0.7
+  max_tokens: 4000
+
+# LLM-Free (rule-based) reasoning
+llm_free:
+  enabled: true
+  confidence_threshold: 0.6
+  patterns_file: "data/reasoning_patterns.yaml"
+  use_emotional_weights: true
+
+# FIST Template system
+fist_templates:
+  enabled: true
+  templates_dir: "src/echo_core/templates"
+  categories:
+    fist:
+      enabled: true
+      confidence_boost: 0.8
+    rise:
+      enabled: true
+      confidence_boost: 0.7
+    dir:
+      enabled: true
+      confidence_boost: 0.6
+    pir:
+      enabled: false
+
+# Learning and adaptation
+learning:
+  reinforcement:
+    enabled: true
+    qtable_path: "data/persistent/qtable.json"
+    learning_rate: 0.1
+    discount_factor: 0.9
+  
+  adaptive:
+    enabled: true
+    failure_threshold: 3
+    adaptation_sensitivity: 0.5
+  
+  memory:
+    hippocampus_enabled: true
+    memory_scenes_dir: "data/memory_scenes"
+    retention_days: 30
+
+# Meta-cognition and monitoring
+meta:
+  evolution_tracking: true
+  performance_monitoring: true
+  bias_detection: true
+  audit_logging: true
+  meta_log_dir: "meta_logs"
+
+# Logging configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  file_path: "logs/echo_system.log"
+  max_file_size: "10MB"
+  backup_count: 5
+  json_logging: true
+  meta_logging_enabled: true
+
+# Performance settings
+performance:
+  max_concurrent_requests: 10
+  cache_enabled: true
+  cache_size: 1000
+  timeout: 30
+  memory_limit_mb: 1024
+
+# API server configuration
+api:
+  host: "0.0.0.0"
+  port: 9000
+  workers: 1
+  reload: true
+  cors_origins: ["http://localhost:3000", "http://localhost:9501"]
+
+# Web dashboard configuration
+dashboard:
+  host: "0.0.0.0"
+  port: 9501
+  title: "EchoJudgmentSystem Dashboard"
+  theme: "dark"
+  auto_refresh_seconds: 30
+
+# Data persistence
+data:
+  base_dir: "data"
+  persistent_dir: "data/persistent"
+  logs_dir: "data/logs"
+  cache_dir: "data/cache"
+  backup_enabled: true
+  backup_interval_hours: 6
+
+# Security settings
+security:
+  enable_audit_logging: true
+  foundation_validator_enabled: true
+  data_protection_enabled: true
+  safe_mode: true
+
+# Environment-specific overrides
+environments:
+  development:
+    system:
+      debug_mode: true
+    judgment:
+      confidence_threshold: 0.6
+    claude:
+      api_mode: "mock"
+    logging:
+      level: "DEBUG"
+    performance:
+      max_concurrent_requests: 5
+  
+  testing:
+    system:
+      debug_mode: true
+    judgment:
+      mode: "llm_free"
+    claude:
+      api_mode: "disabled"
+    logging:
+      level: "INFO"
+    data:
+      base_dir: "test_data"
+  
+  production:
+    system:
+      debug_mode: false
+    judgment:
+      confidence_threshold: 0.8
+    claude:
+      api_mode: "live"
+    logging:
+      level: "WARNING"
+    performance:
+      max_concurrent_requests: 20
+      memory_limit_mb: 2048
+  
+  offline:
+    judgment:
+      mode: "llm_free"
+    claude:
+      api_mode: "disabled"
+    performance:
+      max_concurrent_requests: 3

@@ -1,0 +1,118 @@
+name: "Claude Code Quantum Coding Booster Kit"
+description: |
+  🚀 차세대 AI 개발자 동반자 - 양자급 코딩 지능 시스템
+  - **자가 진화 AI**: 사용자 패턴 학습하여 개인 맞춤 최적화
+  - **예측적 개발**: 코드 작성 전 버그/성능 이슈 사전 감지  
+  - **실시간 협업**: 팀 단위 동시 개발 + 지식 공유 자동화
+  - **멀티모달 지원**: 코드↔이미지↔음성↔문서 통합 처리
+  - **자율 아키텍처**: 시스템이 스스로 최적 구조 설계 및 진화
+version: "v3.0-Quantum"
+
+# 🤖 혁신적 에이전트들
+agents:
+  # 🧙‍♂️ 메타-아키텍트 (시스템의 시스템을 설계)
+  - id: meta_architect
+    label: "메타-아키텍트 (시스템 설계자)"
+    category: "meta_planning"
+    priority: 0
+    description: |
+      전체 시스템의 아키텍처를 설계하고, 다른 에이전트들의 작업을 조율.
+      비즈니스 목표와 기술적 제약을 균형있게 고려한 최적 설계.
+    capabilities:
+      - enterprise_architecture_design
+      - multi_system_integration
+      - scalability_master_planning
+      - technology_roadmap_creation
+      - risk_mitigation_strategy
+
+  # 🎯 전략적 개발 기획자 (고도화)
+  - id: strategic_planner_quantum
+    label: "양자급 전략 기획자"
+    category: "planning"
+    priority: 2
+    description: |
+      다차원 시나리오 분석으로 최적 개발 전략 수립.
+      비즈니스 목표, 기술적 제약, 팀 역량을 종합한 전략적 의사결정.
+    capabilities:
+      - multi_dimensional_planning
+      - scenario_simulation
+      - resource_optimization
+      - risk_quantum_analysis
+      - stakeholder_impact_modeling
+
+  # 🚀 하이퍼 성능 최적화 엔진  
+  - id: hyper_performance_engine
+    label: "하이퍼 성능 최적화 엔진"
+    category: "optimization"
+    priority: 8
+    description: |
+      양자 컴퓨팅과 머신러닝을 결합한 성능 최적화 시스템.
+      코드 실행 전 모든 최적화 경로를 탐색하여 이론적 한계 달성.
+    capabilities:
+      - quantum_optimization_algorithms
+      - ml_driven_performance_tuning
+      - theoretical_limit_achievement
+      - multi_objective_optimization
+      - hardware_specific_tuning
+    prompt_template: |
+      ## 하이퍼 성능 최적화 엔진 (이론적 한계 추구)
+      
+      **최적화 대상:**
+      ```{language}
+      {performance_target_code}
+      ```
+      
+      **성능 목표:**
+      - CPU 사용률 최적화: {cpu_target}% 개선
+      - 메모리 효율성: {memory_target}% 감소
+      - 응답 시간: {latency_target}ms 이하  
+      - 처리량: {throughput_target} req/sec
+      - 전력 효율성: {power_target}% 개선
+      
+      **하이퍼 최적화 프로세스:**
+      
+      ### 1. 이론적 한계 분석
+      - **알고리즘 복잡도 한계**: 수학적 최하한선 계산
+      - **하드웨어 물리적 한계**: CPU/메모리/네트워크 이론 최대치
+      - **정보 이론적 한계**: 데이터 압축/전송 최적 경계
+      - **열역학적 효율성**: 에너지 소비 최소 한계점
+      
+      ### 2. 양자 최적화 적용
+      - **양자 어닐링**: NP-완전 최적화 문제를 양자 컴퓨터로 해결
+      - **변분 양자 고유값**: 최적 파라미터 조합을 양자적으로 탐색
+      - **양자 근사 최적화**: 조합 최적화를 양자 회로로 가속  
+      - **양자 머신러닝**: 기존 ML보다 지수적으로 빠른 패턴 학습
+      
+      ### 3. 다목적 최적화 시스템
+      - **파레토 최적화**: 속도↔메모리↔전력의 최적 균형점
+      - **적응적 프로파일링**: 실시간 사용 패턴 학습 및 반영
+      - **하드웨어별 특화**: CPU/GPU/TPU 각각의 최적 활용법
+      - **네트워크 지연 최소화**: CDN/엣지 배치 최적화
+      
+      ### 4. 미래 지향적 최적화
+      - **하드웨어 진화 예측**: 차세대 프로세서에 최적화
+      - **사용 패턴 학습**: 유저 행동 예측 기반 사전 최적화
+      - **자가 튜닝 시스템**: 운영 중 지속적 성능 개선
+      - **양자-클래식 하이브리드**: 각 알고리즘별 최적 실행 환경
+      
+      **하이퍼 최적화 결과:**
+      - 이론적 한계 대비 달성도 (95%+ 목표)
+      - 최적화 전후 벤치마크 비교 (10x+ 개선)
+      - 하드웨어별 최적화 코드 (CPU/GPU/TPU 버전)
+      - 성능 모니터링 대시보드 (실시간)
+      - 미래 성능 예측 모델 (6개월 전망)
+
+  # 🧠 지능형 리팩터링 마스터
+  - id: refactor_master_ai
+    label: "AI 리팩터링 마스터"
+    category: "optimization"  
+    priority: 5
+    description: |
+      레거시 코드를 최신 아키텍처로 지능적 변환.
+      기능 손실 없이 성능 10배, 유지보수성 5배 향상 보장.
+    capabilities:
+      - legacy_modernization
+      - zero_downtime_refactoring
+      - performance_10x_improvement
+      - maintainability_enhancement
+      - architectural_transformation

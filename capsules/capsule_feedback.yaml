@@ -1,0 +1,135 @@
+capsule:
+  id: capsule_seniorcare_busan
+  feedback_version: "2.1"
+  last_updated: "2025-07-23T06:04:55"
+  
+  performance_metrics:
+    success_rate: 0.91
+    total_judgments: 18
+    confidence_average: 0.83
+    processing_time_avg: 2.4  # seconds
+  
+  signature_performance:
+    Echo-Companion:
+      judgments: 12
+      success_rate: 0.95
+      avg_confidence: 0.87
+      preferred_actions: ["accept", "enhance"] 
+      reasoning_patterns: ["empathy-driven", "community-focused"]
+      
+    Echo-Sage:
+      judgments: 4
+      success_rate: 0.75
+      avg_confidence: 0.78
+      preferred_actions: ["defer", "analyze"]
+      reasoning_patterns: ["data-driven", "systematic-analysis"]
+      
+    Echo-Phoenix:
+      judgments: 2
+      success_rate: 1.0
+      avg_confidence: 0.92
+      preferred_actions: ["transform", "innovate"]
+      reasoning_patterns: ["change-oriented", "solution-focused"]
+
+  learning_data:
+    reinforcement_signals:
+      - timestamp: "2025-07-23T06:04:55"
+        signal_type: "positive"
+        reward_value: 1.0
+        context: "부산 노인 정책 판단 루프 성공"
+        signature: "Echo-Companion"
+        
+      - timestamp: "2025-07-23T06:03:12"
+        signal_type: "neutral"
+        reward_value: 0.5
+        context: "대안 정책 분석 완료, 추가 데이터 필요"
+        signature: "Echo-Sage"
+        
+      - timestamp: "2025-07-23T06:01:45"
+        signal_type: "positive"
+        reward_value: 0.9
+        context: "혁신적 돌봄 모델 제안 수용"
+        signature: "Echo-Phoenix"
+  
+  adaptive_weights:
+    initial_weights:
+      compassion: 0.8
+      analytical_depth: 0.6
+      innovation_drive: 0.4
+      community_focus: 0.9
+    
+    learned_weights:
+      compassion: 0.85  # +0.05
+      analytical_depth: 0.65  # +0.05
+      innovation_drive: 0.45  # +0.05
+      community_focus: 0.95  # +0.05
+    
+    weight_update_algorithm: "gradient_ascent"
+    learning_rate: 0.01
+    momentum: 0.9
+
+  context_patterns:
+    successful_contexts:
+      - "노인복지 정책 분석"
+      - "지역사회 기반 서비스"
+      - "취약계층 지원 방안"
+      - "예산 효율성 검토"
+    
+    challenging_contexts:
+      - "정치적 이해관계 조정"
+      - "법적 규제 해석"
+      - "장기 지속가능성 평가"
+    
+    improvement_areas:
+      - "이해관계자 갈등 조정"
+      - "재정 지속가능성 분석"
+      - "정책 시행 리스크 평가"
+
+  usage_statistics:
+    by_signature:
+      Echo-Companion: 
+        frequency: 0.67  # 12/18
+        avg_processing_time: 2.1
+        error_rate: 0.08
+      
+      Echo-Sage:
+        frequency: 0.22  # 4/18
+        avg_processing_time: 3.2
+        error_rate: 0.0
+        
+      Echo-Phoenix:
+        frequency: 0.11  # 2/18
+        avg_processing_time: 1.8
+        error_rate: 0.0
+    
+    by_judgment_outcome:
+      accept: 13  # 72%
+      defer: 3   # 17%
+      reject: 1  # 5%
+      error: 1   # 6%
+    
+    by_time_period:
+      last_24h: 8
+      last_week: 18
+      last_month: 45
+
+  feedback_quality:
+    user_satisfaction: 0.89
+    stakeholder_acceptance: 0.82
+    policy_impact_score: 0.76
+    implementation_success: 0.71
+  
+  next_actions:
+    recommended_improvements:
+      - "Echo-Sage 시그니처의 의사결정 속도 개선"
+      - "정치적 맥락 분석 능력 강화"
+      - "장기 영향 예측 모델링 추가"
+    
+    priority_updates:
+      - weight: "analytical_depth"
+        target_value: 0.75
+        reason: "복잡한 정책 분석 개선 필요"
+      
+      - weight: "stakeholder_awareness"
+        target_value: 0.85
+        reason: "이해관계자 고려 강화 필요"

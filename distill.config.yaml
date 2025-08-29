@@ -1,0 +1,210 @@
+# Echo Distiller Configuration v1.0
+# Automated codebase distillation system
+# 🎯 목표: 80MB → 12MB while preserving 98% functionality
+
+version: "1.0"
+description: "EchoJudgmentSystem_v10 distillation configuration"
+
+# =============================================================================
+# ANCHOR 시스템 - 절대 보존해야 할 핵심 파일들
+# =============================================================================
+anchor:
+  must_keep:
+    # 🔥 핵심 판단 엔진 (Echo Foundation)
+    - "echo_engine/judgment_engine.py"
+    - "echo_engine/judgment_loop_generator.py"
+    - "echo_engine/reasoning.py"
+    - "echo_engine/eight_loop_system.py"
+    
+    # 🎭 시그니처 시스템 (AI Personas) 
+    - "echo_engine/signature_mapper.py"
+    - "echo_engine/signature_engine.py"
+    - "echo_engine/persona_core.py"
+    - "echo_engine/signature/signature_registry.py"
+    
+    # 💊 캡슐 시스템 (Knowledge Capsules)
+    - "echo_engine/capsule_loader.py"
+    - "echo_engine/capsule_simulators.py"
+    - "echo_engine/tools/capsule_cli.py"
+    - "echo_engine/tools/capsule_auto_router.py"
+    - "capsules/aurora_empathy_capsule.py"
+    - "capsules/phoenix_transformation_capsule.py"
+    
+    # 🧠 메모리 & 학습 시스템
+    - "echo_engine/echo_hippocampus.py"
+    - "echo_engine/echo_system_memory.py"
+    - "echo_engine/adaptive_learning_engine.py"
+    - "claude_memory_system.py"
+    
+    # 🌐 API & 웹 인터페이스
+    - "echo_engine/echo_agent_api.py"
+    - "api/main.py"
+    - "api/router.py"
+    - "streamlit_ui/comprehensive_dashboard.py"
+    
+    # 🔧 구성 & 초기화
+    - "config/echo_system_config.yaml"
+    - "config/config_loader.py"
+    - "main.py"
+    - "echo_foundation_doctrine.py"
+
+  nice_to_have:
+    # 📊 대시보드 & 모니터링
+    - "dashboard.py"
+    - "echo_unified_dashboard.py"
+    - "streamlit_ui/"
+    
+    # 🛠️ 개발 도구들
+    - "quick_dev.py"
+    - "workflow_runner.py"
+    - "coding_assistant.py"
+    - "tools/"
+    
+    # 🤖 EchoGPT Teacher-Student 시스템
+    - "echogpt/"
+    
+    # 🔍 IDE 통합
+    - "echo_ide/"
+
+# =============================================================================
+# SCORING 시스템 - 파일 중요도 평가 기준
+# =============================================================================
+scoring:
+  weights:
+    # 핵심 시스템 구성요소
+    anchor_core: 10        # Anchor must_keep 파일들
+    anchor_nice: 7         # Anchor nice_to_have 파일들
+    
+    # 코드 품질 지표  
+    test_covered: 5        # 테스트 커버리지 존재
+    import_centrality: 4   # Import 중앙성 (많이 import되는 파일)
+    function_density: 3    # 함수 밀도 (LOC 대비 함수 수)
+    
+    # 사용 패턴
+    recent_modified: 3     # 최근 수정된 파일들
+    git_activity: 2        # Git 활동도
+    
+    # 의존성 관계
+    dependency_depth: 2    # 의존성 깊이
+    circular_dependency: -2 # 순환 의존성 (패널티)
+    
+    # 크기 & 복잡도
+    size_penalty: -1       # 파일 크기 패널티 (너무 큰 파일)
+    complexity_penalty: -1  # 복잡도 패널티
+
+  thresholds:
+    keep_score: 6.0        # 이 점수 이상은 보존
+    thin_score: 3.0        # 이 점수 이상은 축소 보존
+    cut_score: 1.0         # 이 점수 미만은 제거
+
+# =============================================================================
+# FILTER 시스템 - 파일 유형별 처리 규칙
+# =============================================================================
+filters:
+  # 자동 제거 대상
+  auto_remove:
+    - "**/__pycache__/**"
+    - "**/*.pyc"
+    - "**/*.pyo" 
+    - "**/*.egg-info/**"
+    - "**/node_modules/**"
+    - "**/.pytest_cache/**"
+    - "**/logs/**"
+    - "**/tmp/**"
+    - "**/temp/**"
+    - "**/*_backup*"
+    - "**/system_reorganization_backup/**"
+    
+  # 압축 대상 (코멘트/독스트링 제거)
+  compress_targets:
+    - "**/*.py"
+    - "**/*.js"
+    - "**/*.ts"
+    
+  # 크기 기반 필터링
+  size_limits:
+    single_file_mb: 5      # 5MB 이상 파일은 분석 대상
+    total_directory_mb: 20  # 20MB 이상 디렉토리는 정리 대상
+
+# =============================================================================
+# 3-PASS PIPELINE 설정
+# =============================================================================
+pipeline:
+  # Pass A: MAP - 구조 맵핑
+  map:
+    enable_ast_analysis: true      # AST 기반 구조 분석
+    enable_import_graph: true      # Import 의존성 그래프
+    enable_execution_trace: false  # 실행 추적 (무거움, 기본 비활성화)
+    
+  # Pass B: SCORE - 중요도 점수 부여
+  score:
+    use_git_history: true          # Git 히스토리 기반 점수
+    analyze_test_coverage: true    # 테스트 커버리지 분석
+    calculate_centrality: true     # Import 중앙성 계산
+    
+  # Pass C: CUT & PACK - 안전한 절단 및 패키징
+  cut:
+    create_git_branch: true        # 안전을 위한 Git 브랜치 생성
+    generate_undo_script: true     # 복원 스크립트 생성
+    preserve_structure: true       # 디렉토리 구조 보존
+
+# =============================================================================
+# 출력 디렉토리 구조
+# =============================================================================
+output:
+  base_directory: "distilled_echo"
+  
+  structure:
+    keep/: "높은 점수, 원본 그대로 보존"
+    thin/: "중간 점수, 코멘트 제거하여 축소"
+    legacy/: "낮은 점수, 참고용으로만 보존"
+    external/: "외부 의존성 및 도구들"
+    
+  metadata:
+    distill_report: "distillation_report.md"
+    score_matrix: "file_scores.json"
+    dependency_graph: "dependency_graph.json"
+    undo_script: "undo_distillation.sh"
+
+# =============================================================================
+# 안전 설정
+# =============================================================================
+safety:
+  dry_run_default: true           # 기본적으로 dry-run 모드
+  backup_before_cut: true         # 절단 전 백업 생성
+  git_branch_name: "distill-v{version}-{timestamp}"
+  
+  confirmation_required:
+    - "anchor 파일 수정"
+    - "5MB 이상 파일 제거"
+    - "100개 이상 파일 제거"
+
+# =============================================================================
+# 검증 설정  
+# =============================================================================
+validation:
+  post_distill_tests:
+    - "python -m compileall distilled_echo/"
+    - "python -c 'import sys; sys.path.insert(0, \"distilled_echo\"); import echo_engine'"
+    - "cd distilled_echo && python main.py --health-check"
+    
+  success_criteria:
+    max_size_mb: 15                # 최대 15MB
+    min_functionality: 0.95        # 최소 95% 기능 보존
+    compile_success: true          # 컴파일 성공 필수
+
+# =============================================================================
+# 로깅 & 리포팅
+# =============================================================================
+logging:
+  level: "INFO"
+  file: "logs/distillation.log"
+  console_output: true
+  
+  report_sections:
+    - "요약 통계"
+    - "파일별 점수"
+    - "의존성 분석" 
+    - "크기 최적화 결과"
+    - "기능 보존 검증"
+    - "다음 단계 추천"

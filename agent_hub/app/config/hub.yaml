@@ -1,0 +1,21 @@
+agents:
+  - id: gpt
+    provider: openai
+    model: gpt-4o-mini
+  - id: claude
+    provider: anthropic
+    model: claude-3-5-sonnet-20240620
+
+tools:
+  - id: time
+    type: builtin
+  - id: echo
+    type: builtin
+  - id: notion
+    type: external
+  - id: slack
+    type: external
+  - id: websearch
+    type: external
+  - id: file
+    type: external

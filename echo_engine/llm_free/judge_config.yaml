@@ -1,0 +1,272 @@
+# EchoJudgmentSystem LLM-Free 판단 설정
+# 규칙 기반 판단 시스템 설정 파일
+
+# 메타데이터
+metadata:
+  name: "EchoJudgmentSystem LLM-Free Judge Config"
+  version: "1.0.0"
+  description: "LLM-Free 판단을 위한 설정 파일"
+  created: "2024-01-01"
+  last_updated: "2024-01-01"
+
+# 기본 판단 설정
+judgment_settings:
+  # 판단 모드
+  judgment_mode: "pattern_based"  # pattern_based, rule_based, hybrid
+  
+  # 신뢰도 임계값
+  confidence_threshold: 0.6
+  
+  # 기본값 설정
+  default_emotion: "neutral"
+  default_strategy: "balanced"
+  default_context: "general"
+  
+  # 추론 깊이 (몇 단계까지 추론할지)
+  reasoning_depth: 3
+  
+  # 폴백 체인 활성화
+  enable_fallback_chain: true
+  
+  # 캐싱 활성화
+  enable_caching: true
+  cache_size: 1000
+  
+  # 로깅 설정
+  enable_logging: true
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+
+# 패턴 매칭 설정
+pattern_matching:
+  # 키워드 매칭 가중치
+  keyword_weight: 0.4
+  
+  # 패턴 매칭 가중치
+  pattern_weight: 0.3
+  
+  # 문맥 매칭 가중치
+  context_weight: 0.3
+  
+  # 대소문자 구분 안함
+  case_sensitive: false
+  
+  # 부분 매칭 허용
+  partial_match: true
+  
+  # 유사도 임계값
+  similarity_threshold: 0.7
+  
+  # 최대 매칭 수
+  max_matches: 10
+
+# 감정 분석 설정
+emotion_analysis:
+  # 감정 가중치
+  emotion_weights:
+    joy: 1.0
+    sadness: 1.0
+    anger: 1.0
+    fear: 1.0
+    surprise: 1.0
+    neutral: 0.5
+  
+  # 감정 임계값
+  emotion_threshold: 0.6
+  
+  # 감정 강도 계산 방법
+  intensity_method: "frequency"  # frequency, weighted, hybrid
+  
+  # 부정 감정 처리
+  handle_negation: true
+  
+  # 복합 감정 허용
+  allow_mixed_emotions: true
+
+# 전략 분석 설정
+strategy_analysis:
+  # 전략 가중치
+  strategy_weights:
+    logical: 1.0
+    empathetic: 1.0
+    creative: 1.0
+    cautious: 1.0
+    balanced: 0.8
+  
+  # 전략 임계값
+  strategy_threshold: 0.5
+  
+  # 전략 선택 방법
+  selection_method: "highest_score"  # highest_score, weighted_average, consensus
+  
+  # 전략 조합 허용
+  allow_strategy_combination: true
+
+# 문맥 분석 설정
+context_analysis:
+  # 문맥 가중치
+  context_weights:
+    work: 1.0
+    personal: 1.0
+    academic: 1.0
+    social: 1.0
+    health: 1.0
+    financial: 1.0
+  
+  # 문맥 임계값
+  context_threshold: 0.4
+  
+  # 문맥 추론 활성화
+  enable_context_inference: true
+  
+  # 문맥 히스토리 고려
+  consider_context_history: false
+
+# 응답 생성 설정
+response_generation:
+  # 응답 생성 방법
+  generation_method: "template_based"  # template_based, rule_based, hybrid
+  
+  # 응답 길이 제한
+  max_response_length: 200
+  min_response_length: 10
+  
+  # 응답 톤 조절
+  tone_adjustment: true
+  
+  # 개인화 활성화
+  enable_personalization: false
+  
+  # 응답 다양성
+  response_diversity: 0.3
+  
+  # 템플릿 선택 방법
+  template_selection: "confidence_based"  # confidence_based, random, weighted
+
+# 성능 최적화 설정
+performance:
+  # 처리 시간 제한 (초)
+  max_processing_time: 5.0
+  
+  # 메모리 사용량 제한 (MB)
+  max_memory_usage: 100
+  
+  # 병렬 처리 활성화
+  enable_parallel_processing: true
+  
+  # 스레드 수
+  max_threads: 4
+  
+  # 배치 처리 크기
+  batch_size: 10
+
+# 품질 관리 설정
+quality_control:
+  # 품질 점수 임계값
+  quality_threshold: 0.7
+  
+  # 일관성 검사 활성화
+  enable_consistency_check: true
+  
+  # 편향 감지 활성화
+  enable_bias_detection: true
+  
+  # 품질 모니터링 활성화
+  enable_quality_monitoring: true
+  
+  # 피드백 수집 활성화
+  enable_feedback_collection: true
+
+# 실험 설정
+experimental:
+  # 실험 모드 활성화
+  enable_experimental_features: false
+  
+  # A/B 테스트 활성화
+  enable_ab_testing: false
+  
+  # 실험 비율
+  experiment_ratio: 0.1
+  
+  # 실험 로깅 활성화
+  enable_experiment_logging: true
+
+# 디버깅 설정
+debugging:
+  # 디버그 모드 활성화
+  debug_mode: false
+  
+  # 상세 로깅 활성화
+  verbose_logging: false
+  
+  # 중간 결과 저장
+  save_intermediate_results: false
+  
+  # 성능 프로파일링 활성화
+  enable_profiling: false
+  
+  # 에러 추적 활성화
+  enable_error_tracking: true
+
+# 통합 설정
+integration:
+  # API 호환성
+  api_compatibility: "v1"
+  
+  # 데이터 형식
+  data_format: "json"
+  
+  # 인코딩
+  encoding: "utf-8"
+  
+  # 외부 서비스 연동
+  external_services:
+    enabled: false
+    timeout: 30
+    retry_count: 3
+    
+  # 데이터베이스 연동
+  database:
+    enabled: false
+    connection_pool_size: 5
+    
+  # 메시지 큐 연동
+  message_queue:
+    enabled: false
+    queue_size: 1000
+
+# 보안 설정
+security:
+  # 입력 검증 활성화
+  enable_input_validation: true
+  
+  # 출력 필터링 활성화
+  enable_output_filtering: true
+  
+  # 로그 마스킹 활성화
+  enable_log_masking: true
+  
+  # 접근 제어 활성화
+  enable_access_control: false
+  
+  # 암호화 활성화
+  enable_encryption: false
+
+# 모니터링 설정
+monitoring:
+  # 메트릭 수집 활성화
+  enable_metrics_collection: true
+  
+  # 성능 모니터링 활성화
+  enable_performance_monitoring: true
+  
+  # 오류 모니터링 활성화
+  enable_error_monitoring: true
+  
+  # 사용량 모니터링 활성화
+  enable_usage_monitoring: true
+  
+  # 모니터링 간격 (초)
+  monitoring_interval: 60
+  
+  # 메트릭 저장 기간 (일)
+  metrics_retention_days: 30

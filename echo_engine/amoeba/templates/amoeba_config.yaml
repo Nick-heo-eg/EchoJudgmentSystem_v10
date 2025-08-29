@@ -1,0 +1,85 @@
+# 🌌 Amoeba System v0.2 Configuration
+# Echo Judgment System의 적응형 자동 연결 시스템 설정
+
+version: 0.2
+
+environment:
+  prefer: auto            # auto|wsl|docker|local|cloud
+  features:
+    fs_map: true
+    docker_bridge: true
+    gpu_detect: true
+
+plugins:
+  discovery_paths:
+    - "./plugins_ext"
+    - "/opt/echo/plugins"
+  allowlist:
+    - "capsule_*"
+    - "agent_*"
+    - "*"  # 개발 중에는 모든 플러그인 허용
+  blocklist:
+    - "debug_*"
+    - "test_*"
+  autoload:
+    - "agent_router"
+    - "capsule_store"
+
+security:
+  plugin_signature_required: false
+  sandbox: true
+  max_import_time_ms: 800
+
+telemetry:
+  enabled: true
+  level: "info"           # debug|info|warning|error
+  sink: "file"            # file|stdout|none
+  path: "logs/amoeba.log"
+  auto_monitor: true      # 자동 시스템 모니터링
+
+# 어댑터별 설정
+adapters:
+  wsl:
+    priority: 8
+    path_mapping: true
+    interop: true
+
+  docker:
+    priority: 9
+    health_endpoint: true
+    resource_monitoring: true
+
+  local:
+    priority: 1
+    benchmarking: true
+    gpu_optimization: true
+
+  cloud:
+    priority: 7
+    metadata_timeout: 5
+    logging_format: "json"
+
+# 시스템 연결 설정
+attach:
+  components:
+    - "echo_engine.core"
+    - "echo_engine.judgment_engine"
+    - "echo_engine.signature_mapper"
+    - "echo_engine.reasoning"
+
+  hooks:
+    pre_attach: []
+    post_attach: []
+
+# 로깅 설정
+logging:
+  format: "%(asctime)s - [AMOEBA] - %(levelname)s - %(message)s"
+  date_format: "%H:%M:%S"
+  file_output: false
+  file_path: "logs/amoeba.log"
+
+# UI 설정
+ui:
+  status:
+    enabled: true
+    streamlit: false

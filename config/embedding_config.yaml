@@ -1,0 +1,20 @@
+caching:
+  enabled: true
+  max_cache_size: 10000
+echo_integration:
+  meta_context: true
+  resonance_weighting: true
+  signature_aware: true
+fallback_model: mock
+models:
+  mock:
+    dimensions: 128
+    seed: 42
+  openai:
+    api_key: null
+    dimensions: 1536
+    model: text-embedding-3-small
+  sentence_transformers:
+    dimensions: 384
+    model: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+primary_model: sentence_transformers

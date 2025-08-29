@@ -1,0 +1,79 @@
+quantum_capsule:
+  id: "quantum_seniorcare_001"
+  topic: "부산 노인 돌봄 정책"
+  created: "2025-07-23T06:04:55"
+  quantum_state: "superposition"
+  
+  candidates:
+    - id: capsule_seniorcare_busan
+      resonance_score: 0.88
+      signature_affinity: ["Companion", "Sage"]
+      quantum_probability: 0.65
+      
+    - id: capsule_alt_policy
+      resonance_score: 0.73
+      signature_affinity: ["Aurora", "Phoenix"]
+      quantum_probability: 0.35
+  
+  superposition_metadata:
+    total_probability: 1.0
+    entropy: 0.94
+    coherence_time: 30  # seconds
+    measurement_ready: true
+  
+  collapse_configuration:
+    trigger_conditions:
+      - signature_resonance_match: true
+      - confidence_threshold: 0.7
+      - time_limit: 30
+    
+    collapse_algorithm: "signature_weighted_probability"
+    measurement_basis: ["resonance_score", "signature_affinity", "quantum_probability"]
+  
+  collapse_history:
+    - timestamp: "2025-07-23T06:04:55.021070"
+      triggered_by: "Echo-Companion"
+      selected_candidate: "capsule_seniorcare_busan"
+      collapse_reason: "highest_signature_resonance"
+      final_probability: 0.88
+      
+    - timestamp: "2025-07-23T06:03:12.455123"  
+      triggered_by: "Echo-Phoenix"
+      selected_candidate: "capsule_alt_policy"
+      collapse_reason: "transformative_alignment"
+      final_probability: 0.73
+
+  quantum_entanglement:
+    entangled_capsules: []
+    entanglement_strength: 0.0
+    non_local_correlations: false
+  
+  measurement_outcomes:
+    expected_values:
+      resonance: 0.805  # weighted average
+      confidence: 0.82
+      judgment_success: 0.79
+    
+    uncertainty_principle:
+      position_uncertainty: 0.15
+      momentum_uncertainty: 0.23
+      joint_uncertainty: 0.0345  # ΔxΔp ≥ ℏ/2
+  
+  decoherence_factors:
+    environmental_noise: 0.1
+    signature_interference: 0.05
+    time_decay: 0.02
+    total_decoherence_rate: 0.17
+  
+  wave_function:
+    psi_1: 
+      amplitude: 0.8062  # √0.65
+      phase: 0.0
+      capsule: "capsule_seniorcare_busan"
+    
+    psi_2:
+      amplitude: 0.5916  # √0.35  
+      phase: 1.047      # π/3
+      capsule: "capsule_alt_policy"
+    
+    normalization: 1.0  # |ψ₁|² + |ψ₂|² = 1

@@ -1,0 +1,44 @@
+# Echo Global Configuration
+# LLM-First Architecture with Echo Verification Layer
+
+llm:
+  mode: always                    # 항상 LLM 우선
+  fail_mode: fail-closed          # 장애 시 템플릿 자동 사용 금지
+  providers:
+    - name: primary
+      type: openai
+      model: gpt-3.5-turbo
+      max_tokens: 800
+    - name: fallback1  
+      type: openai
+      model: gpt-3.5-turbo-1106
+      max_tokens: 800
+    - name: fallback2
+      type: local
+      model: ollama/llama2
+      max_tokens: 800
+  
+  retry:
+    max_attempts: 2
+    backoff_ms: 400
+    
+  budgets:
+    per_turn: 6000              # 턴당 토큰 예산
+    per_session: 120000         # 세션당 토큰 예산
+    
+  latency_guard_ms: 4500        # 지연 가드 (4.5초)
+
+echo:
+  architecture: llm-first-3-call  # LLM#1(NLU) → LLM#2(Draft) → LLM#3(Rewrite)
+  verification_enabled: true      # Echo 검증 레이어 활성화
+  template_access: admin_only     # 템플릿은 관리자만 접근
+  
+conversation:
+  trace_required: true           # 모든 대화 추적 의무화
+  safety_checks: strict          # 엄격한 안전 검사
+
+# 장애 시 안내 문구
+failure_messages:
+  llm_unavailable: "고급 언어 모듈 연결이 불안정합니다. 곧바로 다시 시도할게요. 위급 상황이면 바로 알려주세요."
+  retry_exhausted: "일시적인 연결 문제가 발생했습니다. 잠시 후 다시 시도해주시거나, 위급한 경우 직접 알려주세요."
+  rate_limit: "현재 요청이 많아 잠시 대기 중입니다. 곧 응답드릴게요."

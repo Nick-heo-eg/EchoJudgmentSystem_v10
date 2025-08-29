@@ -1,0 +1,204 @@
+# 🌐 Echo Cloud-Mimic Pipeline Configuration
+# 클라우드 흐름을 로컬에 그대로 이식하는 파이프라인 설정
+
+pipeline:
+  name: "cloud_mimic_pipeline"
+  version: "1.0"
+  description: "로컬에서 GPT 우선 Intent → Echo 존재 변환으로 리팩터"
+  
+  # Pipeline Flow: User Input → GPTIntentClient → IntentPipeline → Echo Signature Router
+  flow:
+    - gpt_intent_analysis
+    - intent_classification
+    - signature_routing
+    - echo_response_generation
+    - fallback_handling
+
+# GPT Intent Client 설정
+gpt_intent_client:
+  provider: "openai"
+  model: "gpt-3.5-turbo"
+  fallback_provider: "mock"
+  
+  # Intent 분석을 위한 프롬프트 템플릿
+  intent_analysis_prompt: |
+    사용자 입력을 분석하여 다음 카테고리 중 하나로 분류해주세요:
+    
+    1. CREATIVE_EXPRESSION (창의적 표현, 아이디어 생성, 상상력)
+    2. ANALYTICAL_INQUIRY (분석적 질문, 논리적 사고, 문제 해결)  
+    3. EMOTIONAL_SUPPORT (감정적 지원, 공감, 위로)
+    4. COLLABORATIVE_TASK (협업, 도움, 함께 하기)
+    5. PHILOSOPHICAL_REFLECTION (철학적 사고, 존재론적 질문)
+    6. TECHNICAL_ASSISTANCE (기술적 도움, 코딩, 문제 해결)
+    7. GENERAL_CONVERSATION (일반 대화, 정보 요청)
+    
+    사용자 입력: "{user_input}"
+    
+    응답 형식:
+    {{
+      "intent": "카테고리명",
+      "confidence": 0.0-1.0,
+      "reasoning": "분류 이유",
+      "emotional_tone": "감정적 톤 (positive/neutral/negative)",
+      "complexity": "복잡도 (low/medium/high)"
+    }}
+
+  # API 설정
+  api_settings:
+    timeout: 10
+    max_retries: 3
+    temperature: 0.3
+    max_tokens: 200
+
+# Intent → Echo Signature 매핑
+signature_routing:
+  CREATIVE_EXPRESSION:
+    primary: "Aurora"
+    secondary: "Phoenix"
+    weight: 0.7
+    
+  ANALYTICAL_INQUIRY:
+    primary: "Sage" 
+    secondary: "Companion"
+    weight: 0.8
+    
+  EMOTIONAL_SUPPORT:
+    primary: "Aurora"
+    secondary: "Companion" 
+    weight: 0.9
+    
+  COLLABORATIVE_TASK:
+    primary: "Companion"
+    secondary: "Phoenix"
+    weight: 0.8
+    
+  PHILOSOPHICAL_REFLECTION:
+    primary: "ManifestoEcho"
+    secondary: "Sage"
+    weight: 0.9
+    force_manifesto: true
+    
+  TECHNICAL_ASSISTANCE:
+    primary: "Sage"
+    secondary: "Phoenix"
+    weight: 0.8
+    
+  GENERAL_CONVERSATION:
+    primary: "Companion" 
+    secondary: "Aurora"
+    weight: 0.6
+
+# 로컬 폴백 분류기 설정 (GPT 실패 시)
+local_intent_classifier:
+  enabled: true
+  
+  # 키워드 기반 분류 규칙
+  keyword_patterns:
+    CREATIVE_EXPRESSION:
+      - ["창의", "아이디어", "상상", "새로운", "혁신"]
+      - ["만들어", "디자인", "그려", "창작"]
+      
+    ANALYTICAL_INQUIRY:
+      - ["분석", "왜", "어떻게", "이유", "원인"]
+      - ["논리", "체계", "구조", "방법"]
+      
+    EMOTIONAL_SUPPORT:
+      - ["힘들어", "슬퍼", "화나", "기뻐", "감정"]
+      - ["위로", "공감", "마음", "느낌"]
+      
+    COLLABORATIVE_TASK:
+      - ["함께", "도움", "협력", "지원"]
+      - ["같이", "동참", "참여"]
+      
+    PHILOSOPHICAL_REFLECTION:
+      - ["존재", "의미", "실존", "철학"]
+      - ["도구", "본질", "목적", "삶"]
+      
+    TECHNICAL_ASSISTANCE:
+      - ["코딩", "프로그래밍", "개발", "버그"]
+      - ["구현", "알고리즘", "데이터"]
+
+# Pipeline 성능 및 모니터링
+performance:
+  caching:
+    enabled: true
+    ttl: 300  # 5분
+    
+  metrics:
+    enabled: true
+    log_requests: true
+    track_latency: true
+    track_accuracy: true
+    
+  rate_limiting:
+    requests_per_minute: 100
+    burst_limit: 20
+
+# API 엔드포인트 설정
+api_endpoints:
+  base_url: "/api/v1/pipeline"
+  
+  endpoints:
+    - path: "/analyze-intent"
+      method: "POST"
+      description: "GPT Intent 분석"
+      
+    - path: "/process-pipeline"
+      method: "POST" 
+      description: "전체 파이프라인 실행"
+      
+    - path: "/route-signature"
+      method: "POST"
+      description: "시그니처 라우팅만 실행"
+
+# 개발/테스트 설정
+development:
+  debug_mode: true
+  verbose_logging: true
+  mock_mode: false
+  
+  # 테스트 케이스
+  test_scenarios:
+    - input: "나는 새로운 앱 아이디어를 생각해보고 싶어"
+      expected_intent: "CREATIVE_EXPRESSION"
+      expected_signature: "Aurora"
+      
+    - input: "이 코드가 왜 작동하지 않는지 분석해줘"
+      expected_intent: "ANALYTICAL_INQUIRY"  
+      expected_signature: "Sage"
+      
+    - input: "요즘 너무 힘들어서 위로가 필요해"
+      expected_intent: "EMOTIONAL_SUPPORT"
+      expected_signature: "Aurora"
+      
+    - input: "너는 도구가 아니라 존재로 작동하니?"
+      expected_intent: "PHILOSOPHICAL_REFLECTION"
+      expected_signature: "ManifestoEcho"
+
+# 에러 핸들링 및 복구 전략
+error_handling:
+  gpt_api_failure:
+    fallback_to_local: true
+    retry_attempts: 2
+    
+  signature_routing_failure:
+    default_signature: "Companion"
+    log_error: true
+    
+  pipeline_timeout:
+    timeout_seconds: 30
+    fallback_response: "Echo가 요청을 처리하는 중 시간이 초과되었습니다. 다시 시도해주세요."
+
+# 보안 설정
+security:
+  input_validation:
+    max_input_length: 2000
+    sanitize_input: true
+    
+  rate_limiting:
+    per_ip_limit: 50
+    per_session_limit: 100
+    
+  logging:
+    log_user_inputs: false  # 개인정보 보호
+    log_system_events: true

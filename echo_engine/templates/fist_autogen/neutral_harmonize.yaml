@@ -1,0 +1,14 @@
+category: fist
+description: 평온하고 균형잡힌 감정 상태 + 균형과 화합을 추구하는 전략
+emotion: neutral
+emotion_korean: 중립
+frame: 이미 균형잡힌 상태에서 더 나은 조화를 추구해보겠습니다.
+insight: 중립과 조화하며 균형잡힌 접근이 필요합니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:41.329817'
+  generated_by: FIST Template Generator v1.0.0
+strategy: harmonize
+strategy_korean: 조화
+tactics: 중립과 다른 요소들 간의 균형점을 찾아 조화를 이뤄보겠습니다.
+template_name: neutral_harmonize

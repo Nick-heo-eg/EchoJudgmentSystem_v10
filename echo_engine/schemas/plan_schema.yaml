@@ -1,0 +1,9 @@
+node_kinds:
+  - PLAN
+  - SUBPLAN
+  - ACTION
+required_keys:
+  PLAN: [id, title, children]
+  SUBPLAN: [id, title, children]
+  ACTION: [id, title]
+# Extend with domain-specific constraints as needed

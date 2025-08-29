@@ -1,0 +1,14 @@
+category: fist
+description: 화나고 격정적인 감정 상태 + 적극적으로 변화를 이끄는 전략
+emotion: anger
+emotion_korean: 분노
+frame: 분노를 변화의 동력으로 전환해보겠습니다.
+insight: 분노의 에너지로 주도적 전략을 펼칠 수 있습니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:41.042083'
+  generated_by: FIST Template Generator v1.0.0
+strategy: initiate
+strategy_korean: 주도
+tactics: 분노을 동력 삼아 적극적으로 변화를 만들어보세요.
+template_name: anger_initiate

@@ -1,0 +1,314 @@
+# EchoJudgmentSystem LLM 설정
+# 판단 시스템 모드 및 파라미터 설정
+
+# 판단 모드 설정
+judge_mode: fallback  # "claude" 또는 "fallback"
+
+# 신뢰도 임계값
+confidence_threshold: 0.65
+
+# Claude 모드 설정
+claude_settings:
+  api_mode: mock  # "real" 또는 "mock"
+  model: claude-3-5-sonnet-20241022
+  max_tokens: 1000
+  temperature: 0.3
+  timeout: 30
+  retry_count: 3
+
+# LLM-Free 모드 설정
+fallback_settings:
+  # 규칙 세트 파일 경로
+  ruleset_path: "echo_engine/llm_free/fallback_ruleset.json"
+  
+  # 판단 설정 파일 경로
+  config_path: "echo_engine/llm_free/judge_config.yaml"
+  
+  # 최소 신뢰도 임계값
+  min_confidence: 0.3
+  
+  # 최대 처리 시간 (초)
+  max_processing_time: 2.0
+  
+  # 캐싱 설정
+  enable_caching: true
+  cache_size: 100
+  cache_ttl: 300  # 5분
+
+# 통합 판단 설정
+judgment_settings:
+  # 판단 결과 형식
+  response_format: "structured"  # "structured" 또는 "simple"
+  
+  # 다중 모드 지원
+  enable_multimode: true
+  
+  # 폴백 체인 설정
+  fallback_chain:
+    - "claude"
+    - "fallback"
+  
+  # 성능 모니터링
+  enable_performance_monitoring: true
+  
+  # 결과 검증
+  enable_result_validation: true
+  
+  # 자동 모드 전환
+  auto_mode_switch:
+    enabled: true
+    claude_fail_threshold: 3  # Claude 실패 횟수 임계값
+    switch_to_fallback: true
+    
+# 로깅 설정
+logging:
+  # 로그 레벨
+  level: INFO  # DEBUG, INFO, WARNING, ERROR
+  
+  # 로그 파일 경로
+  file_path: "logs/llm_judgment.log"
+  
+  # 로그 형식
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # 로그 로테이션
+  rotation:
+    enabled: true
+    max_size: "10MB"
+    backup_count: 5
+    
+  # 메타 로그 연동
+  meta_log_integration:
+    enabled: true
+    log_path: "meta_logs/"
+    session_tracking: true
+
+# 성능 설정
+performance:
+  # 최대 동시 처리 수
+  max_concurrent_requests: 10
+  
+  # 요청 큐 크기
+  request_queue_size: 100
+  
+  # 처리 시간 제한
+  request_timeout: 30
+  
+  # 메모리 사용량 제한
+  memory_limit: "256MB"
+  
+  # CPU 사용량 제한
+  cpu_limit: "50%"
+
+# 개발/디버깅 설정
+development:
+  # 디버그 모드
+  debug_mode: false
+  
+  # 상세 로깅
+  verbose_logging: false
+  
+  # 테스트 모드
+  test_mode: false
+  
+  # 프로파일링
+  profiling:
+    enabled: false
+    output_path: "profiling/"
+    
+  # 실험 기능
+  experimental_features:
+    enabled: false
+    features:
+      - "advanced_reasoning"
+      - "emotional_context"
+      - "multi_step_judgment"
+
+# 보안 설정
+security:
+  # 입력 검증
+  input_validation:
+    enabled: true
+    max_length: 1000
+    forbidden_patterns: []
+    
+  # 출력 필터링
+  output_filtering:
+    enabled: true
+    sanitize_html: true
+    remove_sensitive_info: true
+    
+  # 접근 제어
+  access_control:
+    enabled: false
+    allowed_ips: []
+    rate_limiting:
+      enabled: false
+      requests_per_minute: 60
+
+# FIST 구조 템플릿 설정
+fist_templates:
+  # 기본 설정
+  enabled: true
+  templates_dir: "echo_engine/fist_templates/templates"
+  
+  # 구조 유형 설정
+  structure_types:
+    fist:
+      enabled: true
+      default_complexity: "moderate"
+      max_tokens: 1500
+      temperature: 0.3
+    rise:
+      enabled: true
+      default_complexity: "moderate"
+      max_tokens: 1200
+      temperature: 0.4
+    dir:
+      enabled: false
+      default_complexity: "simple"
+      max_tokens: 800
+      temperature: 0.2
+  
+  # 템플릿 선택 전략
+  selection_strategy:
+    default: "best_match"  # best_match, high_performance, complexity_based, contextual, adaptive
+    fallback: "complexity_based"
+    adaptive_learning: true
+    
+  # 템플릿 캐싱
+  template_caching:
+    enabled: true
+    cache_size: 50
+    cache_ttl: 3600  # 1시간
+    
+  # 성능 최적화
+  performance:
+    max_concurrent_requests: 5
+    request_timeout: 30
+    enable_parallel_processing: true
+    
+  # 품질 관리
+  quality_control:
+    min_confidence_threshold: 0.3
+    structure_completeness_threshold: 0.7
+    enable_quality_feedback: true
+    
+  # 통합 설정
+  integration:
+    claude_bridge: true
+    judgment_engine: true
+    streamlit_ui: true
+    
+  # 카테고리별 설정
+  category_settings:
+    decision:
+      preferred_structure: "fist"
+      complexity_range: ["moderate", "complex"]
+      temperature: 0.3
+    creative:
+      preferred_structure: "fist"
+      complexity_range: ["moderate", "complex"]
+      temperature: 0.7
+    emotional:
+      preferred_structure: "fist"
+      complexity_range: ["simple", "moderate"]
+      temperature: 0.4
+    evaluation:
+      preferred_structure: "fist"
+      complexity_range: ["moderate", "complex"]
+      temperature: 0.2
+    strategic:
+      preferred_structure: "fist"
+      complexity_range: ["complex", "expert"]
+      temperature: 0.3
+    analytical:
+      preferred_structure: "fist"
+      complexity_range: ["moderate", "complex"]
+      temperature: 0.2
+    problem_solving:
+      preferred_structure: "fist"
+      complexity_range: ["moderate", "complex"]
+      temperature: 0.5
+    prediction:
+      preferred_structure: "rise"
+      complexity_range: ["moderate", "complex"]
+      temperature: 0.4
+
+# FIST Claude 통합 설정
+fist_claude_integration:
+  enabled: true
+  api_mode: "mock"  # "direct" 또는 "mock"
+  
+  # 프롬프트 생성 설정
+  prompt_generation:
+    include_structure_analysis: true
+    include_context_summary: true
+    include_reasoning_trace: true
+    max_prompt_length: 4000
+    
+  # 응답 통합 설정
+  response_integration:
+    confidence_weighting:
+      fist_weight: 0.6
+      claude_weight: 0.4
+    consistency_bonus: 0.2
+    quality_threshold: 0.5
+    
+  # 에러 처리
+  error_handling:
+    max_retries: 2
+    fallback_to_simple: true
+    log_errors: true
+
+# 환경별 설정
+environments:
+  development:
+    judge_mode: fallback
+    debug_mode: true
+    verbose_logging: true
+    fist_templates:
+      enabled: true
+      structure_types:
+        fist:
+          enabled: true
+        rise:
+          enabled: true
+        dir:
+          enabled: true
+    
+  testing:
+    judge_mode: fallback
+    test_mode: true
+    confidence_threshold: 0.5
+    fist_templates:
+      enabled: true
+      quality_control:
+        min_confidence_threshold: 0.2
+    
+  production:
+    judge_mode: claude
+    debug_mode: false
+    performance_monitoring: true
+    fist_templates:
+      enabled: true
+      performance:
+        max_concurrent_requests: 10
+      quality_control:
+        min_confidence_threshold: 0.6
+    
+  offline:
+    judge_mode: fallback
+    claude_settings:
+      api_mode: mock
+    fallback_settings:
+      enable_caching: true
+    fist_templates:
+      enabled: true
+      structure_types:
+        fist:
+          enabled: true
+        rise:
+          enabled: false
+        dir:
+          enabled: false

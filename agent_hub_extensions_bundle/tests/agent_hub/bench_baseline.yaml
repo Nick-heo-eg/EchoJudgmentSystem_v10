@@ -1,0 +1,17 @@
+# Agent Hub Bench Baseline (edit to your infra)
+# key = "<concurrency>x<total_requests>"
+thresholds:
+  "20x200":
+    min_rps: 2500
+    max_p95_ms: 150
+  "50x1000":
+    min_rps: 2600
+    max_p95_ms: 180
+  "100x2000":
+    min_rps: 2500
+    max_p95_ms: 200
+
+# Optional percentage guardrails (applied if --reference is given)
+guards:
+  max_rps_drop_pct: 7.5   # fail if RPS drops > 7.5% vs reference
+  max_p95_increase_pct: 20.0  # fail if p95 grows > 20% vs reference

@@ -1,0 +1,14 @@
+category: fist
+description: 평온하고 균형잡힌 감정 상태 + 문제에 직면하여 해결하는 전략
+emotion: neutral
+emotion_korean: 중립
+frame: 차분한 상태에서 문제를 해결해보겠습니다.
+insight: 중립 상태에서 직면 전략이 가장 효과적일 것 같습니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:41.275687'
+  generated_by: FIST Template Generator v1.0.0
+strategy: confront
+strategy_korean: 대응
+tactics: 중립의 힘으로 문제에 정면으로 맞서보겠습니다.
+template_name: neutral_confront

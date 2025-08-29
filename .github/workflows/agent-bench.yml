@@ -1,0 +1,147 @@
+name: Agent Bench Full Cycle
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  bench:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    env:
+      PYTHON_VERSION: "3.12"
+      # Slack webhook is optional - set in repository secrets
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: "pip"
+
+      - name: Create virtual environment and install dependencies
+        run: |
+          python -m venv agent_hub_ci_bundle/venv_extensions
+          source agent_hub_ci_bundle/venv_extensions/bin/activate
+          pip install --upgrade pip wheel setuptools
+          if [ -f agent_hub_ci_bundle/requirements_ci.txt ]; then
+            pip install -r agent_hub_ci_bundle/requirements_ci.txt
+          else
+            pip install aiohttp matplotlib orjson PyYAML streamlit pandas numpy
+          fi
+
+      - name: Show configuration
+        run: |
+          echo "Python version: $(python -V)"
+          echo "Working directory: $(pwd)"
+          echo "Contents of agent_hub_ci_bundle:"
+          ls -la agent_hub_ci_bundle/ || echo "agent_hub_ci_bundle not found"
+          echo "Checking Makefile:"
+          ls -la agent_hub_ci_bundle/Makefile.agent_hub.mk || echo "Makefile not found"
+
+      - name: Start mock Echo service (background)
+        run: |
+          # Create a simple mock service for benchmarking
+          cat > mock_echo_service.py << 'EOF'
+          from aiohttp import web
+          import json
+          import asyncio
+          
+          async def echo_handler(request):
+              try:
+                  data = await request.json()
+                  signature = data.get('context', {}).get('signature', 'Unknown')
+                  text = data.get('text', '')
+                  
+                  # Simulate some processing time
+                  await asyncio.sleep(0.001)
+                  
+                  return web.json_response({
+                      'signature': signature,
+                      'text': text,
+                      'status': 'processed',
+                      'timestamp': '2025-08-30T08:00:00Z'
+                  })
+              except Exception as e:
+                  return web.json_response({'error': str(e)}, status=400)
+          
+          app = web.Application()
+          app.router.add_post('/echo', echo_handler)
+          
+          if __name__ == '__main__':
+              web.run_app(app, host='0.0.0.0', port=8014)
+          EOF
+          
+          python mock_echo_service.py &
+          MOCK_PID=$!
+          echo $MOCK_PID > mock_service.pid
+          sleep 3  # Allow service to start
+          
+          # Test the mock service
+          curl -X POST http://localhost:8014/echo \
+            -H "Content-Type: application/json" \
+            -d '{"text": "test", "context": {"signature": "Test"}}' || echo "Mock service not responding"
+
+      - name: Run signature benchmarks with optimizations
+        run: |
+          source agent_hub_ci_bundle/venv_extensions/bin/activate
+          make -f agent_hub_ci_bundle/Makefile.agent_hub.mk agent-bench-signatures \
+            SIGNATURES="Aurora,Selene,Heo" WARMUP=1 || true
+
+      - name: Generate comparison charts
+        if: always()
+        run: |
+          source agent_hub_ci_bundle/venv_extensions/bin/activate
+          make -f agent_hub_ci_bundle/Makefile.agent_hub.mk agent-bench-compare || true
+
+      - name: Check for performance regressions
+        if: always()
+        run: |
+          source agent_hub_ci_bundle/venv_extensions/bin/activate
+          make -f agent_hub_ci_bundle/Makefile.agent_hub.mk agent-check-regression || true
+
+      - name: Send Slack notification (if configured)
+        if: env.SLACK_WEBHOOK_URL != '' && always()
+        run: |
+          source agent_hub_ci_bundle/venv_extensions/bin/activate
+          make -f agent_hub_ci_bundle/Makefile.agent_hub.mk agent-slack-notify || echo "Slack notification failed"
+
+      - name: Capture artifacts path
+        if: always()
+        id: artifacts
+        run: |
+          if [ -d agent_hub_ci_bundle/artifacts/bench ]; then
+            LATEST_RUN=$(ls -1dt agent_hub_ci_bundle/artifacts/bench/* | head -n 1)
+            echo "latest_run=${LATEST_RUN}" >> $GITHUB_OUTPUT
+            echo "Found artifacts at: $LATEST_RUN"
+            ls -la "$LATEST_RUN" || true
+          else
+            echo "No artifacts found"
+            echo "latest_run=" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Upload benchmark artifacts
+        if: always() && steps.artifacts.outputs.latest_run != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: bench-artifacts-${{ github.run_number }}
+          path: ${{ steps.artifacts.outputs.latest_run }}
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Cleanup background processes
+        if: always()
+        run: |
+          if [ -f mock_service.pid ]; then
+            kill $(cat mock_service.pid) 2>/dev/null || true
+            rm mock_service.pid
+          fi

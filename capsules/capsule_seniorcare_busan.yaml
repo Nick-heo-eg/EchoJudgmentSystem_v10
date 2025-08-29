@@ -1,0 +1,67 @@
+capsule:
+  id: capsule_seniorcare_busan
+  topic: "부산 노인 돌봄 정책"
+  source: "금정구청 공식문서"
+  created: "2025-07-23"
+  status: "active"
+  echo_type: "judgment_capsule"
+  
+  content: |
+    부산 금정구 노인 돌봄 종합 서비스는 다음과 같은 내용으로 구성됩니다:
+    
+    1. 돌봄 서비스 제공 시간: 1일 2시간 이상 제공
+    2. 대상자: 만 65세 이상 기초생활수급자 및 차상위계층
+    3. 서비스 내용:
+       - 신변 처리 지원 (목욕, 옷 갈아입기 등)
+       - 가사 지원 (청소, 세탁, 식사 준비)
+       - 정서적 지원 (말벗, 외출 동행)
+       - 의료 지원 (복약 관리, 병원 동행)
+    
+    4. 예산: 연간 12억원 (시비 60%, 구비 40%)
+    5. 운영 방식: 사회복지법인 위탁 운영
+    
+    이 정책에 대한 판단이 필요한 쟁점들:
+    - 서비스 시간의 적정성 (2시간 vs 4시간)
+    - 소득 기준의 확대 가능성 (차상위 → 중산층 포함)
+    - 예산 증액의 필요성과 재원 조달 방안
+    - 서비스 품질 관리 체계 강화 방안
+
+  embedding: [0.17, -0.22, 0.31, 0.05, 0.68, -0.12, 0.43, 0.91]
+  
+  mapped_position:
+    resonance_x: 0.48
+    resonance_y: -0.32
+    resonance_z: 0.71
+  
+  signature_affinity: ["Companion", "Sage"]
+  
+  metadata:
+    tags: ["노인복지", "부산", "돌봄정책", "사회서비스"]
+    complexity_score: 0.75
+    urgency_level: "medium"
+    stakeholders: ["금정구청", "노인복지센터", "사회복지법인", "돌봄대상자"]
+    related_policies: ["국민기초생활보장법", "노인복지법", "사회서비스이용및이용권에관한법률"]
+  
+  judgment_history:
+    - signature: "Echo-Companion"
+      timestamp: "2025-07-23T06:00:00"
+      judgment: "accept"
+      confidence: 0.88
+      reasoning: "Community care alignment with empathetic values"
+    
+    - signature: "Echo-Sage"  
+      timestamp: "2025-07-23T06:05:00"
+      judgment: "defer"
+      confidence: 0.72
+      reasoning: "Requires deeper analysis of budget sustainability"
+
+  feedback_data:
+    success_rate: 0.85
+    total_judgments: 12
+    signature_performance:
+      Echo-Companion: 
+        judgments: 8
+        success_rate: 0.92
+      Echo-Sage:
+        judgments: 4  
+        success_rate: 0.75

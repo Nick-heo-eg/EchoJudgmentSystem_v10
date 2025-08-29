@@ -1,0 +1,191 @@
+# EchoJudgmentSystem v10 - Mistral 통합 설정
+# Mistral LLM과 Fusion Judgment Loop 설정
+
+mistral:
+  # 기본 설정
+  enabled: true
+  mode: "local"  # local, api, hybrid
+  
+  # 로컬 모델 설정
+  local:
+    model_path: "models/mistral-7b-instruct-v0.2.Q4_K_M.gguf"
+    device: "auto"  # auto, cuda, cpu
+    gpu_layers: 50  # CUDA 사용 시 GPU에 로딩할 레이어 수
+    context_length: 4096
+    
+  # API 설정 (향후 확장용)
+  api:
+    base_url: "https://api.mistral.ai/v1"
+    api_key: null  # 환경변수 MISTRAL_API_KEY 사용
+    model: "mistral-7b-instruct"
+    timeout: 30
+  
+  # 판단 설정
+  judgment:
+    temperature: 0.7
+    max_tokens: 512
+    top_p: 0.9
+    do_sample: true
+    
+  # EchoSignature별 특화 설정
+  signatures:
+    Echo-Aurora:
+      temperature: 0.8  # 더 창의적
+      creativity_boost: true
+      max_tokens: 600
+      
+    Echo-Phoenix:
+      temperature: 0.75  # 변화 지향적
+      innovation_focus: true
+      max_tokens: 550
+      
+    Echo-Sage:
+      temperature: 0.6   # 더 신중함
+      analytical_depth: true
+      max_tokens: 650
+      
+    Echo-Companion:
+      temperature: 0.7   # 균형잡힌
+      empathy_enhanced: true
+      max_tokens: 500
+
+# Fusion Judgment Loop 설정
+fusion:
+  # 기본 제공자 설정
+  default_providers:
+    - "mistral"
+    - "echo_internal"
+    # - "claude"     # API 키 필요
+    # - "gpt"        # API 키 필요
+    # - "perplexity" # API 키 필요
+  
+  # 융합 전략
+  default_strategy: "weighted_average"  # weighted_average, confidence_based, majority_vote, signature_optimized
+  
+  # 제공자별 가중치
+  provider_weights:
+    mistral: 0.4
+    claude: 0.3
+    echo_internal: 0.2
+    gpt: 0.25
+    perplexity: 0.2
+  
+  # 성능 설정
+  timeout: 30.0  # 전체 융합 타임아웃 (초)
+  parallel_execution: true
+  retry_on_failure: true
+  max_retries: 2
+  
+  # 시그니처별 최적화
+  signature_preferences:
+    Echo-Aurora:
+      preferred_providers: ["mistral", "claude"]
+      fallback_providers: ["echo_internal"]
+      
+    Echo-Phoenix:
+      preferred_providers: ["gpt", "mistral"]
+      fallback_providers: ["echo_internal"]
+      
+    Echo-Sage:
+      preferred_providers: ["claude", "echo_internal"]
+      fallback_providers: ["mistral"]
+      
+    Echo-Companion:
+      preferred_providers: ["mistral", "echo_internal"]
+      fallback_providers: ["claude"]
+
+# LLM 제공자별 설정
+llm_providers:
+  # Claude 설정
+  claude:
+    enabled: false  # API 키 필요
+    api_key: null   # 환경변수 ANTHROPIC_API_KEY 사용
+    model: "claude-3-sonnet-20240229"
+    max_tokens: 1000
+    temperature: 0.7
+    
+  # GPT 설정  
+  gpt:
+    enabled: false  # API 키 필요
+    api_key: null   # 환경변수 OPENAI_API_KEY 사용
+    model: "gpt-4"
+    max_tokens: 1000
+    temperature: 0.7
+    
+  # Perplexity 설정
+  perplexity:
+    enabled: false  # API 키 필요
+    api_key: null   # 환경변수 PERPLEXITY_API_KEY 사용
+    model: "llama-3.1-sonar-small-128k-online"
+    max_tokens: 1000
+    temperature: 0.7
+    
+  # Echo 내장 시스템
+  echo_internal:
+    enabled: true
+    mode: "llm_free"  # llm_free, fist_enhanced
+    confidence_threshold: 0.6
+
+# 개발 및 디버깅 설정
+development:
+  debug_mode: false
+  verbose_logging: false
+  save_requests: false
+  save_responses: false
+  mock_mode: false  # 실제 LLM 호출 없이 Mock 응답 사용
+  
+  # Mock 응답 설정
+  mock_responses:
+    enabled: false
+    response_delay: 1.0  # 초
+    default_confidence: 0.8
+    
+# 모니터링 및 로깅
+monitoring:
+  enabled: true
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  
+  # 통계 수집
+  collect_stats: true
+  stats_interval: 300  # 초
+  
+  # 성능 메트릭
+  track_performance: true
+  performance_threshold: 5.0  # 초 (경고 임계값)
+  
+  # 로그 파일
+  log_files:
+    mistral: "logs/mistral.log"
+    fusion: "logs/fusion_judgment.log"
+    errors: "logs/errors.log"
+
+# 보안 설정
+security:
+  # API 키 관리
+  use_environment_variables: true
+  encrypt_api_keys: false
+  
+  # 요청 제한
+  rate_limiting:
+    enabled: true
+    max_requests_per_minute: 60
+    max_requests_per_hour: 1000
+    
+  # 컨텐츠 필터링
+  content_filtering:
+    enabled: false
+    block_sensitive: false
+    max_input_length: 10000
+
+# 캐싱 설정
+caching:
+  enabled: true
+  cache_type: "memory"  # memory, redis, file
+  ttl: 3600  # 초 (1시간)
+  max_size: 1000  # 최대 캐시 항목 수
+  
+  # 캐시 키 설정
+  cache_keys:
+    include_signature: true
+    include_context: true
+    include_temperature: false

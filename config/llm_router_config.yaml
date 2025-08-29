@@ -1,0 +1,240 @@
+# 🔄 Echo LLM-Agnostic Router Configuration
+# LLM 엔진들의 라우팅 및 폴백 설정
+
+# 기본 엔진 (우선 사용)
+primary_engine: "claude"
+
+# 폴백 엔진들 (우선순위 순)
+fallback_engines:
+  - "gpt4"
+  - "local"
+
+# 라우팅 정책
+routing_policy:
+  # 자동 폴백 활성화
+  auto_fallback: true
+  
+  # 응답 품질 검증
+  quality_check: true
+  min_confidence: 0.3
+  min_anchor_compliance: 0.6
+  
+  # 타임아웃 설정
+  timeout_seconds: 30
+  
+  # 재시도 정책
+  max_retries: 2
+  retry_delay: 1.0
+
+# 엔진별 세부 설정
+engines:
+  
+  claude:
+    # Anthropic Claude 설정
+    api_key: "${ANTHROPIC_API_KEY}"  # 환경변수에서 로드
+    model: "claude-3-5-sonnet-20241022"
+    
+    # 엔진별 특성
+    preferred_signatures: ["Aurora", "Sage", "Companion"]  # 이 엔진이 잘 처리하는 시그니처
+    max_tokens: 4000
+    temperature: 0.7
+    
+    # 성능 설정
+    timeout: 25
+    max_concurrent: 5
+    
+    # 비용 정보 (1K 토큰당 USD)
+    cost_per_1k_input: 0.015
+    cost_per_1k_output: 0.075
+    
+  gpt4:
+    # OpenAI GPT-4 설정
+    api_key: "${OPENAI_API_KEY}"
+    model: "gpt-4"
+    
+    preferred_signatures: ["Phoenix", "Sage"]
+    max_tokens: 3000
+    temperature: 0.7
+    
+    timeout: 30
+    max_concurrent: 3
+    
+    cost_per_1k_input: 0.03
+    cost_per_1k_output: 0.06
+    
+  deepseek:
+    # DeepSeek 설정
+    api_key: "${DEEPSEEK_API_KEY}"
+    model: "deepseek-chat"
+    base_url: "https://api.deepseek.com"
+    
+    preferred_signatures: ["Phoenix", "Aurora"]
+    max_tokens: 4000
+    temperature: 0.8
+    
+    timeout: 20
+    max_concurrent: 10
+    
+    cost_per_1k_input: 0.0014
+    cost_per_1k_output: 0.0028
+    
+  gemini:
+    # Google Gemini 설정
+    api_key: "${GOOGLE_API_KEY}"
+    model: "gemini-pro"
+    
+    preferred_signatures: ["Sage", "Companion"]
+    max_tokens: 2048
+    temperature: 0.6
+    
+    timeout: 25
+    max_concurrent: 5
+    
+    cost_per_1k_input: 0.00075
+    cost_per_1k_output: 0.002
+    
+  local:
+    # 로컬 모델 설정
+    model_path: "/path/to/local/model"
+    model_name: "echo_local_v1"
+    
+    # 로컬 모델은 모든 시그니처 지원 가능
+    preferred_signatures: ["Aurora", "Phoenix", "Sage", "Companion"]
+    max_tokens: 2000
+    temperature: 0.8
+    
+    timeout: 45  # 로컬은 더 오래 걸릴 수 있음
+    max_concurrent: 2  # 로컬 리소스 제한
+    
+    cost_per_1k_input: 0.0  # 무료
+    cost_per_1k_output: 0.0
+
+# 시그니처별 엔진 선호도 매트릭스
+signature_engine_preferences:
+  Aurora:
+    primary: ["claude", "gpt4"]
+    fallback: ["deepseek", "local"]
+    
+  Phoenix:
+    primary: ["gpt4", "deepseek"]
+    fallback: ["claude", "local"]
+    
+  Sage:
+    primary: ["claude", "gemini"]
+    fallback: ["gpt4", "local"]
+    
+  Companion:
+    primary: ["claude", "gemini"]
+    fallback: ["gpt4", "local"]
+
+# 헬스체크 설정
+health_check:
+  # 체크 간격 (초)
+  interval: 60
+  
+  # 실패 임계값
+  failure_threshold: 5
+  consecutive_failures: 3
+  
+  # 복구 조건
+  recovery_threshold: 2
+  
+# 모니터링 설정
+monitoring:
+  # 통계 수집
+  collect_stats: true
+  
+  # 로깅 레벨
+  log_level: "INFO"
+  
+  # 메트릭 내보내기
+  export_metrics: true
+  metrics_interval: 300  # 5분마다
+  
+  # 알림 설정
+  alerts:
+    high_error_rate: 0.1      # 10% 이상 에러율
+    slow_response: 10.0       # 10초 이상 응답시간
+    engine_down: true         # 엔진 다운 알림
+
+# Echo Anchor 준수 검증
+anchor_validation:
+  # 자동 검증 활성화
+  enabled: true
+  
+  # 최소 준수 점수
+  min_score: 0.6
+  
+  # 검증 실패 시 동작
+  on_failure: "fallback"  # fallback, reject, warn
+  
+  # 시그니처별 가중치
+  signature_weights:
+    Aurora: 1.0
+    Phoenix: 1.0
+    Sage: 1.2      # Sage는 더 엄격한 검증
+    Companion: 0.9
+
+# 캐싱 설정  
+caching:
+  # 응답 캐싱 활성화
+  enabled: true
+  
+  # 캐시 TTL (초)
+  ttl: 3600  # 1시간
+  
+  # 캐시 크기 제한 (MB)
+  max_size: 100
+  
+  # 캐시 키 생성 방식
+  key_fields: ["signature", "user_input", "context_hash"]
+
+# 로드 밸런싱
+load_balancing:
+  # 밸런싱 전략
+  strategy: "weighted_round_robin"  # round_robin, weighted, least_connections
+  
+  # 엔진별 가중치
+  weights:
+    claude: 40
+    gpt4: 30
+    deepseek: 20
+    gemini: 15
+    local: 5
+
+# 보안 설정
+security:
+  # API 키 암호화
+  encrypt_keys: true
+  
+  # 요청 검증
+  validate_requests: true
+  
+  # 레이트 리미팅
+  rate_limits:
+    claude: 50    # requests per minute
+    gpt4: 30
+    deepseek: 100
+    gemini: 60
+    local: 1000
+
+# 개발/디버깅 설정
+development:
+  # 디버그 모드
+  debug: false
+  
+  # 모의 응답 사용 (테스트용)
+  use_mock_responses: false
+  
+  # 상세 로깅
+  verbose_logging: false
+  
+  # 응답 저장 (분석용)
+  save_responses: false
+  response_log_path: "logs/llm_responses.jsonl"
+
+# 버전 정보
+version: "1.0"
+created_date: "2025-01-07"
+last_updated: "2025-01-07"
+compatible_echo_version: "v10+"

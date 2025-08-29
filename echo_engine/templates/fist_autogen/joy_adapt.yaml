@@ -1,0 +1,14 @@
+category: fist
+description: 긍정적이고 밝은 감정 상태 + 상황에 맞춰 유연하게 변화하는 전략
+emotion: joy
+emotion_korean: 기쁨
+frame: 당신의 기쁨이 상황을 밝게 비추고 있습니다.
+insight: 지금은 기쁨을 유지하며 적응 전략을 펼칠 수 있는 시점입니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:40.800189'
+  generated_by: FIST Template Generator v1.0.0
+strategy: adapt
+strategy_korean: 적응
+tactics: 이 기쁨을 유지하면서 주변 변화에 유연하게 대응해보세요.
+template_name: joy_adapt

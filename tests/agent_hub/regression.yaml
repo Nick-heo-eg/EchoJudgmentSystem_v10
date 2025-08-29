@@ -1,0 +1,60 @@
+base: "http://localhost:8014"
+scenarios:
+  - name: "root"
+    method: "GET"
+    path: "/"
+    expect:
+      status: 200
+      json_keys_any: ["service", "status", "endpoints"]
+
+  - name: "health"
+    method: "GET"
+    path: "/health"
+    expect:
+      status: 200
+      json_keys_any: ["status", "agents"]
+
+  - name: "echo-direct"
+    method: "POST"
+    path: "/echo"
+    json:
+      text: "회귀 테스트 문장입니다. 핵심 요약 부탁."
+      context:
+        tasks: ["summarize","keywords"]
+        lang: "ko"
+        trace_id: "reg-echo-01"
+    expect:
+      status: 200
+      json_keys_any: ["text", "source"]
+
+  - name: "echo-file"
+    method: "POST"
+    path: "/echo/file"
+    json:
+      file_chunks: 
+        - "첫 번째 테스트 문서입니다."
+        - "두 번째 테스트 문서입니다."
+      context:
+        trace_id: "reg-file-01"
+    expect:
+      status: 200
+      json_keys_any: ["summary", "chunks_processed"]
+
+  - name: "invoke-echo"
+    method: "POST"
+    path: "/invoke/echo"
+    json:
+      agent: "gpt"
+      prompt: "테스트 시나리오 3가지만 생성"
+      context:
+        trace_id: "reg-invoke-01"
+    expect:
+      status: 200
+      json_keys_any: ["output", "echo_processing"]
+
+  - name: "stats"
+    method: "GET"
+    path: "/echo/stats"
+    expect:
+      status: 200
+      json_keys_any: ["echo_available", "performance_stats"]

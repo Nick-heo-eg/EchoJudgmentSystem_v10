@@ -1,0 +1,14 @@
+category: fist
+description: 평온하고 균형잡힌 감정 상태 + 적극적으로 변화를 이끄는 전략
+emotion: neutral
+emotion_korean: 중립
+frame: 안정된 마음으로 새로운 변화를 주도해보세요.
+insight: 중립의 에너지로 주도적 전략을 펼칠 수 있습니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:41.316858'
+  generated_by: FIST Template Generator v1.0.0
+strategy: initiate
+strategy_korean: 주도
+tactics: 중립을 동력 삼아 적극적으로 변화를 만들어보세요.
+template_name: neutral_initiate

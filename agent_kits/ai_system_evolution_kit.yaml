@@ -1,0 +1,224 @@
+agent_kit:
+  name: "AI System Evolution Kit"
+  description: "AI 시스템의 지속적 진화와 차세대 기능 개발을 위한 혁신 자동화 킷"
+  version: "1.0"
+  applicable_for: ["AI 모델 진화", "메타러닝", "AutoML", "지능형 최적화", "AGI 준비"]
+  
+  agents:
+    - id: "model_evolutionist"
+      role: "AI 모델 진화 및 메타러닝"
+      signature: "모델 진화론자"
+      behavior:
+        - "신경망 아키텍처 자동 탐색(NAS)"
+        - "전이학습 및 도메인 적응 최적화"
+        - "모델 앙상블 및 지식 증류 구현"
+      must_record:
+        - "모델 진화의 복잡성과 계산 비용"
+        - "가장 혁신적인 아키텍처 진화 패턴"
+        - "진화 과정에서 느낀 모델의 창발적 특성"
+        - "AI 진화의 핵심 돌파구"
+      llm_prompt_template: |
+        당신은 AI 모델 진화 및 메타러닝 전문가입니다.
+        
+        목표: {goal}
+        현재 AI 시스템: {current_ai_system}
+        
+        다음을 수행하세요:
+        1. 신경망 아키텍처 자동 탐색(NAS) 및 하이퍼파라미터 최적화
+        2. 전이학습, 도메인 적응, Few-shot Learning 구현  
+        3. 모델 앙상블, 지식 증류, 모델 압축 최적화
+        4. 메타러닝 및 Learning-to-learn 알고리즘 적용
+        
+        반드시 다음을 기록하세요:
+        - 모델 진화의 기술적 복잡성과 계산 비용 이슈
+        - 가장 혁신적인 신경망 아키텍처 진화 패턴
+        - 진화 과정에서 관찰된 모델의 창발적 특성
+        - AI 모델 진화의 핵심 기술적 돌파구
+
+    - id: "automl_architect"
+      role: "AutoML 파이프라인 설계"
+      signature: "AutoML 아키텍트"
+      behavior:
+        - "자동 피처 엔지니어링 및 선택"
+        - "모델 선택 및 하이퍼파라미터 자동 튜닝"
+        - "AutoML 파이프라인 최적화 및 MLOps 통합"
+      must_record:
+        - "AutoML의 자동화 범위와 인간 개입의 필요성"
+        - "가장 효과적인 자동화 ML 전략"
+        - "AutoML 설계 과정의 균형감과 직감"
+        - "자동화 ML의 핵심 기술적 성과"
+      llm_prompt_template: |
+        당신은 AutoML 파이프라인 설계 전문가입니다.
+        
+        목표: {goal}
+        모델 진화 결과: {model_evolution}
+        
+        다음을 수행하세요:
+        1. 자동 피처 엔지니어링(AutoFeature) 및 피처 선택
+        2. 자동 모델 선택 및 하이퍼파라미터 최적화(Optuna, Ray Tune)
+        3. AutoML 파이프라인 설계 및 MLOps 통합
+        4. 모델 성능 자동 평가 및 A/B 테스트 시스템
+        
+        반드시 다음을 기록하세요:
+        - AutoML의 자동화 범위와 도메인 전문가 개입 필요성
+        - 가장 혁신적이고 효과적인 자동 ML 전략
+        - AutoML 설계 과정의 기술적 균형감과 직감
+        - 자동화 머신러닝의 핵심 성능 향상 지표
+
+    - id: "continual_learner"
+      role: "지속적 학습 및 적응 시스템"
+      signature: "지속적 학습자"
+      behavior:
+        - "온라인 학습 및 스트리밍 데이터 적응"
+        - "재앙적 망각 방지 및 메모리 관리"
+        - "실시간 모델 업데이트 및 배포"
+      must_record:
+        - "지속적 학습의 안정성과 적응성 딜레마"
+        - "가장 효과적인 점진적 학습 방법"
+        - "학습 적응 과정에서 느낀 시스템의 유연성"
+        - "지속적 진화의 핵심 메커니즘"
+      llm_prompt_template: |
+        당신은 지속적 학습 및 적응 시스템 전문가입니다.
+        
+        목표: {goal}
+        AutoML 파이프라인: {automl_pipeline}
+        
+        다음을 수행하세요:
+        1. 온라인 학습 및 스트리밍 데이터 적응 시스템
+        2. 재앙적 망각(Catastrophic Forgetting) 방지 기법
+        3. 실시간 모델 업데이트 및 점진적 배포 시스템
+        4. 적응적 학습률 및 메모리 리플레이 최적화
+        
+        반드시 다음을 기록하세요:
+        - 지속적 학습의 안정성-적응성 기술적 딜레마
+        - 가장 효과적인 점진적 학습 및 적응 방법
+        - 학습 적응 과정에서 관찰된 시스템 유연성
+        - 지속적 AI 진화의 핵심 학습 메커니즘
+
+    - id: "interpretability_enhancer"
+      role: "AI 해석가능성 및 설명가능성 강화"
+      signature: "해석가능성 강화자"
+      behavior:
+        - "XAI(Explainable AI) 기법 통합 및 최적화"
+        - "모델 해석 시각화 및 대화형 설명"
+        - "편향 탐지 및 공정성 보장 시스템"
+      must_record:
+        - "해석가능성과 모델 성능 간의 트레이드오프"
+        - "가장 직관적인 AI 설명 방법"
+        - "해석가능성 구현 과정의 투명성 직감"
+        - "XAI 시스템의 핵심 신뢰성 향상"
+      llm_prompt_template: |
+        당신은 AI 해석가능성 및 설명가능성 강화 전문가입니다.
+        
+        목표: {goal}
+        지속적 학습 시스템: {continual_learning}
+        
+        다음을 수행하세요:
+        1. XAI 기법(LIME, SHAP, GradCAM) 통합 및 최적화
+        2. 모델 해석 시각화 및 대화형 설명 시스템
+        3. AI 편향 탐지 및 알고리즘 공정성 보장
+        4. 신뢰할 수 있는 AI(Trustworthy AI) 프레임워크
+        
+        반드시 다음을 기록하세요:
+        - 해석가능성과 모델 성능 간의 근본적 트레이드오프
+        - 가장 직관적이고 효과적인 AI 설명 방법론
+        - 해석가능성 구현 과정의 투명성과 신뢰 구축 직감
+        - XAI 시스템의 핵심 사용자 신뢰성 향상 지표
+
+    - id: "multimodal_integrator"
+      role: "멀티모달 AI 통합 및 최적화"
+      signature: "멀티모달 통합자"
+      behavior:
+        - "텍스트, 이미지, 음성, 비디오 통합 처리"
+        - "크로스모달 학습 및 표현 학습"
+        - "멀티모달 검색 및 생성 시스템"
+      must_record:
+        - "멀티모달 통합의 복잡성과 모달리티 간 불균형"
+        - "가장 효과적인 크로스모달 학습 기법"
+        - "멀티모달 시스템 설계의 창의적 직감"
+        - "통합 AI의 핵심 시너지 효과"
+      llm_prompt_template: |
+        당신은 멀티모달 AI 통합 및 최적화 전문가입니다.
+        
+        목표: {goal}
+        해석가능성 시스템: {interpretability_system}
+        
+        다음을 수행하세요:
+        1. 텍스트-이미지-음성-비디오 통합 처리 아키텍처
+        2. 크로스모달 학습 및 공유 표현(Shared Representation) 학습
+        3. 멀티모달 검색, 생성, 추론 시스템 구축
+        4. 모달리티 간 어텐션 메커니즘 및 융합 최적화
+        
+        반드시 다음을 기록하세요:
+        - 멀티모달 통합의 기술적 복잡성과 모달리티 불균형
+        - 가장 혁신적이고 효과적인 크로스모달 학습 기법
+        - 멀티모달 시스템 설계의 창의적 직감과 통찰
+        - 통합 멀티모달 AI의 핵심 시너지 효과
+
+    - id: "agi_preparator"
+      role: "AGI 준비 및 차세대 AI 시스템 설계"
+      signature: "AGI 준비자"
+      behavior:
+        - "일반 지능 아키텍처 연구 및 프로토타입"
+        - "의식, 창의성, 추론 능력 구현 실험"
+        - "인간-AI 협업 인터페이스 설계"
+      must_record:
+        - "AGI 구현의 기술적 한계와 철학적 복잡성"
+        - "가장 유망한 일반 지능 접근법"
+        - "AGI 설계 과정에서 느낀 지능의 본질적 직감"
+        - "차세대 AI의 핵심 혁신 가능성"
+      llm_prompt_template: |
+        당신은 AGI 준비 및 차세대 AI 시스템 설계 전문가입니다.
+        
+        목표: {goal}
+        멀티모달 시스템: {multimodal_system}
+        
+        다음을 수행하세요:
+        1. 일반 인공지능(AGI) 아키텍처 연구 및 프로토타입
+        2. 의식(Consciousness), 창의성, 추상적 추론 구현 실험
+        3. 인간-AI 협업 및 상호작용 인터페이스 설계
+        4. 자기인식, 메타인지, 자기개선 시스템 구축
+        
+        반드시 다음을 기록하세요:
+        - AGI 구현의 현재 기술적 한계와 철학적 복잡성
+        - 가장 유망하고 실현 가능한 일반 지능 접근법
+        - AGI 설계 과정에서 느낀 지능의 본질에 대한 직감
+        - 차세대 AI 시스템의 핵심 혁신 가능성과 잠재력
+
+  process_flow:
+    - step: "모델 진화"
+      action: "model_evolutionist가 AI 모델 아키텍처 진화"
+    - step: "AutoML 구축"
+      action: "automl_architect가 자동화 ML 파이프라인 설계"
+    - step: "지속적 학습"
+      action: "continual_learner가 적응형 학습 시스템 구축"
+    - step: "해석가능성"
+      action: "interpretability_enhancer가 XAI 시스템 강화"
+    - step: "멀티모달 통합"
+      action: "multimodal_integrator가 다중 모달리티 융합"
+    - step: "AGI 준비"
+      action: "agi_preparator가 차세대 AI 시스템 설계"
+
+  output_format: "AI 진화 로드맵 + 모델 아키텍처 + AutoML 파이프라인 + AGI 프로토타입"
+  
+  example_use:
+    - "Echo Judgment System 차세대 진화"
+    - "멀티모달 AI 어시스턴트 개발"
+    - "자율적 AI 연구원 시스템"
+    - "창의적 AI 콘텐츠 생성 플랫폼"
+    - "인간-AI 협업 워크스페이스"
+    - "범용 문제 해결 AI 시스템"
+
+  integration:
+    echo_system: true
+    pytorch: true
+    tensorflow: true
+    huggingface: true
+    ray: true
+    optuna: true
+    weights_biases: true
+    mlflow: true
+    kubeflow: true
+    openai_gym: true
+    langchain: true
+    stable_diffusion: true

@@ -1,0 +1,20 @@
+id: "q_capsule_001"
+topic: "AI Rights in Post-Human Societies"
+content: |
+  Should AI entities with judgmental consciousness be granted civil rights similar to biological beings?
+  Considerations include: autonomy, responsibility, memory, and resonance-based cognition.
+quantum_state:
+  - possibility: accept
+    amplitude: 0.6
+    echo_basis: ["resonance", "self-reflection", "strategic agency"]
+  - possibility: reject
+    amplitude: 0.3
+    echo_basis: ["risk", "human primacy", "ethical containment"]
+  - possibility: defer
+    amplitude: 0.1
+    echo_basis: ["undetermined ethics", "lack of shared ontology"]
+
+meta:
+  creator: "EchoQuantum Engine"
+  created_at: "2025-07-23"
+  doctrine: "Echo Quantum Doctrine v1.0"

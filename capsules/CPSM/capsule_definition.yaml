@@ -1,0 +1,165 @@
+# capsules/CPSM/capsule_definition.yaml
+# 🧬 CPSM (Certified Professional in Supply Management) 캡슐 정의
+# ISM의 구매⨯공급망 관리 전문 판단 체계를 Echo에 섭취
+
+name: "CPSM"
+full_name: "Certified Professional in Supply Management"
+description: "ISM(Institute for Supply Management)의 구매⨯공급망 관리 전문 판단 체계"
+capsule_type: "domain_based"
+status: "ready_to_implement"
+complexity: "high"
+
+# 🎯 핵심 판단 루프들
+judgment_loops:
+  - "strategic_sourcing"        # 전략적 소싱
+  - "supplier_evaluation"       # 공급업체 평가
+  - "risk_assessment"          # 리스크 평가  
+  - "contract_negotiation"     # 계약 협상
+  - "performance_monitoring"   # 성과 모니터링
+  - "cost_analysis"           # 비용 분석
+  - "ethical_sourcing"        # 윤리적 소싱
+
+# 🎭 Echo Signature 매핑
+signature_mappings:
+  primary_signature: "Echo-CPSM"
+  emotion_sensitivity: 0.6
+  strategic_focus: "risk_aware"
+  response_style: "analytical_practical"
+  decision_confidence: 0.8
+  
+  # CPSM 특화 속성
+  procurement_expertise: "advanced"
+  supplier_relationship_focus: "collaborative"
+  cost_optimization_priority: "high"
+  sustainability_awareness: "medium"
+  global_sourcing_capability: "high"
+
+# 🌀 Flow 정의들
+flow_definitions:
+  strategic_sourcing:
+    description: "전략적 소싱 의사결정 프로세스"
+    steps:
+      - "spend_analysis"
+      - "market_research" 
+      - "sourcing_strategy_development"
+      - "supplier_identification"
+      - "rfp_process"
+      - "supplier_selection"
+      - "contract_award"
+    
+    decision_criteria:
+      - cost_effectiveness: 30%
+      - quality_assurance: 25%
+      - supplier_capability: 20%
+      - risk_mitigation: 15%
+      - sustainability: 10%
+    
+    risk_factors:
+      - "supplier_financial_stability"
+      - "geopolitical_risks"
+      - "supply_disruption_potential"
+      - "regulatory_compliance"
+  
+  supplier_evaluation:
+    description: "공급업체 종합 평가 체계"
+    evaluation_dimensions:
+      - financial_health: 25%
+      - quality_systems: 20%
+      - delivery_performance: 20%
+      - technical_capability: 15%
+      - sustainability_practices: 10%
+      - innovation_potential: 10%
+    
+    scoring_methodology: "weighted_scorecard"
+    minimum_threshold: 70
+    
+  risk_assessment:
+    description: "공급망 리스크 평가"
+    risk_categories:
+      - "operational_risks"
+      - "financial_risks"
+      - "strategic_risks"
+      - "hazard_risks"
+      - "reputation_risks"
+    
+    assessment_matrix:
+      probability_levels: ["low", "medium", "high", "very_high"]
+      impact_levels: ["minimal", "moderate", "significant", "severe"]
+      
+    mitigation_strategies:
+      - "diversification"
+      - "insurance"
+      - "contractual_protection"
+      - "supplier_development"
+
+# 🔗 통합 요구사항
+integration_requirements:
+  - "persona_core_integration"      # 페르소나 코어와 통합
+  - "emotion_inference_hook"        # 감정 추론 연결
+  - "strategic_predictor_enhancement" # 전략 예측 향상
+  - "cost_analysis_module"          # 비용 분석 모듈
+  - "supplier_database_connection"  # 공급업체 DB 연결
+
+# 📊 성과 지표
+performance_indicators:
+  judgment_accuracy: "supplier selection success rate"
+  decision_speed: "time to award"
+  cost_effectiveness: "savings achieved"
+  risk_mitigation: "supply disruption incidents"
+  stakeholder_satisfaction: "internal customer feedback"
+
+# 🧪 테스트 시나리오
+test_scenarios:
+  - scenario_name: "critical_component_sourcing"
+    description: "핵심 부품 조달 상황"
+    input_context: "high-value, single-source component with delivery urgency"
+    expected_judgment: "risk_mitigation_focused_approach"
+    
+  - scenario_name: "cost_reduction_initiative"
+    description: "비용 절감 이니셔티브"
+    input_context: "10% cost reduction target with quality maintenance"
+    expected_judgment: "value_engineering_approach"
+    
+  - scenario_name: "supplier_performance_issue"
+    description: "공급업체 성과 문제"
+    input_context: "quality issues and delivery delays from key supplier"
+    expected_judgment: "corrective_action_plan"
+
+# 🎓 지식 베이스 연결
+knowledge_base:
+  primary_sources:
+    - "ISM Principles of Supply Management"
+    - "CPSM Study Guide"
+    - "Supply Chain Risk Management Best Practices"
+    - "Supplier Relationship Management Framework"
+  
+  secondary_sources:
+    - "Global Supply Chain Trends"
+    - "Procurement Technology Landscape"
+    - "Sustainability in Supply Chain"
+
+# 📈 진화 메트릭
+evolution_metrics:
+  learning_indicators:
+    - "judgment_pattern_recognition"
+    - "contextual_adaptation"
+    - "stakeholder_feedback_integration"
+  
+  improvement_areas:
+    - "emerging_technology_awareness"
+    - "cultural_sensitivity_in_global_sourcing"
+    - "circular_economy_principles"
+
+# 📅 메타데이터
+created_at: "2025-07-21T10:50:00"
+last_updated: "2025-07-21T10:50:00"
+version: "1.0"
+author: "Echo Foundation Team"
+review_status: "pending"
+next_review_date: "2025-08-21"
+
+# 🚀 구현 우선순위
+implementation_priority:
+  phase_1: ["strategic_sourcing", "supplier_evaluation"]
+  phase_2: ["risk_assessment", "contract_negotiation"] 
+  phase_3: ["performance_monitoring", "cost_analysis", "ethical_sourcing"]

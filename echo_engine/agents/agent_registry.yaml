@@ -1,0 +1,19 @@
+agents:
+  web_collect_1753594503:
+    capabilities:
+    - search
+    - scraping
+    - automation
+    - monitoring
+    - testing
+    - collect
+    - generate
+    created_at: '2025-07-27T14:35:03.114590'
+    domain: web
+    file_path: echo_engine/agents/web_collect_1753594503.py
+    name: WebCollectAgent
+    status: active
+domains:
+  web:
+  - web_collect_1753594503
+last_updated: '2025-07-27T14:35:03.114619'

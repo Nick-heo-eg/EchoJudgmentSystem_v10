@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AgentHubBenchResults",
+  "type": "object",
+  "required": [
+    "meta",
+    "results"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "base_url",
+        "endpoint",
+        "run_id",
+        "timestamp",
+        "steps"
+      ],
+      "properties": {
+        "base_url": {
+          "type": "string"
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "tag": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "integer"
+              }
+            ],
+            "minItems": 2,
+            "maxItems": 2
+          }
+        }
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "concurrency",
+          "total_requests",
+          "elapsed_sec",
+          "rps",
+          "p50_ms",
+          "p95_ms",
+          "errors"
+        ],
+        "properties": {
+          "concurrency": {
+            "type": "integer"
+          },
+          "total_requests": {
+            "type": "integer"
+          },
+          "elapsed_sec": {
+            "type": "number"
+          },
+          "rps": {
+            "type": "number"
+          },
+          "p50_ms": {
+            "type": "number"
+          },
+          "p95_ms": {
+            "type": "number"
+          },
+          "errors": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

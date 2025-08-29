@@ -1,0 +1,14 @@
+category: fist
+description: 불안하고 걱정스러운 감정 상태 + 문제에 직면하여 해결하는 전략
+emotion: fear
+emotion_korean: 두려움
+frame: 두려움에 맞서며 용기를 내어보겠습니다.
+insight: 두려움 상태에서 직면 전략이 가장 효과적일 것 같습니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:41.086109'
+  generated_by: FIST Template Generator v1.0.0
+strategy: confront
+strategy_korean: 대응
+tactics: 두려움의 힘으로 문제에 정면으로 맞서보겠습니다.
+template_name: fear_confront

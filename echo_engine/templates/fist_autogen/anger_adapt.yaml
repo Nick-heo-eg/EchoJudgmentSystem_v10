@@ -1,0 +1,14 @@
+category: fist
+description: 화나고 격정적인 감정 상태 + 상황에 맞춰 유연하게 변화하는 전략
+emotion: anger
+emotion_korean: 분노
+frame: 분노의 에너지를 건설적인 방향으로 바꿔보겠습니다.
+insight: 지금은 분노을 유지하며 적응 전략을 펼칠 수 있는 시점입니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:40.979325'
+  generated_by: FIST Template Generator v1.0.0
+strategy: adapt
+strategy_korean: 적응
+tactics: 이 분노을 유지하면서 주변 변화에 유연하게 대응해보세요.
+template_name: anger_adapt

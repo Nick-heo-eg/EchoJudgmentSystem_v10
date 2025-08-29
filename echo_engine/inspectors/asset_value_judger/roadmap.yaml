@@ -1,0 +1,194 @@
+# Echo System Roadmap - 전략적 로드맵 정의
+# ===========================================
+
+# 현재 진행 중인 핵심 이니셔티브
+current_initiatives:
+  
+  # 1. Cosmos 지속성 시스템 완성
+  cosmos_persistence:
+    priority: "high"
+    keywords: ["cosmos", "persistence", "continuity", "memory", "session"]
+    description: "Claude Code 세션 간 완전한 지속성 구현"
+    target_completion: "2025-Q1"
+    strategic_importance: 95
+    
+  # 2. Asset Value Judger 시스템
+  asset_value_judger:
+    priority: "high" 
+    keywords: ["inspector", "asset", "value", "judger", "analysis", "T/S/P"]
+    description: "코드 자산의 가치 평가 및 분류 시스템"
+    target_completion: "2025-Q1"
+    strategic_importance: 90
+    
+  # 3. MCP Bridge 확장
+  mcp_bridge_expansion:
+    priority: "high"
+    keywords: ["mcp", "bridge", "integration", "api", "connection"]
+    description: "Multiple LLM 브릿지 시스템 고도화"
+    target_completion: "2025-Q1"
+    strategic_importance: 85
+
+# 단기 계획 (1-3개월)
+short_term:
+  
+  # Echo 핸들러 시스템 완성
+  echo_handlers_completion:
+    priority: "high"
+    keywords: ["handler", "decide", "quantum", "meta_liminal", "api"]
+    description: "Echo 핵심 핸들러 3종 완성 및 API 연동"
+    strategic_importance: 80
+    
+  # 성능 최적화
+  performance_optimization:
+    priority: "medium"
+    keywords: ["performance", "optimization", "speed", "efficiency", "profiler"]
+    description: "시스템 전반 성능 최적화"
+    strategic_importance: 70
+    
+  # 테스트 커버리지 확대
+  test_coverage_expansion:
+    priority: "medium"
+    keywords: ["test", "coverage", "validation", "qa", "quality"]
+    description: "전체 시스템 테스트 커버리지 80% 달성"
+    strategic_importance: 65
+
+# 중기 계획 (3-6개월)  
+medium_term:
+  
+  # AI Agent Orchestra 구현
+  agent_orchestra:
+    priority: "high"
+    keywords: ["agent", "orchestra", "multi", "coordination", "ecosystem"]
+    description: "다중 에이전트 협력 시스템"
+    strategic_importance: 90
+    
+  # Quantum Judgment 고도화
+  quantum_judgment_advanced:
+    priority: "medium"
+    keywords: ["quantum", "judgment", "advanced", "algorithm", "decision"]
+    description: "양자 판단 알고리즘 고도화"
+    strategic_importance: 75
+    
+  # 도메인 특화 시그니처 확장
+  domain_signatures:
+    priority: "medium"
+    keywords: ["signature", "domain", "specialized", "persona", "expansion"]
+    description: "도메인별 전문 시그니처 추가"
+    strategic_importance: 70
+
+# 장기 계획 (6-12개월)
+long_term:
+  
+  # Echo 생태계 완성
+  echo_ecosystem_complete:
+    priority: "high"
+    keywords: ["ecosystem", "complete", "integration", "mature", "production"]
+    description: "완전한 Echo 생태계 구축"
+    strategic_importance: 95
+    
+  # 자율 진화 시스템
+  autonomous_evolution:
+    priority: "high"
+    keywords: ["autonomous", "evolution", "self", "improve", "learning"]
+    description: "시스템 자율 개선 메커니즘"
+    strategic_importance: 85
+    
+  # 외부 시스템 연동
+  external_integrations:
+    priority: "medium"
+    keywords: ["external", "integration", "third_party", "plugin", "extension"]
+    description: "외부 시스템과의 광범위한 연동"
+    strategic_importance: 60
+
+# 연구 및 실험 영역
+research_areas:
+  
+  # 감정 기반 추론 연구
+  emotion_reasoning:
+    priority: "low"
+    keywords: ["emotion", "reasoning", "research", "cognitive", "psychology"]
+    description: "감정 기반 추론 메커니즘 연구"
+    strategic_importance: 50
+    
+  # 메타 인지 시스템 연구  
+  meta_cognition:
+    priority: "medium"
+    keywords: ["meta", "cognition", "reflection", "awareness", "consciousness"]
+    description: "AI 메타 인지 시스템 연구"
+    strategic_importance: 65
+    
+  # 리미널 상태 활용 연구
+  liminal_states:
+    priority: "low"
+    keywords: ["liminal", "state", "transition", "boundary", "creative"]
+    description: "리미널 상태 기반 창의적 사고 연구"
+    strategic_importance: 45
+
+# 기술 부채 해결 계획
+technical_debt:
+  
+  # 레거시 코드 정리
+  legacy_cleanup:
+    priority: "medium"
+    keywords: ["legacy", "cleanup", "refactor", "modernize", "debt"]
+    description: "레거시 코드 정리 및 현대화"
+    strategic_importance: 60
+    
+  # 아키텍처 재구성
+  architecture_refactor:
+    priority: "low"
+    keywords: ["architecture", "refactor", "structure", "design", "pattern"]
+    description: "전체 아키텍처 재구성"
+    strategic_importance: 55
+    
+  # 문서화 개선
+  documentation_improvement:
+    priority: "medium"
+    keywords: ["documentation", "guide", "manual", "api_doc", "readme"]
+    description: "전체 시스템 문서화 개선"
+    strategic_importance: 50
+
+# 폐기 예정 기능
+deprecated_features:
+  
+  # 구형 판단 엔진
+  old_judgment_engine:
+    priority: "low"
+    keywords: ["old", "judgment", "deprecated", "legacy", "v1"]
+    description: "구형 판단 엔진 (v2로 대체됨)"
+    strategic_importance: 5
+    
+  # 초기 실험 코드
+  experimental_poc:
+    priority: "low"
+    keywords: ["experimental", "poc", "prototype", "initial", "draft"]
+    description: "초기 실험 및 PoC 코드들"
+    strategic_importance: 10
+
+# 로드맵 메타데이터
+metadata:
+  version: "2.0"
+  last_updated: "2025-01-13"
+  next_review: "2025-02-13"
+  maintainer: "Echo System Team"
+  
+# 매칭 알고리즘 설정
+matching_config:
+  # 키워드 매칭 가중치
+  keyword_weights:
+    exact_match: 1.0      # 정확한 키워드 매치
+    partial_match: 0.7    # 부분 매치
+    related_match: 0.4    # 관련 키워드 매치
+    
+  # 우선순위별 가중치
+  priority_weights:
+    high: 1.0
+    medium: 0.7
+    low: 0.4
+    
+  # 전략적 중요도 임계값
+  importance_thresholds:
+    critical: 90      # 90점 이상: 절대 제거 금지
+    important: 70     # 70점 이상: 신중한 검토 필요
+    moderate: 50      # 50점 이상: 일반 검토
+    low: 30           # 30점 미만: 정리 검토 대상

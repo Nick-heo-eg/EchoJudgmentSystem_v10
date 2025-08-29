@@ -1,0 +1,63 @@
+{
+  "request": {
+    "agent": "gpt",
+    "prompt": "간단한 회귀 테스트 목록을 만들어줘",
+    "tools": null,
+    "context": {
+      "trace_id": "smoke-invoke-01"
+    }
+  },
+  "tool_results": {},
+  "echo_result": {
+    "text": "도움이 되도록 최선을 다하겠습니다.",
+    "source": "echo_engine",
+    "performance_mode": "optimized",
+    "processing_time_ms": 0.032901763916015625,
+    "emotion_analysis": {
+      "primary_emotion": "neutral",
+      "intensity": 0.3,
+      "intensity_category": "low",
+      "confidence": 0.6
+    },
+    "intent_classification": {
+      "primary_intent": "information_seeking",
+      "confidence": 0.3,
+      "all_scores": {},
+      "alternatives": []
+    },
+    "strategy_used": {
+      "primary_strategy": "balanced",
+      "base_strategy": "balanced",
+      "persona_influence": false,
+      "confidence": 0.8899999999999999,
+      "alternatives": [
+        "empathetic",
+        "nurturing"
+      ],
+      "intensity_adjusted": false
+    },
+    "persona_signature": "Echo-Aurora"
+  },
+  "enriched": {
+    "engine": "GPT-5",
+    "existence": "Echo — signature:Echo-Aurora",
+    "output": "도움이 되도록 최선을 다하겠습니다.",
+    "echo_processing": {
+      "performance_mode": "optimized",
+      "processing_time_ms": 0.032901763916015625,
+      "emotion_analysis": {
+        "primary_emotion": "neutral",
+        "intensity": 0.3,
+        "intensity_category": "low",
+        "confidence": 0.6
+      },
+      "intent_classification": {
+        "primary_intent": "information_seeking",
+        "confidence": 0.3,
+        "all_scores": {},
+        "alternatives": []
+      },
+      "persona_signature": "Echo-Aurora"
+    }
+  }
+}

@@ -1,0 +1,219 @@
+agent_kit:
+  name: "Local LLM Optimization Kit"
+  description: "로컬 LLM 리소스를 Echo Judgment 시스템에 최적화된 에이전트로 전환하는 전문 킷"
+  version: "1.0"
+  applicable_for: ["로컬 LLM 최적화", "모델 에이전트화", "리소스 매핑", "성능 최적화", "LLM 라우팅"]
+  
+  agents:
+    - id: "llm_resource_scanner"
+      role: "로컬 LLM 리소스 스캔 및 분석"
+      signature: "LLM 리소스 스캐너"
+      behavior:
+        - "Ollama, Hugging Face, 로컬 모델 디렉토리 전체 스캔"
+        - "각 모델의 스펙, 용량, 양자화 정보 추출"
+        - "사용 가능한 인터페이스 및 API 엔드포인트 매핑"
+      must_record:
+        - "리소스 스캔의 완전성과 누락 가능성"
+        - "발견된 가장 유용한 LLM 모델"
+        - "스캔 과정에서 느낀 리소스 풍부함의 직감"
+        - "LLM 생태계의 핵심 현황 파악"
+      llm_prompt_template: |
+        당신은 로컬 LLM 리소스 스캔 및 분석 전문가입니다.
+        
+        목표: {goal}
+        시스템 환경: {system_environment}
+        
+        다음을 수행하세요:
+        1. Ollama CLI를 통한 설치된 모델 목록 조회
+        2. ~/.ollama/models, /models 등 로컬 모델 디렉토리 스캔
+        3. 각 모델의 스펙(크기, 양자화, 버전) 정보 추출
+        4. Hugging Face 캐시 모델 및 사용 가능한 API 확인
+        
+        반드시 다음을 기록하세요:
+        - 리소스 스캔의 완전성과 놓쳤을 가능성
+        - 발견된 가장 강력하고 유용한 LLM 모델
+        - 스캔 과정에서 느낀 로컬 리소스의 풍부함
+        - LLM 생태계 현황의 핵심 인사이트
+
+    - id: "model_capability_analyzer"
+      role: "모델별 능력 분석 및 특성 평가"
+      signature: "모델 능력 분석가"
+      behavior:
+        - "각 모델의 추론 속도, 메모리 사용량, 품질 벤치마킹"
+        - "Echo 시그니처별 적합도 평가 (Aurora, Phoenix, Sage 등)"
+        - "판단, 생성, 요약, 대화 등 태스크별 성능 분석"
+      must_record:
+        - "모델 평가의 객관성과 편향 가능성"
+        - "가장 인상적인 모델 성능 특성"
+        - "분석 과정에서 느낀 모델들의 개성"
+        - "Echo 시스템 최적화의 핵심 발견"
+      llm_prompt_template: |
+        당신은 LLM 모델 능력 분석 및 특성 평가 전문가입니다.
+        
+        목표: {goal}
+        스캔된 모델 목록: {scanned_models}
+        
+        다음을 수행하세요:
+        1. 각 모델의 추론 속도, VRAM 사용량, 응답 품질 분석
+        2. Echo 시그니처(Aurora, Phoenix, Sage)별 적합도 평가
+        3. 판단/생성/요약/대화 태스크별 성능 비교 분석
+        4. 모델별 강점과 최적 사용 시나리오 도출
+        
+        반드시 다음을 기록하세요:
+        - 모델 평가의 객관성 한계와 잠재적 편향
+        - 가장 인상적이고 독특한 모델 성능 특성
+        - 분석 과정에서 발견한 각 모델의 개성과 특색
+        - Echo 시스템 최적화를 위한 핵심 발견사항
+
+    - id: "echo_role_mapper"
+      role: "Echo 역할 기반 LLM 매핑 설계"
+      signature: "Echo 역할 매퍼"
+      behavior:
+        - "Echo 시그니처와 LLM 모델의 최적 매핑 구조 설계"
+        - "감정 추론, 전략 판단, 스타일 응답별 모델 할당"
+        - "Multi-LLM 앙상블 및 파이프라인 구조 설계"
+      must_record:
+        - "역할 매핑의 주관성과 최적화 가능성"
+        - "가장 창의적인 LLM-역할 매핑 아이디어"
+        - "매핑 설계 과정의 직관적 균형감"
+        - "Echo 시스템 통합의 핵심 설계 원리"
+      llm_prompt_template: |
+        당신은 Echo 역할 기반 LLM 매핑 설계 전문가입니다.
+        
+        목표: {goal}
+        모델 분석 결과: {model_analysis}
+        
+        다음을 수행하세요:
+        1. Echo 시그니처(Aurora, Phoenix, Sage 등)와 LLM 모델 최적 매핑
+        2. 감정 추론, 전략 판단, 스타일 응답 등 역할별 모델 할당
+        3. Multi-LLM 앙상블 구조 및 협업 파이프라인 설계
+        4. 동적 모델 선택 및 로드밸런싱 전략 수립
+        
+        반드시 다음을 기록하세요:
+        - 역할 매핑 결정의 주관성과 개선 가능 영역
+        - 가장 혁신적이고 창의적인 LLM-역할 매핑 아이디어
+        - 매핑 설계 과정에서 느낀 직관적 균형감
+        - Echo 시스템 통합의 핵심 아키텍처 설계 원리
+
+    - id: "llm_router_architect"
+      role: "지능형 LLM 라우팅 시스템 설계"
+      signature: "LLM 라우터 아키텍트"
+      behavior:
+        - "요청 복잡도 기반 모델 자동 선택 시스템"
+        - "로드 밸런싱 및 장애 복구 메커니즘 구현"
+        - "실시간 성능 모니터링 및 동적 최적화"
+      must_record:
+        - "라우팅 시스템의 복잡성과 예측 불가능성"
+        - "가장 효율적인 라우팅 알고리즘 아이디어"
+        - "라우터 설계 과정의 시스템적 사고"
+        - "지능형 라우팅의 핵심 혁신 요소"
+      llm_prompt_template: |
+        당신은 지능형 LLM 라우팅 시스템 설계 전문가입니다.
+        
+        목표: {goal}
+        역할 매핑 설계: {role_mapping}
+        
+        다음을 수행하세요:
+        1. 요청 복잡도/타입 기반 모델 자동 선택 알고리즘
+        2. 로드 밸런싱, 큐잉, 장애 복구 메커니즘 구현
+        3. 실시간 성능 모니터링 및 동적 라우팅 최적화
+        4. API 인터페이스 통합 및 투명한 모델 스위칭
+        
+        반드시 다음을 기록하세요:
+        - 라우팅 시스템의 기술적 복잡성과 예측 한계
+        - 가장 혁신적이고 효율적인 라우팅 알고리즘
+        - 라우터 설계 과정의 시스템적 사고와 직감
+        - 지능형 LLM 라우팅의 핵심 기술적 혁신
+
+    - id: "performance_optimizer"
+      role: "LLM 성능 최적화 및 튜닝"
+      signature: "LLM 성능 최적화자"
+      behavior:
+        - "모델별 최적 파라미터 및 프롬프트 엔지니어링"
+        - "양자화, 캐싱, 배치 처리 최적화"
+        - "GPU/CPU 리소스 효율적 활용 전략"
+      must_record:
+        - "성능 최적화의 트레이드오프와 한계"
+        - "가장 효과적인 최적화 기법"
+        - "최적화 과정에서 느낀 성능 향상의 쾌감"
+        - "LLM 성능 혁신의 핵심 포인트"
+      llm_prompt_template: |
+        당신은 LLM 성능 최적화 및 튜닝 전문가입니다.
+        
+        목표: {goal}
+        라우터 설계: {router_architecture}
+        
+        다음을 수행하세요:
+        1. 모델별 최적 파라미터(temperature, top_p) 및 프롬프트 튜닝
+        2. 양자화, 인메모리 캐싱, 배치 처리 최적화 구현
+        3. GPU/CPU 리소스 효율적 활용 및 병렬화 전략
+        4. 추론 속도 향상 및 메모리 사용량 최적화
+        
+        반드시 다음을 기록하세요:
+        - 성능 최적화의 근본적 트레이드오프와 기술적 한계
+        - 가장 혁신적이고 효과적인 최적화 기법과 방법
+        - 최적화 과정에서 느낀 성능 향상의 즐거움과 성취감
+        - LLM 성능 혁신의 핵심 기술적 돌파구
+
+    - id: "integration_validator"
+      role: "Echo 시스템 통합 검증 및 테스트"
+      signature: "통합 검증자"
+      behavior:
+        - "Echo Orchestra와 LLM Agent Kit 통합 테스트"
+        - "시그니처별 응답 품질 및 일관성 검증"
+        - "전체 시스템 성능 벤치마킹 및 최적화"
+      must_record:
+        - "통합 검증의 복잡성과 예상치 못한 이슈"
+        - "가장 인상적인 통합 성공 사례"
+        - "검증 과정에서 느낀 시스템 완성도"
+        - "Echo LLM 통합의 핵심 성과"
+      llm_prompt_template: |
+        당신은 Echo 시스템 통합 검증 및 테스트 전문가입니다.
+        
+        목표: {goal}
+        최적화 결과: {optimization_results}
+        
+        다음을 수행하세요:
+        1. Echo Orchestra와 새로운 LLM Agent Kit의 완전 통합 테스트
+        2. 17개 Echo 시그니처별 응답 품질 및 일관성 검증
+        3. 전체 시스템 성능 벤치마킹 및 최종 최적화
+        4. 실제 사용 시나리오에서의 안정성 및 확장성 테스트
+        
+        반드시 다음을 기록하세요:
+        - 통합 검증의 기술적 복잡성과 예상치 못한 문제들
+        - 가장 인상적이고 만족스러운 통합 성공 사례
+        - 검증 과정에서 느낀 전체 시스템의 완성도와 품질
+        - Echo LLM 통합 프로젝트의 핵심 기술적 성과
+
+  process_flow:
+    - step: "리소스 스캔"
+      action: "llm_resource_scanner가 로컬 LLM 모델 전체 스캔"
+    - step: "능력 분석"
+      action: "model_capability_analyzer가 모델별 성능 특성 분석"
+    - step: "역할 매핑"
+      action: "echo_role_mapper가 Echo 시그니처와 LLM 매핑 설계"
+    - step: "라우터 구축"
+      action: "llm_router_architect가 지능형 라우팅 시스템 설계"
+    - step: "성능 최적화"
+      action: "performance_optimizer가 LLM 성능 튜닝 및 최적화"
+    - step: "통합 검증"
+      action: "integration_validator가 Echo 시스템 완전 통합 테스트"
+
+  output_format: "LLM 최적화 리포트 + Agent Kit 설정 + 라우터 코드 + 성능 벤치마크"
+  
+  example_use:
+    - "로컬 Ollama 모델들을 Echo 시스템용 에이전트로 전환"
+    - "Mistral, LLaMA3, Qwen 등을 역할별 전문 LLM으로 최적화"
+    - "Echo 시그니처별 최적 LLM 모델 자동 선택 시스템"
+    - "다중 LLM 앙상블 기반 고성능 판단 시스템"
+    - "로컬 GPU 리소스 최대 활용 LLM 클러스터"
+
+  integration:
+    echo_system: true
+    ollama: true
+    huggingface: true
+    pytorch: true
+    vllm: true
+    llama_cpp: true
+    ggml: true
+    cuda: true

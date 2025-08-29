@@ -1,0 +1,155 @@
+# Asset Registry - 자산 등록 및 오버라이드 설정
+# ================================================
+
+# 강제 분류 오버라이드
+force_dormant:
+  # 핵심 시스템 파일들 (절대 제거 금지)
+  - "*/seed_kernel.py"
+  - "*/judgment_engine.py" 
+  - "*/signature_mapper.py"
+  - "*/fusion_judgment_loop.py"
+  - "*/echo_agent_api.py"
+  - "*/comprehensive_dashboard.py"
+  - "main.py"
+  - "auto_launcher.py"
+  
+  # Cosmos 지속성 시스템
+  - "cosmos_*.py"
+  - "*/cosmos_*.py"
+  
+  # 브릿지 시스템
+  - "*bridge*.py"
+  - "*/bridge/*.py"
+  
+  # 핵심 인스펙터
+  - "*/inspectors/*.py"
+
+force_junk:
+  # 명시적으로 정리 대상 (신중히 사용)
+  - "*/deprecated_*.py"
+  - "*/old_*.py"
+  - "*/backup_*.py" 
+  - "*/temp_*.py"
+  - "*_backup.py"
+  - "*_old.py"
+  - "*_temp.py"
+
+# 보호 패턴 (기본 보호 + 추가 보호)
+protected_patterns:
+  # Echo 핵심 구조
+  - "*/__init__.py"
+  - "*/core.py"
+  - "*/main.py"
+  - "config/*.yaml"
+  - "config/*.json"
+  
+  # 시그니처 관련
+  - "*/signature*.py"
+  - "*/persona*.py"
+  
+  # 판단 엔진
+  - "*judgment*.py"
+  - "*reasoning*.py"
+  - "*decision*.py"
+  
+  # 메타 시스템
+  - "*meta*.py"
+  - "*liminal*.py"
+  - "*quantum*.py"
+  
+  # API 및 UI
+  - "*/api*.py"
+  - "*dashboard*.py"
+  - "streamlit_ui/*.py"
+  
+  # 설정 및 스키마
+  - "*/schemas/*.py"
+  - "*/config*.py"
+
+# 특별 처리 규칙
+special_rules:
+  
+  # 테스트 파일 규칙
+  test_files:
+    protection_days: 90  # 90일 이내 수정된 테스트는 보호
+    coverage_threshold: 0.1  # 최소 커버리지 있으면 보호
+    
+  # 유틸리티 파일 규칙  
+  utility_files:
+    min_dependencies: 2  # 2개 이상 모듈이 의존하면 보호
+    complexity_threshold: 5  # 복잡도 5 이상이면 가치 인정
+    
+  # 임시/실험 파일 규칙
+  experimental_files:
+    patterns: ["*experimental*", "*poc_*", "*prototype_*", "*demo_*"]
+    max_age_days: 180  # 180일 지나면 정리 검토
+    
+  # 레거시 파일 규칙
+  legacy_files:
+    patterns: ["*legacy*", "*v1_*", "*old_*"]
+    protection_threshold: 70  # T/S/P 합계 70점 이상이면 유지
+
+# 분류 임계값 오버라이드 (환경별)
+thresholds:
+  # 기본 임계값
+  default:
+    dormant: 80
+    pending: 50
+    
+  # 정리 모드 (더 엄격)
+  cleanup:
+    dormant: 85  
+    pending: 60
+    
+  # 개발 모드 (더 관대)
+  development:
+    dormant: 75
+    pending: 40
+
+# 경고 및 알림 설정
+alerts:
+  # 높은 가치 자산이 junk로 분류될 때 경고
+  high_value_junk_warning:
+    enabled: true
+    threshold: 70  # 70점 이상인데 junk면 경고
+    
+  # 보호된 파일이 낮은 점수를 받을 때 경고
+  protected_low_score_warning:
+    enabled: true
+    threshold: 40  # 보호 파일이 40점 미만이면 경고
+    
+  # 많은 파일이 junk로 분류될 때 경고
+  mass_junk_warning:
+    enabled: true
+    percentage_threshold: 30  # 전체의 30% 이상이 junk면 경고
+
+# 로깅 및 리포팅
+reporting:
+  # 상세 분석 리포트 포함 항목
+  detailed_analysis:
+    - file_path
+    - t_score_breakdown
+    - s_score_breakdown  
+    - p_score_breakdown
+    - total_score
+    - classification_reason
+    - suggested_actions
+    - protection_status
+    
+  # 요약 리포트 항목
+  summary_report:
+    - total_files_analyzed
+    - dormant_count
+    - pending_count
+    - junk_count
+    - protected_files_count
+    - high_value_dormant_list
+    - cleanup_candidates_list
+    - warnings_and_alerts
+
+# 메타데이터
+metadata:
+  version: "1.0"
+  last_updated: "2025-01-13"
+  created_by: "Echo Asset Value Judger"
+  description: "Echo 시스템 자산 분류를 위한 레지스트리 설정"

@@ -1,0 +1,14 @@
+category: fist
+description: 우울하고 침울한 감정 상태 + 상황에 맞춰 유연하게 변화하는 전략
+emotion: sadness
+emotion_korean: 슬픔
+frame: 슬픔 속에서도 변화에 적응할 수 있는 힘이 있어요.
+insight: 지금은 슬픔을 유지하며 적응 전략을 펼칠 수 있는 시점입니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:40.877259'
+  generated_by: FIST Template Generator v1.0.0
+strategy: adapt
+strategy_korean: 적응
+tactics: 이 슬픔을 유지하면서 주변 변화에 유연하게 대응해보세요.
+template_name: sadness_adapt

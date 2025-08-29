@@ -1,0 +1,48 @@
+{
+  "template_id": "decision_001",
+  "name": "고급 의사결정 템플릿",
+  "description": "복잡한 의사결정 상황에서 체계적인 FIST 구조를 통한 판단 지원",
+  "category": "decision",
+  "complexity": "complex",
+  "structure_type": "fist",
+  "components": {
+    "frame": {
+      "name": "Decision Frame",
+      "description": "의사결정 맥락 및 제약조건 설정",
+      "prompt_template": "## 의사결정 맥락 분석\n\n**상황 정의:**\n'{input_text}'\n\n**핵심 질문:**\n- 이 결정이 왜 필요한가?\n- 주요 이해관계자는 누구인가?\n- 제약조건과 한계는 무엇인가?\n- 결정의 시급성과 중요도는?\n\n**맥락 요소:**\n- 시간적 제약: {time_constraint}\n- 자원적 제약: {resource_constraint}\n- 리스크 허용도: {risk_tolerance}\n- 결정 영향범위: {impact_scope}",
+      "weight": 1.0
+    },
+    "insight": {
+      "name": "Decision Insight",
+      "description": "의사결정 요소들의 깊이 있는 분석",
+      "prompt_template": "## 의사결정 요소 분석\n\n**핵심 쟁점 식별:**\n1. 주요 대안들과 각각의 장단점\n2. 정량적 지표와 정성적 요소 구분\n3. 불확실성과 리스크 요소 분석\n4. 기회비용과 잠재적 이익 검토\n\n**분석 관점:**\n- 단기적 영향 vs 장기적 영향\n- 직접적 효과 vs 간접적 효과\n- 확실한 결과 vs 불확실한 결과\n- 정량적 측정 vs 정성적 가치\n\n**데이터 기반 인사이트:**\n현재 상황에서 가용한 정보를 바탕으로 각 대안의 성공 가능성과 리스크를 평가해주세요.",
+      "weight": 1.2
+    },
+    "strategy": {
+      "name": "Decision Strategy",
+      "description": "의사결정 방법론 및 접근 전략",
+      "prompt_template": "## 의사결정 전략 수립\n\n**전략적 접근법:**\n1. **분석적 접근**: 데이터와 논리 중심의 체계적 분석\n2. **직관적 접근**: 경험과 직감을 활용한 빠른 판단\n3. **협의적 접근**: 이해관계자들의 의견 수렴\n4. **실험적 접근**: 작은 규모 테스트를 통한 검증\n\n**권장 전략:**\n상황의 복잡성과 불확실성을 고려하여 최적의 의사결정 방법론을 제시해주세요.\n\n**의사결정 프레임워크:**\n- 평가 기준 설정\n- 대안 비교 방법\n- 리스크 관리 방안\n- 피드백 루프 설계",
+      "weight": 1.1
+    },
+    "tactics": {
+      "name": "Decision Tactics",
+      "description": "구체적인 실행 방안 및 행동 계획",
+      "prompt_template": "## 실행 방안 및 행동 계획\n\n**단계별 실행 계획:**\n1. **준비 단계**: 추가 정보 수집 및 검증\n2. **분석 단계**: 체계적 대안 평가\n3. **결정 단계**: 최종 선택 및 근거 문서화\n4. **실행 단계**: 결정 사항 구현\n5. **모니터링 단계**: 결과 추적 및 조정\n\n**구체적 행동 항목:**\n- 즉시 실행할 것: (우선순위 높음)\n- 단기 실행할 것: (1-2주 내)\n- 중기 실행할 것: (1-3개월 내)\n- 장기 모니터링할 것: (지속적 관찰)\n\n**성공 지표:**\n- 정량적 측정 지표\n- 정성적 평가 기준\n- 마일스톤 및 체크포인트\n- 리스크 모니터링 방안\n\n**최종 권장사항:**\n모든 분석을 종합하여 구체적이고 실행 가능한 결정 권고안을 제시해주세요.",
+      "weight": 1.0
+    }
+  },
+  "metadata": {
+    "created_at": "2024-01-01T00:00:00",
+    "version": "1.0.0",
+    "author": "EchoJudgmentSystem",
+    "tags": ["decision", "complex", "analytical", "strategic"],
+    "usage_count": 0,
+    "success_rate": 0.0,
+    "average_confidence": 0.0
+  },
+  "settings": {
+    "max_tokens": 1500,
+    "temperature": 0.3,
+    "requires_context": true
+  }
+}

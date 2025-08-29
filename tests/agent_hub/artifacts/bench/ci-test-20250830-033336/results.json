@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "base_url": "http://localhost:8014",
+    "endpoint": "/echo",
+    "tag": "ci-test",
+    "run_id": "ci-test-20250830-033336",
+    "timestamp": "20250830-033336",
+    "steps": [
+      [
+        20,
+        200
+      ],
+      [
+        50,
+        1000
+      ]
+    ]
+  },
+  "results": [
+    {
+      "concurrency": 20,
+      "total_requests": 200,
+      "elapsed_sec": 0.06837309599904984,
+      "rps": 2925.1271582433437,
+      "p50_ms": 5.7804359994406695,
+      "p95_ms": 13.529719700636633,
+      "errors": 0
+    },
+    {
+      "concurrency": 50,
+      "total_requests": 1000,
+      "elapsed_sec": 0.3350603709986899,
+      "rps": 2984.5367777137394,
+      "p50_ms": 13.9960605001761,
+      "p95_ms": 27.08747910100906,
+      "errors": 0
+    }
+  ]
+}

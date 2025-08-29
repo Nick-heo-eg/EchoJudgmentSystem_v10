@@ -1,0 +1,14 @@
+category: fist
+description: 불안하고 걱정스러운 감정 상태 + 일시적으로 물러나서 재정비하는 전략
+emotion: fear
+emotion_korean: 두려움
+frame: 두려울 때는 안전한 곳에서 마음을 다스려보세요.
+insight: 두려움을 느끼는 지금, 잠시 후퇴하며 재정비하는 것이 현명합니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:41.098256'
+  generated_by: FIST Template Generator v1.0.0
+strategy: retreat
+strategy_korean: 후퇴
+tactics: 두려움을 인정하며 잠시 거리를 두고 상황을 재평가해보세요.
+template_name: fear_retreat

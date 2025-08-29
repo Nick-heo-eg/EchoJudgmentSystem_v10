@@ -1,0 +1,14 @@
+category: fist
+description: 화나고 격정적인 감정 상태 + 일시적으로 물러나서 재정비하는 전략
+emotion: anger
+emotion_korean: 분노
+frame: 분노를 진정시키며 마음의 평정을 되찾아보세요.
+insight: 분노을 느끼는 지금, 잠시 후퇴하며 재정비하는 것이 현명합니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:40.998256'
+  generated_by: FIST Template Generator v1.0.0
+strategy: retreat
+strategy_korean: 후퇴
+tactics: 분노을 인정하며 잠시 거리를 두고 상황을 재평가해보세요.
+template_name: anger_retreat

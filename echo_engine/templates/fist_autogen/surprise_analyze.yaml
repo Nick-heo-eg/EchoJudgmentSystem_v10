@@ -1,0 +1,14 @@
+category: fist
+description: 예상치 못한 상황에 대한 감정 상태 + 상황을 깊이 파악하고 이해하는 전략
+emotion: surprise
+emotion_korean: 놀라움
+frame: 이 놀라운 상황이 무엇을 의미하는지 살펴보겠습니다.
+insight: 놀라움 속에서 상황을 깊이 분석해볼 필요가 있습니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:41.212494'
+  generated_by: FIST Template Generator v1.0.0
+strategy: analyze
+strategy_korean: 분석
+tactics: 놀라움 상태에서 차근차근 원인과 해결책을 찾아보겠습니다.
+template_name: surprise_analyze

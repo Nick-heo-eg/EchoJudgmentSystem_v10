@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "timestamp": "2025-08-30T10:47:00Z",
+    "endpoint": "http://localhost:9000/agent/analyze"
+  },
+  "results": [
+    {
+      "concurrency": 20,
+      "total_requests": 200,
+      "rps": 2800,
+      "p50_ms": 35,
+      "p95_ms": 120,
+      "errors": 0
+    },
+    {
+      "concurrency": 50,
+      "total_requests": 1000,
+      "rps": 2750,
+      "p50_ms": 45,
+      "p95_ms": 160,
+      "errors": 0
+    },
+    {
+      "concurrency": 100,
+      "total_requests": 2000,
+      "rps": 2600,
+      "p50_ms": 55,
+      "p95_ms": 190,
+      "errors": 0
+    }
+  ]
+}

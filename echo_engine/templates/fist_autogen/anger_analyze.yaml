@@ -1,0 +1,14 @@
+category: fist
+description: 화나고 격정적인 감정 상태 + 상황을 깊이 파악하고 이해하는 전략
+emotion: anger
+emotion_korean: 분노
+frame: 이 분노가 어디서 오는지 차근차근 살펴보겠습니다.
+insight: 분노 속에서 상황을 깊이 분석해볼 필요가 있습니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:41.024196'
+  generated_by: FIST Template Generator v1.0.0
+strategy: analyze
+strategy_korean: 분석
+tactics: 분노 상태에서 차근차근 원인과 해결책을 찾아보겠습니다.
+template_name: anger_analyze

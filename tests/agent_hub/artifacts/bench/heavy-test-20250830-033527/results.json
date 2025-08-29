@@ -1,0 +1,26 @@
+{
+  "meta": {
+    "base_url": "http://localhost:8014",
+    "endpoint": "/echo",
+    "tag": "heavy-test",
+    "run_id": "heavy-test-20250830-033527",
+    "timestamp": "20250830-033527",
+    "steps": [
+      [
+        100,
+        2000
+      ]
+    ]
+  },
+  "results": [
+    {
+      "concurrency": 100,
+      "total_requests": 2000,
+      "elapsed_sec": 0.6869803039990074,
+      "rps": 2911.291616888757,
+      "p50_ms": 29.78799450011138,
+      "p95_ms": 58.656749300007505,
+      "errors": 0
+    }
+  ]
+}

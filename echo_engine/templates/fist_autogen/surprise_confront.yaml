@@ -1,0 +1,14 @@
+category: fist
+description: 예상치 못한 상황에 대한 감정 상태 + 문제에 직면하여 해결하는 전략
+emotion: surprise
+emotion_korean: 놀라움
+frame: 놀라운 상황을 정면으로 받아들여보겠습니다.
+insight: 놀라움 상태에서 직면 전략이 가장 효과적일 것 같습니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:41.186030'
+  generated_by: FIST Template Generator v1.0.0
+strategy: confront
+strategy_korean: 대응
+tactics: 놀라움의 힘으로 문제에 정면으로 맞서보겠습니다.
+template_name: surprise_confront

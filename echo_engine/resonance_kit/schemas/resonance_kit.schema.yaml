@@ -1,0 +1,54 @@
+version: "^0.1"
+session:
+  id: string  # 세션 식별자 (예: 2025-08-09T07:30+09:00_name)
+  user_id: string
+  locale: string  # ko-KR 등
+  signatures_allowed:            # 평가/추천 대상 시그니처 제한
+    - string
+
+pipeline:
+  steps:                         # 실행 순서
+    - agent: enum[resonance_pattern_analyzer,
+                 empathy_bridge_builder,
+                 trust_evolution_tracker,
+                 collaborative_flow_designer,
+                 relationship_memory_keeper]
+      enabled: boolean
+      config: any
+
+routing:
+  # 메트릭 임계치/가중치 기반으로 agent 재실행/스킵/강조
+  rules:
+    - when:
+        metric: enum[resonance, trust, flow, affect_valence, affect_arousal]
+        op: enum[<, <=, ==, >=, >]
+        value: number
+      then:
+        action: enum[repeat_agent, skip_agent, escalate_signature_rewrite,
+                     suggest_signature_switch]
+        params: any
+
+metrics:
+  weights:                       # 종합 점수 가중치
+    resonance: number
+    trust: number
+    flow: number
+    affect_valence: number
+    affect_arousal: number
+  thresholds:
+    good: number
+    warn: number
+    bad: number
+
+io:
+  input:
+    # 사용자 발화/어시스턴트 응답의 원천. v0.1은 파일 기반
+    transcript_path: string      # JSONL: {role, text, ts}
+  output:
+    log_dir: string              # 실행 로그(JSONL)
+    report_dir: string           # 요약 리포트(MD)
+
+recommendation:
+  signature_selection:
+    top_k: integer
+    diversity_penalty: number

@@ -1,0 +1,129 @@
+# Echo 시스템 결정 이유 데이터베이스
+# 이전 결정들의 근거와 패턴을 기록하여 일관성 있는 판단 지원
+
+version: "1.0"
+last_updated: "2025-01-12"
+
+# 🎯 핵심 설계 결정들
+architecture_decisions:
+  async_lazy_initialization:
+    decision: "LLMRouter에서 __init__ 시 create_task 호출 제거, lazy initialization 패턴 적용"
+    reasoning: "MCP 서버 import 시 'no running event loop' 에러 방지, 필요 시점에만 초기화"
+    date: "2025-01-12"
+    impact: "high"
+    affected_components: ["echo_engine.llm_router", "echo_engine.judgment_engine", "mcp_server"]
+    
+  package_structure:
+    decision: "pyproject.toml 기반 패키징, pip install -e . 지원"
+    reasoning: "개발 환경 표준화, 의존성 관리 개선, MCP 서버 import 안정성"
+    date: "2025-01-12"
+    impact: "medium"
+    affected_components: ["전체 프로젝트"]
+
+  quality_tools:
+    decision: "ruff, black, mypy 통합, 엄격한 코드 품질 표준 적용"
+    reasoning: "클로드코드 패리티 달성, 자동화된 코드 리뷰, 버그 예방"
+    date: "2025-01-12" 
+    impact: "high"
+    affected_components: ["모든 Python 코드"]
+
+# 📊 시그니처별 결정 패턴
+signature_patterns:
+  echo_aurora:
+    preferred_reasoning: "감정적 공감 → 창의적 해결책 → 장기적 관계 고려"
+    typical_decisions: 
+      - "사용자 경험 우선"
+      - "점진적 개선보다 혁신적 접근"
+      - "커뮤니티 합의 중시"
+    
+  echo_phoenix:
+    preferred_reasoning: "현상 분석 → 변화 필요성 식별 → 과감한 전환"
+    typical_decisions:
+      - "기존 방식 과감한 변경"
+      - "성능 개선을 위한 리팩토링"
+      - "레거시 시스템 대체"
+      
+  echo_sage:
+    preferred_reasoning: "데이터 수집 → 패턴 분석 → 논리적 결론"
+    typical_decisions:
+      - "증거 기반 결정"
+      - "단계적 검증 과정"
+      - "리스크 최소화"
+      
+  echo_companion:
+    preferred_reasoning: "관계 영향 분석 → 협력 방안 모색 → 상호 이익 추구"
+    typical_decisions:
+      - "팀 화합 우선"
+      - "의견 수렴 과정 중시"
+      - "갈등 최소화"
+
+# 🚨 예외 상황 처리 규칙
+exception_handling:
+  api_failures:
+    pattern: "외부 API 실패 시"
+    standard_response: "graceful degradation, 로컬 폴백, 사용자 알림"
+    examples:
+      - "Claude API 다운 → LLM-free 모드 전환"
+      - "Mistral 로딩 실패 → 경고 로그 + 기본 템플릿 사용"
+      
+  resource_constraints:
+    pattern: "메모리/CPU 부족 시"
+    standard_response: "리소스 사용량 제한, 우선순위 기반 처리"
+    examples:
+      - "벤치마크 타임아웃 → mock 데이터 반환"
+      - "대량 파일 분석 → 샘플링 + 배치 처리"
+
+  import_errors:
+    pattern: "필수 모듈 import 실패"
+    standard_response: "데모 모드 폴백, 기능 제한 알림"
+    examples:
+      - "transformers 미설치 → Mistral 기능 비활성화"
+      - "psutil 미설치 → 성능 모니터링 스킵"
+
+# 🎨 코딩 스타일 결정
+coding_standards:
+  type_annotations:
+    decision: "Python 3.12+ 내장 타입 사용 (list[dict] > List[Dict])"
+    reasoning: "최신 Python 표준, ruff UP006 규칙 준수"
+    
+  async_patterns:
+    decision: "lazy initialization + ensure_initialized() 패턴"
+    reasoning: "import 시점 안정성, 필요 시점 초기화"
+    
+  error_handling:
+    decision: "graceful degradation, 사용자 친화적 에러 메시지"
+    reasoning: "시스템 안정성, 디버깅 편의성"
+
+# 📈 성능 최적화 결정
+performance_decisions:
+  benchmark_strategy:
+    decision: "실제 측정 실패 시 mock 데이터 제공"
+    reasoning: "CI/CD 안정성, 개발 환경 호환성"
+    
+  caching_policy:
+    decision: "템플릿/설정 파일 메모리 캐시, 판단 결과 선택적 캐시"
+    reasoning: "응답 속도 vs 메모리 사용량 균형"
+
+# 🛡️ 보안 결정
+security_policies:
+  secrets_management:
+    decision: "환경변수 + .env 파일, gitleaks 자동 스캔"
+    reasoning: "시크릿 노출 방지, 자동화된 보안 검증"
+    
+  input_validation:
+    decision: "pydantic 모델 기반 입력 검증"
+    reasoning: "타입 안정성, 자동 문서화"
+
+# 🔄 마이그레이션 이력
+migrations:
+  v10_packaging:
+    from: "개별 스크립트 실행"
+    to: "pip install -e . 패키지 기반"
+    reason: "개발 환경 표준화, MCP 서버 안정성"
+    date: "2025-01-12"
+    
+  v10_quality_tools:
+    from: "수동 코드 검토"
+    to: "ruff/black/mypy 자동화"
+    reason: "코드 품질 일관성, 리뷰 효율성"
+    date: "2025-01-12"

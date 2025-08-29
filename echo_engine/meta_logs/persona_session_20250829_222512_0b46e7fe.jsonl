@@ -1,0 +1,2 @@
+{"event_type": "session_start", "session_id": "20250829_222512_0b46e7fe", "timestamp": "2025-08-29T22:25:12.300153", "system": "PersonaCore"}
+{"event_type": "persona_switch", "session_id": "20250829_222512_0b46e7fe", "from_persona": "None", "to_persona": "Persona-Aurora", "reason": "manual", "context": {}, "timestamp": "2025-08-29T22:25:12.300276"}

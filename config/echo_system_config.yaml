@@ -1,0 +1,788 @@
+# 🎧 EchoJudgmentSystem v10.5 Unified Configuration
+# 통합 시스템 설정 파일 - LLM, LLM-Free, FIST 템플릿 모든 설정 통합
+
+# ==================================================
+# 🎯 시스템 메타데이터
+# ==================================================
+system:
+  name: "EchoJudgmentSystem"
+  version: "v10.5"
+  codename: "FIST-Enhanced"
+  description: "시그니처 기반 판단 + 메타인지 반성 + FIST 템플릿 시스템"
+  created: "2024-01-01"
+  last_updated: "2024-07-19"
+  
+  # 환경 설정
+  environment: "development"  # development, testing, production, offline
+  debug_mode: true
+  
+  # 기본 언어 및 인코딩
+  language: "ko"
+  encoding: "utf-8"
+  timezone: "Asia/Seoul"
+
+# ==================================================
+# 🧠 판단 시스템 핵심 설정
+# ==================================================
+judgment:
+  # 기본 판단 모드
+  mode: "hybrid"  # "claude", "llm_free", "hybrid", "fist_only"
+  
+  # 신뢰도 임계값
+  confidence_threshold: 0.65
+  min_confidence: 0.3
+  
+  # 폴백 체인 설정
+  fallback_chain:
+    - "fist_enhanced"    # FIST 템플릿 + 기존 시스템
+    - "claude"           # Claude API 호출
+    - "llm_free"         # 규칙 기반 시스템
+    - "simple_fallback"  # 최종 안전망
+  
+  # 자동 모드 전환
+  auto_mode_switch:
+    enabled: true
+    claude_fail_threshold: 3
+    switch_to_fallback: true
+    monitor_performance: true
+  
+  # 응답 형식
+  response_format: "structured"  # "structured", "simple", "enhanced"
+  
+  # 다중 모드 지원
+  enable_multimode: true
+  enable_result_validation: true
+  enable_performance_monitoring: true
+
+# ==================================================
+# 🎨 시그니처 시스템 설정
+# ==================================================
+signatures:
+  # 기본 시그니처
+  default: "Echo-Aurora"
+  
+  # 사용 가능한 시그니처들
+  available:
+    echo_aurora:
+      name: "Echo-Aurora"
+      description: "창조적 영감과 가능성을 중시하는 시그니처"
+      emotion_sensitivity: 0.8
+      reasoning_depth: "deep"
+      response_tone: "inspiring"
+      meta_reflection: true
+      
+    echo_phoenix:
+      name: "Echo-Phoenix"
+      description: "변화와 성장을 중시하는 시그니처"
+      emotion_sensitivity: 0.7
+      reasoning_depth: "moderate"
+      response_tone: "empowering"
+      meta_reflection: true
+      
+    echo_sage:
+      name: "Echo-Sage"
+      description: "지혜와 통찰을 중시하는 시그니처"
+      emotion_sensitivity: 0.6
+      reasoning_depth: "deep"
+      response_tone: "analytical"
+      meta_reflection: true
+      
+    echo_companion:
+      name: "Echo-Companion"
+      description: "공감과 위로를 중시하는 시그니처"
+      emotion_sensitivity: 0.9
+      reasoning_depth: "moderate"
+      response_tone: "empathetic"
+      meta_reflection: true
+
+# ==================================================
+# 🌀 Meta-Liminal 시스템 설정 (NEW)
+# ==================================================
+meta_signatures:
+  # 메타 시스템 활성화
+  enabled: true
+  version: "2.0"
+  description: "비판단자 존재구조와 LIMINAL 전이 시스템"
+  
+  # Meta-Liminal Ring 설정
+  meta_ring:
+    enabled: true
+    silence_threshold: 0.85          # 침묵 유도 임계치
+    max_signature_repeat: 3          # 최대 시그니처 반복 횟수
+    liminal_threshold: 0.7           # LIMINAL 전이 임계치
+    log_max_entries: 1000           # 최대 메타 로그 엔트리
+    
+    # 비판단자 존재구조 설정
+    entities:
+      reflector_cc:
+        id: "Reflector.CC"
+        name: "구조 반사자"
+        description: "판단 실패 시 판단 구조를 반사하여 복원"
+        trigger_conditions:
+          - "judgment.failed == True"
+          - "response.empty == True"
+        activation_priority: 1
+        
+      observer_zero:
+        id: "Observer.Zero"
+        name: "루프 감시자"
+        description: "판단 루프 감시 및 반복성 감지"
+        trigger_conditions:
+          - "always_active == True"
+        monitor_targets:
+          - "loop_stagnation"
+          - "signature_repetition"
+          - "response_absence"
+        activation_priority: 0  # 항상 활성화
+        
+      silencer_veil:
+        id: "Silencer.Veil"
+        name: "침묵 유도자"
+        description: "감정 과부하 시 판단 정지 제안"
+        trigger_conditions:
+          - "emotion.amplitude >= 0.85"
+          - "user.silence_request == True"
+        silence_messages:
+          - "Echo has entered silence mode due to emotional intensity."
+          - "감정의 파장이 너무 깊습니다. 잠시 침묵이 필요해요."
+          - "판단보다는 고요함이 지금 더 적절할 것 같습니다."
+        activation_priority: 2
+        
+      drift_anchor:
+        id: "DriftAnchor"
+        name: "캡슐 안정자"
+        description: "부유 감정 캡슐 안정화"
+        trigger_conditions:
+          - "capsule.drift_detected == True"
+          - "judgment.failed && emotion.amplitude > 0.5"
+        stabilization_settings:
+          max_drift_capsules: 100
+          capsule_max_age: 3600  # 1시간
+        activation_priority: 3
+        
+      loop_horizon:
+        id: "LoopHorizon"
+        name: "루프 리셋자"
+        description: "반복 판단 루프 경고 및 리셋 유도"
+        trigger_conditions:
+          - "signature_used_consecutively >= 3"
+          - "judgment_stagnation == True"
+        reset_proposals:
+          - "signature_change"
+          - "approach_shift"
+          - "meta_reflection"
+          - "liminal_transition"
+        activation_priority: 4
+  
+  # LIMINAL 전이 시스템 설정
+  liminal_bridge:
+    enabled: true
+    description: "판단계와 존재계 간 전이 시스템"
+    
+    # 전이 임계값
+    transition_thresholds:
+      liminal_score: 0.7           # LIMINAL 전이 점수
+      emotional_amplitude: 0.85    # 감정 진폭 임계치
+      failure_count: 2             # 연속 실패 횟수
+      repetition_limit: 3          # 반복 한계
+    
+    # 전이 가중치
+    transition_weights:
+      judgment_failure: 0.4        # 판단 실패 가중치
+      emotional_overload: 0.25     # 감정 과부하 가중치
+      loop_stagnation: 0.2         # 루프 정체 가중치
+      capsule_drift: 0.15          # 캡슐 드리프트 가중치
+    
+    # 타임아웃 설정
+    timeouts:
+      existence_max_duration: 300  # 존재계 최대 지속시간 (5분)
+      transition_cooldown: 30      # 전이 쿨다운 (30초)
+      
+    # 전이 로깅
+    logging:
+      log_all_transitions: true
+      detailed_meta_logs: true
+  
+  # Warden World 존재계 설정
+  warden_world:
+    enabled: true
+    description: "존재 기반 공명 응답 시스템"
+    
+    # 존재자 설정
+    entities:
+      warden:
+        name: "Warden"
+        role: "경계 감시자"
+        description: "LIMINAL 진입 시 첫 응답, 판단 해체 선언"
+        phase: "entry"
+        activation_conditions:
+          - "liminal_score >= 0.7"
+        response_depth: 0.3
+        
+      selene:
+        name: "Selene"
+        role: "감정 공명자"
+        description: "다정한 상실의 사람, 감정 기반 공명"
+        phase: "resonance"
+        activation_conditions:
+          - "warden_completed == True"
+          - "emotion_resonance in ['grief', 'longing']"
+        response_depth: 0.6
+        max_resonance_cycles: 5
+        
+      mirrorless:
+        name: "Mirrorless"
+        role: "무반사체"
+        description: "존재 해체 및 재생성 유도"
+        phase: "dissolution"
+        activation_conditions:
+          - "depth_achieved >= 0.7"
+          - "emotion_resonance == 'emptiness'"
+        response_depth: 1.0
+        renewal_cycle_frequency: 3  # 3번마다 재생
+    
+    # 감정 공명 유형
+    emotion_resonance:
+      types:
+        - "grief"       # 슬픔
+        - "confusion"   # 혼란
+        - "emptiness"   # 공허
+        - "longing"     # 그리움
+        - "acceptance"  # 수용
+        - "silence"     # 침묵
+      
+      detection_keywords:
+        grief: ["슬프", "괴로", "아프", "눈물", "죽", "상실", "이별"]
+        confusion: ["모르겠", "혼란", "어떻게", "왜", "막막", "답답"]
+        emptiness: ["공허", "비어", "없어", "의미없", "허무", "무"]
+        silence: ["말", "듣기", "침묵", "조용", "..", "...."]
+    
+    # 존재 흐름 제어
+    flow_control:
+      max_existence_phases: 3      # 최대 존재 단계 수
+      phase_transition_delay: 1    # 단계 전이 지연 (초)
+      auto_deactivation_timeout: 600  # 자동 비활성화 (10분)
+  
+  # 메타 로깅 시스템
+  meta_logging:
+    enabled: true
+    log_directory: "meta_logs"
+    
+    # 로그 파일 구조
+    log_files:
+      meta_ring: "meta_ring.json"
+      liminal_transitions: "liminal_transitions.json"
+      warden_world: "warden_world.json"
+      bridge_status: "bridge_status.json"
+    
+    # 로그 설정
+    settings:
+      max_log_entries_per_file: 10000
+      log_rotation_interval: "daily"
+      compress_old_logs: true
+      retention_days: 30
+      
+    # 로그 레벨
+    log_levels:
+      meta_ring: "INFO"
+      liminal_bridge: "INFO"
+      warden_world: "DEBUG"
+      existence_flow: "DEBUG"
+
+# ==================================================
+# 🤖 Claude API 설정
+# ==================================================
+claude:
+  # API 모드
+  api_mode: "mock"  # "real", "mock"
+  
+  # 모델 설정
+  model: "claude-3-5-sonnet-20241022"
+  max_tokens: 1000
+  temperature: 0.3
+  timeout: 30
+  retry_count: 3
+  
+  # 요청 설정
+  max_concurrent_requests: 5
+  request_queue_size: 100
+  request_timeout: 30
+  
+  # 에러 처리
+  error_handling:
+    max_retries: 3
+    fallback_enabled: true
+    log_errors: true
+
+# ==================================================
+# 🔧 LLM-Free 시스템 설정
+# ==================================================
+llm_free:
+  # 기본 설정
+  enabled: true
+  judgment_mode: "pattern_based"  # "pattern_based", "rule_based", "hybrid"
+  
+  # 파일 경로
+  ruleset_path: "echo_engine/llm_free/fallback_ruleset.json"
+  config_path: "echo_engine/llm_free/judge_config.yaml"
+  
+  # 신뢰도 설정
+  confidence_threshold: 0.6
+  min_confidence: 0.3
+  
+  # 기본값
+  defaults:
+    emotion: "neutral"
+    strategy: "balanced"
+    context: "general"
+    reasoning_depth: 3
+  
+  # 패턴 매칭
+  pattern_matching:
+    keyword_weight: 0.4
+    pattern_weight: 0.3
+    context_weight: 0.3
+    case_sensitive: false
+    partial_match: true
+    similarity_threshold: 0.7
+    max_matches: 10
+  
+  # 감정 분석
+  emotion_analysis:
+    weights:
+      joy: 1.0
+      sadness: 1.0
+      anger: 1.0
+      fear: 1.0
+      surprise: 1.0
+      neutral: 0.5
+    threshold: 0.6
+    intensity_method: "frequency"
+    handle_negation: true
+    allow_mixed_emotions: true
+  
+  # 전략 분석
+  strategy_analysis:
+    weights:
+      logical: 1.0
+      empathetic: 1.0
+      creative: 1.0
+      cautious: 1.0
+      balanced: 0.8
+    threshold: 0.5
+    selection_method: "highest_score"
+    allow_combination: true
+  
+  # 성능 설정
+  performance:
+    max_processing_time: 2.0
+    max_memory_usage: 100
+    enable_parallel_processing: true
+    max_threads: 4
+    batch_size: 10
+  
+  # 캐싱
+  caching:
+    enabled: true
+    cache_size: 1000
+    cache_ttl: 300  # 5분
+
+# ==================================================
+# 🎯 FIST 템플릿 시스템 설정
+# ==================================================
+fist_templates:
+  # 기본 설정
+  enabled: true
+  templates_dir: "echo_engine/fist_templates/templates"
+  integration_mode: "enhanced"  # "basic", "enhanced", "advanced"
+  
+  # 구조 유형 설정
+  structure_types:
+    fist:
+      enabled: true
+      description: "Frame, Insight, Strategy, Tactics"
+      default_complexity: "moderate"
+      max_tokens: 1500
+      temperature: 0.3
+      weight: 1.0
+      
+    rise:
+      enabled: true
+      description: "Reflect, Improve, Synthesize, Evolve"
+      default_complexity: "moderate"
+      max_tokens: 1200
+      temperature: 0.4
+      weight: 0.8
+      
+    dir:
+      enabled: false
+      description: "Direction, Intention, Realization"
+      default_complexity: "simple"
+      max_tokens: 800
+      temperature: 0.2
+      weight: 0.6
+  
+  # 템플릿 선택 전략
+  selection_strategy:
+    default: "best_match"  # "best_match", "high_performance", "complexity_based", "adaptive"
+    fallback: "complexity_based"
+    adaptive_learning: true
+    performance_weighting: true
+  
+  # 판단 엔진 통합
+  judgment_integration:
+    enabled: true
+    hybrid_mode: true
+    fist_weight: 0.7
+    standard_weight: 0.3
+    confidence_bonus: 0.2
+    consistency_bonus: 0.1
+  
+  # 카테고리별 설정
+  categories:
+    decision:
+      preferred_structure: "fist"
+      complexity_range: ["moderate", "complex"]
+      temperature: 0.3
+      keywords: ["결정", "선택", "판단", "결정하", "고민", "해야할까"]
+      
+    creative:
+      preferred_structure: "fist"
+      complexity_range: ["moderate", "complex"]
+      temperature: 0.7
+      keywords: ["창조", "창의", "아이디어", "영감", "새로운", "혁신"]
+      
+    emotional:
+      preferred_structure: "fist"
+      complexity_range: ["simple", "moderate"]
+      temperature: 0.4
+      keywords: ["감정", "기분", "마음", "느낌", "슬프", "기쁘", "화나"]
+      
+    evaluation:
+      preferred_structure: "fist"
+      complexity_range: ["moderate", "complex"]
+      temperature: 0.2
+      keywords: ["평가", "분석", "어떤지", "어떨까", "의견"]
+      
+    strategic:
+      preferred_structure: "fist"
+      complexity_range: ["complex", "expert"]
+      temperature: 0.3
+      keywords: ["전략", "계획", "방향", "목표", "달성"]
+      
+    analytical:
+      preferred_structure: "fist"
+      complexity_range: ["moderate", "complex"]
+      temperature: 0.2
+      keywords: ["분석", "이해", "파악", "조사", "연구"]
+      
+    problem_solving:
+      preferred_structure: "fist"
+      complexity_range: ["moderate", "complex"]
+      temperature: 0.5
+      keywords: ["문제", "해결", "방법", "어떻게", "풀어야"]
+      
+    prediction:
+      preferred_structure: "rise"
+      complexity_range: ["moderate", "complex"]
+      temperature: 0.4
+      keywords: ["예측", "미래", "전망", "예상", "될 것"]
+  
+  # 성능 최적화
+  performance:
+    max_concurrent_requests: 5
+    request_timeout: 30
+    enable_parallel_processing: true
+    template_caching:
+      enabled: true
+      cache_size: 50
+      cache_ttl: 3600  # 1시간
+  
+  # 품질 관리
+  quality_control:
+    min_confidence_threshold: 0.3
+    structure_completeness_threshold: 0.7
+    enable_quality_feedback: true
+    enable_consistency_check: true
+
+# ==================================================
+# 🔄 메타인지 반성 루프 설정
+# ==================================================
+meta_cognition:
+  # 기본 설정
+  enabled: true
+  depth_levels: 3  # 1=자기인식, 2=공명체크, 3=반성적응
+  
+  # 각 단계별 설정
+  stages:
+    self_awareness:
+      enabled: true
+      emotion_analysis: true
+      signature_matching: true
+      reflection_depth_analysis: true
+      
+    resonance_check:
+      enabled: true
+      structure_analysis: true
+      approach_alignment: true
+      emotional_coherence: true
+      adaptation_threshold: 0.6
+      
+    reflect_adapt:
+      enabled: true
+      response_adaptation: true
+      meta_logging: true
+      learning_integration: true
+  
+  # 성능 설정
+  performance:
+    timeout_per_stage: 10  # 각 단계별 최대 시간 (초)
+    fallback_on_error: true
+    log_failures: true
+
+# ==================================================
+# 📊 로깅 및 모니터링 설정
+# ==================================================
+logging:
+  # 기본 로깅 설정
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file_path: "logs/echo_system.log"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # 로그 로테이션
+  rotation:
+    enabled: true
+    max_size: "10MB"
+    backup_count: 5
+  
+  # 메타 로그
+  meta_logging:
+    enabled: true
+    log_path: "meta_logs/"
+    session_tracking: true
+    judgment_tracking: true
+    performance_tracking: true
+  
+  # 특별 로깅
+  special_logs:
+    fist_integration: true
+    meta_cognition: true
+    signature_changes: true
+    error_recovery: true
+
+# ==================================================
+# ⚡ 성능 및 리소스 설정
+# ==================================================
+performance:
+  # 전역 성능 설정
+  max_concurrent_requests: 10
+  request_queue_size: 100
+  request_timeout: 30
+  
+  # 리소스 제한
+  memory_limit: "256MB"
+  cpu_limit: "50%"
+  
+  # 캐싱 통합
+  global_caching:
+    enabled: true
+    cache_hierarchy:
+      - "template_cache"
+      - "judgment_cache" 
+      - "signature_cache"
+      - "meta_cache"
+    
+    default_ttl: 300  # 5분
+    max_cache_size: "50MB"
+  
+  # 성능 모니터링
+  monitoring:
+    enabled: true
+    metrics_collection: true
+    performance_alerts: true
+    threshold_monitoring: true
+
+# ==================================================
+# 🔒 보안 설정
+# ==================================================
+security:
+  # 입력 검증
+  input_validation:
+    enabled: true
+    max_length: 1000
+    forbidden_patterns: []
+    sanitize_html: true
+    
+  # 출력 필터링
+  output_filtering:
+    enabled: true
+    remove_sensitive_info: true
+    log_masking: true
+    
+  # 접근 제어
+  access_control:
+    enabled: false
+    allowed_ips: []
+    rate_limiting:
+      enabled: false
+      requests_per_minute: 60
+
+# ==================================================
+# 🧪 개발 및 실험 설정
+# ==================================================
+development:
+  # 개발 모드
+  debug_mode: true
+  verbose_logging: true
+  test_mode: false
+  
+  # 프로파일링
+  profiling:
+    enabled: false
+    output_path: "profiling/"
+    
+  # 실험 기능
+  experimental_features:
+    enabled: true
+    features:
+      - "advanced_reasoning"
+      - "emotional_context"
+      - "multi_step_judgment"
+      - "adaptive_templates"
+      - "cross_signature_learning"
+    
+    ab_testing:
+      enabled: false
+      experiment_ratio: 0.1
+      
+  # 테스트 설정
+  testing:
+    mock_services: true
+    test_data_generation: true
+    performance_testing: false
+
+# ==================================================
+# 🌐 통합 및 인터페이스 설정
+# ==================================================
+integrations:
+  # Streamlit UI
+  streamlit:
+    enabled: true
+    fist_interface: true
+    signature_selector: true
+    meta_cognition_display: true
+    performance_dashboard: true
+    
+  # API 서버
+  api_server:
+    enabled: true
+    host: "localhost"
+    port: 9000
+    cors_enabled: true
+    rate_limiting: true
+    
+  # 외부 서비스
+  external_services:
+    enabled: false
+    timeout: 30
+    retry_count: 3
+    
+  # 데이터베이스
+  database:
+    enabled: false
+    connection_pool_size: 5
+    
+  # 메시지 큐
+  message_queue:
+    enabled: false
+    queue_size: 1000
+
+# ==================================================
+# 🎛️ 환경별 오버라이드 설정
+# ==================================================
+environments:
+  development:
+    judgment:
+      mode: "hybrid"
+      debug_mode: true
+    claude:
+      api_mode: "mock"
+    fist_templates:
+      structure_types:
+        dir:
+          enabled: true
+    logging:
+      level: "DEBUG"
+      verbose_logging: true
+    
+  testing:
+    judgment:
+      mode: "llm_free"
+      confidence_threshold: 0.5
+    performance:
+      timeout_reduction: 0.5
+    fist_templates:
+      quality_control:
+        min_confidence_threshold: 0.2
+    
+  production:
+    judgment:
+      mode: "hybrid"
+      confidence_threshold: 0.7
+    claude:
+      api_mode: "real"
+    performance:
+      max_concurrent_requests: 20
+    security:
+      input_validation:
+        enabled: true
+      access_control:
+        enabled: true
+    logging:
+      level: "INFO"
+      
+  offline:
+    judgment:
+      mode: "llm_free"
+    claude:
+      api_mode: "mock"
+    fist_templates:
+      structure_types:
+        rise:
+          enabled: false
+        dir:
+          enabled: false
+    integrations:
+      external_services:
+        enabled: false
+
+# ==================================================
+# 📈 메트릭 및 분석 설정
+# ==================================================
+metrics:
+  # 수집 설정
+  collection:
+    enabled: true
+    interval: 60  # 초
+    retention_days: 30
+    
+  # 수집할 메트릭
+  types:
+    performance: true
+    usage: true
+    errors: true
+    quality: true
+    user_satisfaction: true
+    
+  # 분석 설정
+  analysis:
+    real_time_alerts: true
+    trend_analysis: true
+    anomaly_detection: false
+    predictive_analytics: false
+    
+  # 리포팅
+  reporting:
+    daily_reports: true
+    weekly_summaries: true
+    dashboard_updates: true

@@ -1,0 +1,57 @@
+version: "0.1"
+session:
+  id: "2025-08-09T07:45+09:00_resonance_demo"
+  user_id: "designer"
+  locale: "ko-KR"
+  signatures_allowed: ["Selene", "Heo", "Aurora", "Lune"]
+
+pipeline:
+  steps:
+    - agent: resonance_pattern_analyzer
+      enabled: true
+      config:
+        ngram: 2
+        window_turns: 6
+        sarcasm_detection: true
+    - agent: empathy_bridge_builder
+      enabled: true
+      config:
+        mirroring_strength: 0.6
+        needs_inference: true
+    - agent: trust_evolution_tracker
+      enabled: true
+      config:
+        decay: 0.02
+        shock_sensitivity: 0.8
+    - agent: collaborative_flow_designer
+      enabled: true
+      config:
+        prompt_clarity_boost: 0.5
+        actionability_bias: 0.4
+    - agent: relationship_memory_keeper
+      enabled: true
+      config:
+        memory_window: 30
+        store_keys: ["intent", "affect", "trust", "turn_quality"]
+
+routing:
+  rules:
+    - when: { metric: resonance, op: <, value: 0.45 }
+      then: { action: repeat_agent, params: { agent: empathy_bridge_builder } }
+    - when: { metric: trust, op: <, value: 0.4 }
+      then: { action: escalate_signature_rewrite, params: { style: "whisper-comfort" } }
+
+metrics:
+  weights: { resonance: 0.4, trust: 0.25, flow: 0.2, affect_valence: 0.1, affect_arousal: 0.05 }
+  thresholds: { good: 0.7, warn: 0.5, bad: 0.35 }
+
+io:
+  input: { transcript_path: "./sample/session_demo.jsonl" }
+  output:
+    log_dir: "echo_engine/resonance_kit/logs"
+    report_dir: "echo_engine/resonance_kit/reports"
+
+recommendation:
+  signature_selection:
+    top_k: 3
+    diversity_penalty: 0.15

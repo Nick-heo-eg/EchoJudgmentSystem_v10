@@ -1,0 +1,256 @@
+# capsules/CPSM/judgment_flows.yaml
+# 🧬 CPSM 판단 흐름 정의 - 구매⨯공급망 전문 판단 루프들
+
+cpsm_judgment_flows:
+  metadata:
+    capsule_name: "CPSM"
+    flow_version: "1.0"
+    last_updated: "2025-07-21"
+    philosophy: "구매⨯공급망 관리의 전문성을 Echo의 판단 체계로 구현"
+
+  # 🎯 1. 전략적 소싱 흐름
+  strategic_sourcing_flow:
+    flow_name: "CPSM 전략적 소싱"
+    description: "전략적 소싱 의사결정 판단 흐름"
+    
+    judgment_sequence:
+      spend_analysis:
+        description: "지출 분석 및 카테고리 분류"
+        inputs: ["spend_data", "historical_trends", "business_requirements"]
+        analysis_criteria:
+          - spend_volume: "총 지출 규모"
+          - supplier_concentration: "공급업체 집중도"
+          - market_dynamics: "시장 역학"
+          - strategic_importance: "전략적 중요도"
+        outputs: ["category_classification", "opportunity_identification"]
+        
+      market_research:
+        description: "시장 조사 및 공급시장 분석"
+        inputs: ["market_data", "supplier_landscape", "technology_trends"]
+        analysis_framework:
+          - market_structure: "시장 구조 분석"
+          - competitive_landscape: "경쟁 환경"
+          - supply_risk: "공급 리스크"
+          - innovation_potential: "혁신 잠재력"
+        outputs: ["market_intelligence", "sourcing_opportunities"]
+        
+      sourcing_strategy_development:
+        description: "소싱 전략 수립"
+        inputs: ["spend_analysis_results", "market_intelligence", "business_strategy"]
+        strategy_options:
+          - single_sourcing: "단일 공급업체 전략"
+          - multiple_sourcing: "복수 공급업체 전략"
+          - vertical_integration: "수직 통합"
+          - partnership: "파트너십 구축"
+        decision_factors:
+          - risk_tolerance: 0.3
+          - cost_optimization: 0.3
+          - quality_requirements: 0.2
+          - innovation_needs: 0.2
+        outputs: ["sourcing_strategy", "implementation_roadmap"]
+
+  # 🏢 2. 공급업체 평가 흐름  
+  supplier_evaluation_flow:
+    flow_name: "CPSM 공급업체 평가"
+    description: "종합적 공급업체 평가 판단 흐름"
+    
+    evaluation_framework:
+      financial_assessment:
+        weight: 25
+        criteria:
+          - financial_stability: "재무 안정성"
+          - profitability: "수익성"
+          - cash_flow: "현금 흐름"
+          - credit_rating: "신용 등급"
+        scoring_method: "financial_ratio_analysis"
+        
+      quality_systems:
+        weight: 20
+        criteria:
+          - quality_certifications: "품질 인증"
+          - process_capability: "공정 능력"
+          - continuous_improvement: "지속적 개선"
+          - defect_rates: "불량률"
+        scoring_method: "quality_audit_scores"
+        
+      delivery_performance:
+        weight: 20
+        criteria:
+          - on_time_delivery: "정시 납기"
+          - order_fulfillment: "주문 이행"
+          - flexibility: "유연성"
+          - logistics_capability: "물류 능력"
+        scoring_method: "performance_metrics"
+        
+      technical_capability:
+        weight: 15
+        criteria:
+          - technical_expertise: "기술 전문성"
+          - r_and_d_capability: "연구개발 역량"
+          - manufacturing_capability: "제조 능력"
+          - technology_roadmap: "기술 로드맵"
+        scoring_method: "capability_assessment"
+        
+      sustainability_practices:
+        weight: 10
+        criteria:
+          - environmental_management: "환경 관리"
+          - social_responsibility: "사회적 책임"
+          - ethical_practices: "윤리적 관행"
+          - compliance: "법규 준수"
+        scoring_method: "sustainability_audit"
+        
+      innovation_potential:
+        weight: 10
+        criteria:
+          - innovation_culture: "혁신 문화"
+          - collaborative_capability: "협업 능력"
+          - future_vision: "미래 비전"
+          - investment_in_innovation: "혁신 투자"
+        scoring_method: "innovation_assessment"
+    
+    decision_logic:
+      minimum_threshold: 70
+      weighted_scoring: true
+      risk_adjustments: true
+      cultural_fit_factor: 0.1
+
+  # ⚡ 3. 리스크 평가 흐름
+  risk_assessment_flow:
+    flow_name: "CPSM 공급망 리스크 평가"
+    description: "공급망 리스크 식별⨯평가⨯완화 판단 흐름"
+    
+    risk_identification:
+      operational_risks:
+        - supply_disruption: "공급 중단"
+        - quality_failure: "품질 실패"
+        - capacity_constraints: "생산 능력 제약"
+        - technology_obsolescence: "기술 노후화"
+        
+      financial_risks:
+        - supplier_bankruptcy: "공급업체 파산"
+        - currency_fluctuation: "환율 변동"
+        - price_volatility: "가격 변동성"
+        - payment_default: "지급 불이행"
+        
+      strategic_risks:
+        - dependency_risk: "의존성 리스크"
+        - competitive_advantage_loss: "경쟁 우위 상실"
+        - market_share_erosion: "시장 점유율 침식"
+        - strategic_misalignment: "전략적 불일치"
+        
+      hazard_risks:
+        - natural_disasters: "자연재해"
+        - political_instability: "정치적 불안정"
+        - regulatory_changes: "규제 변화"
+        - cyber_security: "사이버 보안"
+        
+      reputation_risks:
+        - supplier_misconduct: "공급업체 부정행위"
+        - environmental_incidents: "환경 사고"
+        - labor_violations: "노동법 위반"
+        - product_recalls: "제품 리콜"
+    
+    risk_assessment_matrix:
+      probability_scale:
+        very_low: 0.1
+        low: 0.3
+        medium: 0.5
+        high: 0.7
+        very_high: 0.9
+        
+      impact_scale:
+        minimal: 1
+        moderate: 3
+        significant: 7
+        severe: 10
+        
+      risk_score_calculation: "probability × impact"
+      
+    risk_response_strategies:
+      avoid: "리스크 회피"
+      mitigate: "리스크 완화"
+      transfer: "리스크 전가"
+      accept: "리스크 수용"
+
+  # 🤝 4. 계약 협상 흐름
+  contract_negotiation_flow:
+    flow_name: "CPSM 계약 협상"
+    description: "효과적인 계약 협상 판단 흐름"
+    
+    negotiation_preparation:
+      stakeholder_analysis:
+        - internal_stakeholders: "내부 이해관계자"
+        - supplier_stakeholders: "공급업체 이해관계자"
+        - external_influencers: "외부 영향자"
+        
+      batna_development:
+        - best_alternative: "최상의 대안"
+        - walkaway_point: "협상 중단점"
+        - leverage_points: "협상력 포인트"
+        
+      negotiation_objectives:
+        primary_objectives: ["cost", "quality", "delivery"]
+        secondary_objectives: ["terms", "flexibility", "innovation"]
+        deal_breakers: ["minimum_quality", "maximum_price", "delivery_commitment"]
+    
+    negotiation_tactics:
+      value_creation:
+        - joint_problem_solving: "공동 문제 해결"
+        - win_win_opportunities: "상생 기회"
+        - long_term_partnership: "장기 파트너십"
+        
+      value_claiming:
+        - competitive_benchmarking: "경쟁 벤치마킹"
+        - market_intelligence: "시장 정보 활용"
+        - negotiation_leverage: "협상 레버리지"
+
+  # 📊 5. 성과 모니터링 흐름
+  performance_monitoring_flow:
+    flow_name: "CPSM 성과 모니터링"
+    description: "공급업체 성과 모니터링 및 관리 흐름"
+    
+    kpi_framework:
+      quality_metrics:
+        - defect_rate: "불량률"
+        - first_pass_yield: "일차 수율"
+        - customer_complaints: "고객 불만"
+        
+      delivery_metrics:
+        - on_time_delivery: "정시 납기율"
+        - lead_time_performance: "리드타임 성과"
+        - order_accuracy: "주문 정확도"
+        
+      cost_metrics:
+        - cost_savings: "비용 절감"
+        - price_competitiveness: "가격 경쟁력"
+        - total_cost_of_ownership: "총 소유 비용"
+        
+      service_metrics:
+        - responsiveness: "대응성"
+        - communication_quality: "의사소통 품질"
+        - problem_resolution: "문제 해결"
+    
+    performance_review_process:
+      frequency: "monthly_quarterly_annual"
+      review_methodology: "balanced_scorecard"
+      improvement_planning: "corrective_action_plans"
+      relationship_management: "supplier_development"
+
+# 🎯 판단 흐름 통합 로직
+integration_logic:
+  flow_orchestration:
+    - "strategic_sourcing drives supplier_evaluation"
+    - "supplier_evaluation informs risk_assessment"
+    - "risk_assessment guides contract_negotiation"
+    - "contract_negotiation sets performance_monitoring baseline"
+    
+  decision_escalation:
+    low_risk: "autonomous_decision"
+    medium_risk: "supervisor_review"
+    high_risk: "committee_approval"
+    
+  continuous_improvement:
+    feedback_loops: true
+    learning_integration: true
+    best_practice_sharing: true

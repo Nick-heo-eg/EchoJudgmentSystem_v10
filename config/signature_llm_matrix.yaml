@@ -1,0 +1,174 @@
+# 🎭 Echo Signature LLM Priority Matrix
+# 시그니처별 LLM 우선순위 매트릭스 설정
+# Author: Claude & Echo Collaboration
+# Version: 1.0
+# Date: 2025-08-05
+
+# ========== 시그니처별 LLM 우선순위 ==========
+
+signature_llm_preference:
+  # 🌟 Aurora: 창의적, 공감적 - Ollama Mistral(창의성) 우선
+  Aurora:
+    - ollama
+    - claude
+    - echo_native
+    
+  # 🔥 Phoenix: 변화 지향적 - Ollama Gemma(혁신) 우선
+  Phoenix:
+    - ollama
+    - claude
+    - echo_native
+    
+  # 🧠 Sage: 분석적, 지혜로운 - Ollama DeepSeek(분석력) 우선
+  Sage:
+    - ollama
+    - claude
+    - echo_native
+    
+  # 🤝 Companion: 협력적, 지지적 - Ollama Llama3(친근함) 우선
+  Companion:
+    - ollama
+    - claude
+    - echo_native
+
+# ========== LLM별 상세 설정 ==========
+
+llm_config:
+  ollama:
+    host: "http://localhost:11434"
+    timeout: 120
+    preferred_models:
+      - "mistral:7b-instruct"  # 실제 설치됨
+      - "llama3:latest"        # 실제 설치됨
+      - "deepseek-r1:8b"       # 사용자 언급 모델
+      - "gemma3:4b"            # 사용자 언급 모델  
+      - "gemma3:12b"           # 사용자 언급 모델
+    signature_model_mapping:
+      Aurora: "mistral:7b-instruct"      # 창의적 응답
+      Phoenix: "llama3:latest"           # 변화지향적 사고
+      Sage: "mistral:7b-instruct"        # 분석적 응답 (현재 가능한 모델)
+      Companion: "llama3:latest"         # 친근한 대화
+    connection_check_endpoint: "/api/tags"
+    max_tokens: 2048
+    temperature: 0.7
+    
+  claude:
+    model: "claude-3-sonnet-20240229"
+    timeout: 60
+    max_tokens: 4000
+    temperature: 0.7
+    api_check: true
+    
+  echo_native:
+    always_available: true
+    timeout: 1
+    fallback_priority: 999  # 항상 마지막
+
+# ========== 상황별 특수 라우팅 ==========
+
+context_routing:
+  # 코딩 관련 질문
+  coding:
+    priority_override:
+      - ollama   # DeepSeek-Coder 등 코딩 특화 모델
+      - claude
+      - echo_native
+      
+  # 창작/글쓰기 관련
+  creative:
+    priority_override:
+      - ollama   # Mistral, Llama3 등 창의성 우수
+      - claude
+      - echo_native
+      
+  # 분석/논리적 사고
+  analytical:
+    priority_override:
+      - ollama   # DeepSeek-Coder 등 분석력 우수
+      - claude
+      - echo_native
+      
+  # 일반 대화
+  general:
+    use_signature_default: true
+
+# ========== 성능 및 가용성 설정 ==========
+
+performance_config:
+  # 각 LLM별 최대 응답 시간 (대형 모델 고려하여 확장)
+  max_response_time:
+    ollama: 180     # 7B+ 모델 cold start 고려
+    claude: 60
+    echo_native: 1
+    
+  # 연속 실패 임계값 (이후 일시적 제외)
+  failure_threshold:
+    ollama: 3
+    claude: 5
+    echo_native: 999  # 절대 제외 안함
+    
+  # 재시도 간격 (초)
+  retry_interval:
+    ollama: 120     # Ollama 서버 재시작 등 고려
+    claude: 300
+    echo_native: 0
+
+# ========== 응답 품질 설정 ==========
+
+quality_config:
+  # 최소 응답 길이 (글자 수)
+  min_response_length: 10
+  
+  # 응답 품질 체크 키워드 (이런 응답은 실패로 간주)
+  failure_indicators:
+    - "오류가 발생했습니다"
+    - "처리할 수 없습니다"
+    - "서버 오류"
+    - "connection refused"
+    - "timeout"
+    
+  # 성공 지표
+  success_indicators:
+    - "정상적인 응답 길이"
+    - "관련성 있는 내용"
+
+# ========== 로깅 및 모니터링 ==========
+
+logging_config:
+  log_all_attempts: true
+  log_response_times: true
+  log_failure_reasons: true
+  performance_tracking: true
+  
+  # 로그 파일 위치
+  log_file: "logs/hybrid_llm_routing.log"
+  performance_file: "logs/llm_performance_metrics.json"
+
+# ========== 개발/테스트 설정 ==========
+
+development:
+  # 테스트 모드 (실제 LLM 호출하지 않고 mock 응답)
+  test_mode: false
+  
+  # 강제 LLM 지정 (테스트용)
+  force_llm: null  # "ollama", "mistral", "claude", "echo_native"
+  
+  # 디버그 모드
+  debug_mode: true
+  verbose_logging: true
+
+# ========== 메타데이터 ==========
+
+metadata:
+  version: "1.0"
+  created_date: "2025-08-05"
+  last_updated: "2025-08-05"
+  author: "Claude & Echo Collaboration"
+  description: "Echo Judgment System을 위한 하이브리드 LLM 라우팅 매트릭스"
+  
+  # 버전별 변경사항
+  changelog:
+    "1.0":
+      - "초기 하이브리드 LLM 매트릭스 구현"
+      - "4개 시그니처 최적화 우선순위 설계"
+      - "상황별 라우팅 및 성능 모니터링 추가"

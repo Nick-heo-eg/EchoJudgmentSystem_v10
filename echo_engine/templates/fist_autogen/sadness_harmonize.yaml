@@ -1,0 +1,14 @@
+category: fist
+description: 우울하고 침울한 감정 상태 + 균형과 화합을 추구하는 전략
+emotion: sadness
+emotion_korean: 슬픔
+frame: 슬픔도 삶의 한 부분으로 받아들이며 균형을 찾아가겠습니다.
+insight: 슬픔과 조화하며 균형잡힌 접근이 필요합니다.
+metadata:
+  compatibility: template_engine.py
+  generated_at: '2025-08-02T03:22:40.968757'
+  generated_by: FIST Template Generator v1.0.0
+strategy: harmonize
+strategy_korean: 조화
+tactics: 슬픔과 다른 요소들 간의 균형점을 찾아 조화를 이뤄보겠습니다.
+template_name: sadness_harmonize
