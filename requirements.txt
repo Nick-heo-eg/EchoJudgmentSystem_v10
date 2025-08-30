@@ -1,37 +1,47 @@
-# Core dependencies (requires Python 3.11+)
+# === Core Math / Linear Algebra (Accelerated) ===
+numpy>=1.26.0
+scipy>=1.13.0
+numba>=0.60.0
+joblib>=1.4.2
+
+# === AI / ML Acceleration (CPU only) ===
+torch==2.3.1 --index-url https://download.pytorch.org/whl/cpu
+torchvision --index-url https://download.pytorch.org/whl/cpu
+torchaudio --index-url https://download.pytorch.org/whl/cpu
+onnxruntime>=1.19.0
+onednn>=3.4.0
+
+# === Data Processing (Accelerated) ===
+pandas>=2.2.2
+polars>=1.8.0
+pyarrow>=17.0.0
+
+# === API / Server Runtime (Optimized) ===
+fastapi>=0.112.0
+uvicorn[standard]>=0.30.5
+orjson>=3.10.7
+
+# === System Monitoring ===
+psutil>=6.0.0
+
+# === Existing Core Dependencies ===
 pydantic>=2.0
 pyyaml>=6.0
-
-# Web framework & API
-streamlit>=1.40
-fastapi>=0.100
-uvicorn[standard]>=0.25
 python-multipart
+requests>=2.28
+python-dotenv
+openai>=1.0
 
-# Data processing & visualization
-pandas>=2.0
-numpy>=1.24
+# === Existing Web & Visualization ===
+streamlit>=1.40
 matplotlib>=3.7
 seaborn>=0.11
 plotly>=5.0
 
-# AI/ML integrations
-openai>=1.0
-python-dotenv
-
-# Utilities
-requests>=2.28
-
-# Development & testing  
+# === Existing Development & Testing ===
 pytest>=8.0
 pytest-timeout>=2.3.1
 jsonschema>=4.22.0
 black
 mypy
 ruff
-
-# GPT5 Intelligence Upgrade modules use only Python stdlib:
-# - echo_engine.plan.goal_planner_v2 (json, logging, pathlib, dataclasses, typing)
-# - echo_engine.verify.* (json, logging, typing)  
-# - echo_engine.reflect.* (json, time, pathlib, dataclasses, typing)
-# - echo_engine.utils.* (time, dataclasses, typing)
