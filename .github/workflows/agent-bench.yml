@@ -94,3 +94,4 @@ jobs:
           name: bench-charts
           path: ${{ runner.temp }}/bench_out
           if-no-files-found: warn
+# Force latest workflow
