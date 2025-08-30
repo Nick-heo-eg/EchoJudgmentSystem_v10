@@ -37,6 +37,12 @@ jobs:
             pip install aiohttp matplotlib orjson PyYAML streamlit
           fi
 
+      - name: Debug venv
+        run: |
+          ls -la agent_hub_ci_bundle/venv_extensions/bin || true
+          source agent_hub_ci_bundle/venv_extensions/bin/activate
+          which python; python -V
+
       - name: Run signature benchmarks (with warmup)
         run: |
           source agent_hub_ci_bundle/venv_extensions/bin/activate
