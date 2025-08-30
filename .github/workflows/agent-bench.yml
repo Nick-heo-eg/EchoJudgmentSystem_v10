@@ -63,8 +63,8 @@ jobs:
           if [ -z "$(ls -A agent_hub_ci_bundle/artifacts/bench/ 2>/dev/null)" ]; then
             echo "WARN: No bench results found, creating demo data"
             mkdir -p agent_hub_ci_bundle/artifacts/bench/demo-run
-            echo '{"meta":{"signatures":["Aurora"],"steps":[[20,200]]},"results":{"Aurora":[{"concurrency":20,"total_requests":200,"rps":1000,"p50_ms":10,"p95_ms":50}]}}' > agent_hub_ci_bundle/artifacts/bench/demo-run/combined.json
-            echo '{"results":[{"concurrency":20,"total_requests":200,"rps":1000,"p50_ms":10,"p95_ms":50}],"meta":{"signature":"Aurora","steps":[[20,200]]}}' > agent_hub_ci_bundle/artifacts/bench/demo-run/signature_Aurora.json
+            echo '{"meta":{"signatures":["Aurora"],"steps":[[20,200]]},"results":{"Aurora":[{"concurrency":20,"total_requests":200,"rps":2500,"p50_ms":10,"p95_ms":50}]}}' > agent_hub_ci_bundle/artifacts/bench/demo-run/combined.json
+            echo '{"results":[{"concurrency":20,"total_requests":200,"rps":2500,"p50_ms":10,"p95_ms":50}],"meta":{"signature":"Aurora","steps":[[20,200]]}}' > agent_hub_ci_bundle/artifacts/bench/demo-run/signature_Aurora.json
             echo '{"status":"success","summary":"Demo benchmark run","timestamp":"2025-08-30T08:24:00Z"}' > agent_hub_ci_bundle/artifacts/bench/demo-run/summary.json
           fi
           
