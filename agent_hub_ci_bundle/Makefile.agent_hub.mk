@@ -4,6 +4,9 @@ BUNDLE := agent_hub_ci_bundle
 VENV ?= $(BUNDLE)/venv_extensions
 ACT  ?= source $(VENV)/bin/activate || true
 
+# 기본 출력 경로 (Runner temp 또는 로컬 out)
+OUT_DIR ?= $(BUNDLE)/out
+
 # 최신 벤치 결과 폴더
 LATEST_RUN ?= $(shell ls -1dt $(BUNDLE)/artifacts/bench/* 2>/dev/null | head -n 1)
 
@@ -37,8 +40,9 @@ agent-bench-signatures:
 agent-bench-compare:
 	@if [ -z "$(LATEST_RUN)" ]; then echo "No bench results found, skipping compare"; exit 0; fi; \
 	if [ ! -f "$(LATEST_RUN)/combined.json" ]; then echo "No combined.json found, skipping compare"; exit 0; fi; \
+	mkdir -p "$(OUT_DIR)"; \
 	$(ACT) && python $(BUNDLE)/tests/agent_hub/visualize_compare.py \
-		$(LATEST_RUN)/combined.json --out-dir $(LATEST_RUN)
+		$(LATEST_RUN)/combined.json --out-dir "$(OUT_DIR)"
 
 agent-check-regression:
 	@if [ -z "$(LATEST_RUN)" ]; then echo "No bench results found, skipping regression check"; exit 0; fi; \

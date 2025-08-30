@@ -50,8 +50,10 @@ jobs:
 
       - name: Compare & generate plots
         run: |
+          OUT_DIR="${{ runner.temp }}/bench_out"
+          mkdir -p "$OUT_DIR"
           source agent_hub_ci_bundle/venv_extensions/bin/activate
-          make -f agent_hub_ci_bundle/Makefile.agent_hub.mk agent-bench-compare
+          make -f agent_hub_ci_bundle/Makefile.agent_hub.mk agent-bench-compare OUT_DIR="$OUT_DIR"
 
       - name: Regression check
         run: |
@@ -71,10 +73,17 @@ jobs:
           echo "latest_run=${LATEST_RUN}" >> $GITHUB_OUTPUT
           echo "LATEST_RUN=$LATEST_RUN"
 
-      - name: Upload artifacts
+      - name: Upload benchmark results
         if: steps.latest.outputs.latest_run != ''
         uses: actions/upload-artifact@v4
         with:
-          name: bench-artifacts
+          name: bench-results
           path: ${{ steps.latest.outputs.latest_run }}
+          if-no-files-found: warn
+
+      - name: Upload comparison charts
+        uses: actions/upload-artifact@v4
+        with:
+          name: bench-charts
+          path: ${{ runner.temp }}/bench_out
           if-no-files-found: warn
