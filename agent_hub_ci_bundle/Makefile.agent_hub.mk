@@ -36,7 +36,7 @@ agent-bench-signatures:
 
 agent-bench-compare:
 	@$(ACT) && python $(BUNDLE)/tests/agent_hub/visualize_compare.py \
-		$(LATEST_RUN)/combined.json --out $(LATEST_RUN)
+		$(LATEST_RUN)/combined.json --out-dir $(LATEST_RUN)
 
 agent-check-regression:
 	@$(ACT) && python $(BUNDLE)/tests/agent_hub/check_regression.py \
