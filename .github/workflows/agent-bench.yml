@@ -51,7 +51,14 @@ jobs:
       - name: Compare & generate plots
         run: |
           OUT_DIR="${{ runner.temp }}/bench_out"
-          mkdir -p "$OUT_DIR"
+          mkdir -p "$OUT_DIR" agent_hub_ci_bundle/artifacts/bench
+          # 비어 있으면 tmp에서 자동 보충(보호 장치)
+          if [ -z "$(ls -A agent_hub_ci_bundle/artifacts/bench 2>/dev/null)" ]; then
+            LATEST=$(ls -1dt agent_hub_ci_bundle/tmp/bench/* 2>/dev/null | head -1 || true)
+            if [ -n "$LATEST" ]; then
+              cp -r "$LATEST" agent_hub_ci_bundle/artifacts/bench/
+            fi
+          fi
           source agent_hub_ci_bundle/venv_extensions/bin/activate
           make -f agent_hub_ci_bundle/Makefile.agent_hub.mk agent-bench-compare OUT_DIR="$OUT_DIR"
 
