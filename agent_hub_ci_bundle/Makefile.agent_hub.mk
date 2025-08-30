@@ -4,13 +4,22 @@ SHELL := /usr/bin/bash
 ROOT := $(CURDIR)
 BUNDLE := agent_hub_ci_bundle
 
-# Auto-detect virtual environment path (relative to repo root)
+# Auto-detect venv (repo-root relative)
 VENV ?= $(shell if [ -d $(BUNDLE)/venv_extensions ]; then echo $(BUNDLE)/venv_extensions; \
               elif [ -d venv_extensions ]; then echo venv_extensions; else echo venv; fi)
 
-PY  ?= $(VENV)/bin/python
-ACT ?= source $(VENV)/bin/activate
+# Tool paths (with fallback if the venv binary doesn't exist)
+PY ?= $(VENV)/bin/python
+ifeq ("$(wildcard $(PY))","")
+  PY := python
+endif
+
 STREAMLIT ?= $(VENV)/bin/streamlit
+ifeq ("$(wildcard $(STREAMLIT))","")
+  STREAMLIT := streamlit
+endif
+
+ACT ?= source $(VENV)/bin/activate || true
 
 # Latest bench run (repo-root relative)
 LATEST_RUN ?= $(shell ls -1dt $(BUNDLE)/artifacts/bench/* 2>/dev/null | head -n 1)
@@ -22,6 +31,14 @@ WARMUP ?= 1
 BASELINE ?= tests/agent_hub/bench_baseline.yaml
 
 # ----- Targets -----
+
+# Debug helpers
+agent-show-config:
+	@echo "VENV: $(VENV)"; \
+	echo "PY: $(PY)"; \
+	echo "STREAMLIT: $(STREAMLIT)"; \
+	echo "LATEST_RUN: $(LATEST_RUN)"; \
+	ls -la $(VENV)/bin 2>/dev/null || true
 
 # Legacy
 agent-bench-curve:
@@ -56,12 +73,3 @@ agent-dashboard-compare:
 
 # Convenience
 agent-full-cycle: agent-bench-signatures agent-bench-compare agent-check-regression agent-slack-notify
-
-# Debug
-agent-show-config:
-	@echo "VENV: $(VENV)"
-	@echo "PY: $(PY)"
-	@echo "STREAMLIT: $(STREAMLIT)"
-	@echo "LATEST_RUN: $(LATEST_RUN)"
-	@echo "SIGNATURES: $(SIGNATURES)"
-	@echo "STEPS: $(STEPS)"
