@@ -35,15 +35,21 @@ agent-bench-signatures:
 		--signatures $(SIGNATURES) --steps $(STEPS) --tag sigbench$(if $(WARMUP),-warmup,)
 
 agent-bench-compare:
-	@$(ACT) && python $(BUNDLE)/tests/agent_hub/visualize_compare.py \
+	@if [ -z "$(LATEST_RUN)" ]; then echo "No bench results found, skipping compare"; exit 0; fi; \
+	if [ ! -f "$(LATEST_RUN)/combined.json" ]; then echo "No combined.json found, skipping compare"; exit 0; fi; \
+	$(ACT) && python $(BUNDLE)/tests/agent_hub/visualize_compare.py \
 		$(LATEST_RUN)/combined.json --out-dir $(LATEST_RUN)
 
 agent-check-regression:
-	@$(ACT) && python $(BUNDLE)/tests/agent_hub/check_regression.py \
+	@if [ -z "$(LATEST_RUN)" ]; then echo "No bench results found, skipping regression check"; exit 0; fi; \
+	if [ ! -f "$(LATEST_RUN)/signature_Aurora.json" ]; then echo "No Aurora results found, skipping regression check"; exit 0; fi; \
+	$(ACT) && python $(BUNDLE)/tests/agent_hub/check_regression.py \
 		$(LATEST_RUN)/signature_Aurora.json --baseline $(BASELINE) --fail-on-violation
 
 agent-slack-notify:
-	@$(ACT) && python $(BUNDLE)/alerts/slack_notify.py \
+	@if [ -z "$(LATEST_RUN)" ]; then echo "No bench results found, skipping Slack notify"; exit 0; fi; \
+	if [ ! -f "$(LATEST_RUN)/summary.json" ]; then echo "No summary.json found, skipping Slack notify"; exit 0; fi; \
+	$(ACT) && python $(BUNDLE)/alerts/slack_notify.py \
 		$(LATEST_RUN)/summary.json "Agent Hub Performance Report"
 
 agent-dashboard-compare:
