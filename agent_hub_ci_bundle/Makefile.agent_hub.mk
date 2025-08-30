@@ -8,7 +8,7 @@ ACT  ?= source $(VENV)/bin/activate || true
 SIGNATURES ?= Aurora,Selene,Heo
 STEPS ?= 20x200,50x1000,100x2000
 WARMUP ?= 1
-BASELINE ?= tests/agent_hub/bench_baseline.yaml
+BASELINE ?= $(BUNDLE)/tests/agent_hub/bench_baseline.yaml
 
 # ---- Debug ----
 agent-show-config:
